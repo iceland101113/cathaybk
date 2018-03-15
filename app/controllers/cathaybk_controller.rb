@@ -6,4 +6,7 @@ class CathaybkController < ApplicationController
   def basic
     @select = Select.first
   end
+  def situation
+    @select = Select.first
+  end
 end
