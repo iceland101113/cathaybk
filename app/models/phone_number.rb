@@ -4,6 +4,19 @@ class PhoneNumber < ApplicationRecord
     save
   end
 
-  
+
+  def twilio_client
+    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  end
+
+  def send_pin
+    twilio_client.messages.create(
+      to: "+886#{phone_number}",
+      from: ENV['TWILIO_PHONE_NUMBER'],
+      body: "Your PIN is #{pin}"
+    )
+  end        
+
+
 
 end
