@@ -1,22 +1,36 @@
 .tab {
-  display: none;
+  border-style: solid;
+  border-color: #18A853;
+  border-radius: 25px;
+  margin-top: 60px;
+  margin-left: 140px;
+  margin-right: 140px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+.title {
+  text-align:center;
 }
 
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:focus,
-.nav-pills>li.active>a:hover {
-  background-color: #5c8a36;
-  color: white;
-  border-radius: 0px;
- 
+
+
+
+.basic{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: 微軟正黑體, "Microsoft JhengHei", sans-serif;
+    font-weight: bold;
+    border-bottom: 1px dashed rgb(192, 192, 192);
 }
 
-.nav-pills>li>a {
-  border: 1px solid; 
-  border-radius: 4px;
-  color: white;
-  font-size:18px;
+.form-all{
+  margin: 20px;
 }
+
 
 #result {
   padding: 10px;
@@ -35,6 +49,4 @@
   margin-top: 30px;
 }
 
-.form-group {
-  font-size:16px;
-}
+

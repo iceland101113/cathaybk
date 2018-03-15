@@ -1,4 +1,4 @@
-<div class="container">
+<div class="content">
   <div class="row">
     <div style="text-align:center;"">
       <h1>信貸試算</h1>
@@ -7,9 +7,9 @@
       <%= form_for @select, url: {action: "index"} do |f| %>     
       
         <div class="tab">
-        <ul class="nav nav-pills nav-justified your_nav_class">
-          <li class="active"><a href="#">基本資料</a></li>
-          <li><a href="#">信用卡及借貸狀況</a></li>
+        <ul class="nav nav-pills ">
+          <li ><p class="basic">基本資料</p></li>
+          <li><p class="situation">信用卡及借貸狀況</p></li>
           
         </ul>
         <br>
@@ -75,8 +75,8 @@
       
         <div class="tab">
           <ul class="nav nav-pills nav-justified your_nav_class">
-            <li><a href="#">基本資料</a></li>
-            <li class="active"><a href="#">信用卡及借貸狀況</a></li>
+            <li><p>基本資料</p></li>
+            <li class="active"><p>信用卡及借貸狀況</p></li>
           </ul>
           <br>
           <div class="col-md-5 col-md-offset-1"> 

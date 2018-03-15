@@ -1,0 +1,82 @@
+<div class="content">
+  <div class="row">
+    <div class="title">
+      <h1>信貸試算</h1>
+      <h4>一分鐘填答試算，幫助您快速了解可貸額度</h4>
+    </div>
+    <div class="tab">
+       
+        <%= form_for @select, url: {action: "basic"} do |f| %>     
+      
+      
+        
+          <p class="basic">基本資料</p></li>
+         
+          
+       
+        <br>
+          <div class="form-all">
+            <div class="form-group">
+              <%= f.label :basic_id, "年齡" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['20歲~24歲',2],['25歲~29歲',3],['30歲~34歲',4],['35歲~39歲',5],['40歲~44歲',6],['45歲~49歲',7],['50歲~59歲',8],['60歲~64歲',9],['其他',10]],{}, { :class => 'form-control'}%>
+            </div>
+            <script>
+              $(function(){
+                var test = $(".form-control");
+                console.log(test[0].options[0].text);
+              })
+            </script>
+            <div class="form-group">
+              <%= f.label :basic_id, "學歷" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['博士',2],['碩士',3],['大學',4],['專科',5],['高中、高職',6],['其他',7]],{}, { :class => 'form-control' } %>
+            </div>
+           
+            <div class="form-group">
+              <%= f.label :basic_id, "婚姻狀況" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['未婚',2],['已婚',3],['其他',4]],{}, { :class => 'form-control' } %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :basic_id, "現居住宅所有權狀況" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['本人資產無貸款',2],['本人資產有貸款',3],['親戚產業',4],['租賃',5],['公司宿舍',6],['其他',7]],{}, { :class => 'form-control' }  %>
+            </div>
+          
+          
+          
+            <div class="form-group">
+              <%= f.label :basic_id, "行業" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['醫院、診所、教育業',2],['製造業',3],['科技業',4],['票券、證券、保險業',5],['企業社、工業社',6],['零售批發業、交通運輸、物流倉儲業',7],['銀行、律師事務所、會計事務所',8],['公家機關、電信、水電、燃氣、石油供應業',9],['餐飲業',10],['旅館飯店業',11],['自由業',12],['進出口貿易商、代理商',13],['典當、現金服務及其他民間融資業',14]],{}, { :class => 'form-control' }  %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :basic_id, "職稱" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['醫護人員、執業律師、會計師、精算師',2],['法官、檢察官、公職人員、教育工作者',3],['飛行駕駛、空服員',4],['資本額>=500萬之企業負責人、高階管理人員',5],['資本額<500萬之企業負責人',6],['工程師',7],['推銷員、營業員',8],['工讀人員、自由業者、娛樂、旅遊業者',9],['廚師、麵包師傅',10],['司機、快遞員、保全、清潔人員',11],['一般主管',12],['一般職員',13],['其他職稱',14]],{}, { :class => 'form-control' } %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :basic_id, "現職年資" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['未滿1年',2],['1年~未滿2年',3],['2年~未滿3年',4],['3年~未滿4年',5],['4年~未滿8年',6],['8年~未滿15年',7],['15年~未滿20年',8],['20年以上',9]],{}, { :class => 'form-control' } %>
+            </div>
+            
+            <div class="form-group" style="margin-bottom:91px;">
+              <%= f.label :basic_id, "現職年收入" %><br>
+
+              <%= f.select :basic_id, [['請選擇',1],['未滿35萬元',2],['35萬~未滿40萬元',3],['40萬~未滿50萬元',4],['50萬~未滿60萬元',5],['60萬~未滿75萬元',6],['75萬~未滿100萬元',7],['100萬~未滿150萬元',8],['150萬元以上',9]],{}, { :class => 'form-control' } %>
+            </div>
+          </div>
+        
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
