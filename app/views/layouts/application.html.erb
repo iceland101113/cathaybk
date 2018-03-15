@@ -6,9 +6,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", media: 'all', 'data-turbolinks-track' => true %>
   </head>
 
   <body style="background-image:url('https://s-i.huffpost.com/gen/1056860/images/o-DREAM-MEANING-facebook.jpg');">
-    <%= yield %>
+    <div class="container">
+      <%= yield %> 
+    </div>
   </body>
 </html>
+
+
