@@ -1,5 +1,5 @@
 class CathaybkController < ApplicationController
   def index
-    @select=Select.first
+    @select = Select.first
   end
 end
