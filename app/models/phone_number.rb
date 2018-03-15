@@ -15,7 +15,11 @@ class PhoneNumber < ApplicationRecord
       from: ENV['TWILIO_PHONE_NUMBER'],
       body: "Your PIN is #{pin}"
     )
-  end        
+  end    
+
+  def verify(entered_pin)
+    update(verified: true) if self.pin == entered_pin
+  end    
 
 
 
