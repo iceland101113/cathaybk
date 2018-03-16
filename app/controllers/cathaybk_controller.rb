@@ -9,4 +9,8 @@ class CathaybkController < ApplicationController
   def situation
     @select = Select.first
   end
+
+  def credit
+    @select = Select.first
+  end
 end

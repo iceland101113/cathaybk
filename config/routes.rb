@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "basic", to: "cathaybk#basic"
   get "situation", to: "cathaybk#situation"
+  get "credit", to: "cathaybk#credit"
   get "cathaybk", to: "cathaybk#index"
   resources :phone_numbers, only: [:new, :create]
   post 'phone_numbers/verify' => "phone_numbers#verify"
