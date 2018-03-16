@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "situation", to: "cathaybk#situation"
   get "credit", to: "cathaybk#credit"
   get "cathaybk", to: "cathaybk#index"
+  resources :cathaybk
   resources :phone_numbers, only: [:new, :create]
   post 'phone_numbers/verify' => "phone_numbers#verify"
 

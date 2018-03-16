@@ -1,0 +1,17 @@
+<%= form_for @gmap, :url => cathaybk_path do |f| %>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </p>
+  <p>
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<%= link_to 'Back', situation_path %>
