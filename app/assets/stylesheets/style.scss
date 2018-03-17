@@ -52,11 +52,54 @@
   margin-top: 30px;
 }
 .situation {
-  background-color: white;
+ 
 }
 
 .video {
   margin-left: 800px; 
 }
+
+.title-unit i {
+    display: inline-block;
+    width: 6px;
+    height: 50px;
+    margin-right: 8px;
+    background-color: #008852;
+    vertical-align: top;
+}
+
+
+.collapse-list{
+ display: inline-block;  
+}
+
+.collapse-list-li{
+ display: block;
+ margin: 10px;
+ }   
+
+.list-header{
+
+   padding: 50px 51px 51px 51px;
+   background-color: white;
+   color: black;
+   }  
+
+.list-header img{
+  margin-right: 10px;
+  }
+
+.list-header:hover {
+  color: #18A853;
+  cursor:pointer;
+}
+ 
+
+.list-content{
+
+   padding: 15px;
+   background-color: #ebf9de;
+   display: none;
+    }
 
 
