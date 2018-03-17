@@ -4,6 +4,11 @@
       <h1>信貸試算</h1>
       <h4>一分鐘填答試算，幫助您快速了解可貸額度</h4>
     </div>
+    <hr>
+    <div class="flow">
+      <p class="step">Step 1</p> <p class="step">Step 2</p> <p class="step">Step 3</p><br>
+      <p class="flow-item"><%= image_tag("basic_w.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("stats.svg", size: "30") %> 試算填寫</p>
+    </div>
     <div class="tab">
       <%= form_for @basic, url: "/basic_submit" do |f| %>
       
