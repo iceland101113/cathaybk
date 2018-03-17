@@ -7,12 +7,12 @@
     <hr>
     <div class="flow">
       <p class="step">Step 1</p> <p class="step">Step 2</p> <p class="step">Step 3</p><br>
-      <p class="flow-item"><%= image_tag("basic_w.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("stats.svg", size: "30") %> 試算填寫</p>
+      <p class="flow-item"><%= image_tag("basic_w.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("stats.svg", size: "30") %> 試算結果</p>
     </div>
     <div class="tab">
       <%= form_for @basic, url: "/basic_submit" do |f| %>
       
-        <p class="basic">基本資料</p></li>
+        <p class="basic"><%= image_tag("basic.svg", size: "40") %> 基本資料</p></li>
      
         <br>
         <div class="form-all">
@@ -66,7 +66,7 @@
             <%= f.select :income, [['未滿35萬元','未滿35萬元'],['35萬~未滿40萬元','35萬~未滿40萬元'],['40萬~未滿50萬元','40萬~未滿50萬元'],['50萬~未滿60萬元','50萬~未滿60萬元'],['60萬~未滿75萬元','60萬~未滿75萬元'],['75萬~未滿100萬元','75萬~未滿100萬元'],['100萬~未滿150萬元','100萬~未滿150萬元'],['150萬元以上','150萬元以上']],{}, { :class => 'form-control', :required => true } %>
           </div>
 
-            <%= f.submit "下一頁" %>
+            <%= f.submit "下一頁", :class=>"b center-block"%>
         </div>
       <% end %>
     </div>
