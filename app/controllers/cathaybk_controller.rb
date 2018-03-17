@@ -4,9 +4,37 @@ class CathaybkController < ApplicationController
     @select = Select.first
   end
 
+  #基本資料
   def basic
-    @select = Select.first
+    @basic = Basic.new
   end
+
+  def basic_submit
+    @basic = Basic.new(basic_params)
+    if @basic.save
+      redirect_to '/credit'
+    else 
+      render 'basic'
+      flash[:notice] = "填入資料有誤"
+    end
+  end
+
+  #信用嘅＆貸款資訊
+  def credit
+    @credit = Credit.new
+  end
+
+  def credit_submit
+    @credit = Credit.new(credit_params)
+    if @credit.save
+      flash[:success] = "試算成功"
+      redirect_to "/situation"
+    else
+      render 'credit'
+      flash[:notice] = "填入資料有誤"
+    end
+  end
+
   def situation
     @select = Select.first
     @gmaps = Bank.all
@@ -18,7 +46,7 @@ class CathaybkController < ApplicationController
   end
 
   def credit
-    @select = Select.first
+    @credit = Credit.new
   end
 
 
@@ -67,6 +95,14 @@ class CathaybkController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_gmap
       @gmap = Bank.find(params[:id])
+    end
+
+    def basic_params
+      params.require(:basic).permit(:age, :education, :marriage, :house, :job, :job_title, :longevity, :income)
+    end
+
+    def credit_params
+      params.require(:credit).permit(:credit_num, :credit_time, :credit_money, :credit_all_money, :credit_last, :credit_new, :credit_current_money, :credit_current_all_money, :repay_month)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

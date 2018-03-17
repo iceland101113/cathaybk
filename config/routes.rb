@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "basic", to: "cathaybk#basic"
-  get "situation", to: "cathaybk#situation"
+  post "basic_submit", to: "cathaybk#basic_submit"
   get "credit", to: "cathaybk#credit"
+  post "credit_submit", to: "cathaybk#credit_submit"
+
+    
+  get "situation", to: "cathaybk#situation"
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk
   resources :phone_numbers, only: [:new, :create]
