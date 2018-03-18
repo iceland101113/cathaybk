@@ -47,7 +47,7 @@
 
 
 .container {
-  background-color:lightgrey;
+  
   margin-top: 30px;
 }
 .situation {
@@ -80,7 +80,7 @@
 
 .list-header{
 
-   padding: 50px 51px 51px 51px;
+   padding: 20px 51px 20px 20px;
    background-color: white;
    color: black;
    }  
@@ -101,6 +101,7 @@
    background-color: #ebf9de;
    display: none;
     }
+
 
 .flow-item {
     border: 2px solid red;
@@ -170,6 +171,7 @@ i {
   font-size: 15px !important;
   line-height: 38px !important;
 }
+
 
 
 
@@ -364,5 +366,54 @@ hr.style {
     border: 0;
     border-bottom: 1px dashed #ccc;
     background: #999;
+}
+
+
+.slider-1 {
+  margin-right: 30px;
+
+  #ex1Slider {
+      .slider-selection {
+    background: grey;
+    }
+
+      .slider-track {
+    background: lightgrey;
+    }
+
+      .slider-handle {
+    background: #11a847;
+    }
+
+      .slider {
+        .slider-horizontal {
+      width: 700px;
+      }
+
+    }
+    width: 100%;
+  }
+
+}
+
+.form-result {
+  text-align: center;
+  width: 100%;
+  border-color: red;
+  
+
+}
+
+.form-result-box {
+  width: 100%;
+  text-align: center;
+}
+
+.box {
+  background-color: lightgrey;
+  width: 100%;
+  height: 100px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
 }
 
