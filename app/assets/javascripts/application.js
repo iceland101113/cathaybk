@@ -16,6 +16,5 @@
 //= require gmaps/google
 //= require_tree .
 //= require jquery
-
-
-//= require bootstrap
+//= require bootstrap-sprockets
+//= require bootstrap-slider
