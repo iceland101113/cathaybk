@@ -28,20 +28,15 @@
 }
 
 .form-all{
-  margin-top: 5px;
+  margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 40px;
 }
 
-.basic_form{
-  margin-top: 17px;
-}
-
 
 #result {
   padding: 10px;
-  background-color: white;
   text-align:center;
   background-color: white;
   opacity: 0.9;
@@ -54,6 +49,9 @@
 .container {
   background-color:lightgrey;
   margin-top: 30px;
+}
+.situation {
+ 
 }
 
 .video {
@@ -135,6 +133,7 @@
   text-align: center;
 }
 
+
 i {
   border: solid black;
   border-width: 0 3px 3px 0;
@@ -160,11 +159,9 @@ i {
 }
 
 .b {
-  margin-top:20px;
   background-color:#ff651b;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   border-color: #ff651b;
-  border-radius: 10px;
   background: linear-gradient(to bottom, #ff9445, #f06601 80%);
   background-color: #f87d23;
   color: white;
@@ -173,3 +170,199 @@ i {
   font-size: 15px !important;
   line-height: 38px !important;
 }
+
+
+
+.price-box {
+    margin: 0 auto;
+    background: #18A853;
+  border-radius: 10px;
+  padding: 20px 20px;
+  width: 500px;
+}
+
+.ui-widget-content {
+  border: 1px solid #bdc3c7;
+  background: #e1e1e1;
+  color: #222222;
+  margin-top: 4px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default{
+background:transparent !important;
+border:none !important;
+}
+.ui-slider .ui-slider-handle label{
+    background: #EEEE00;
+    border-radius: 20px;
+    width:5.2em;
+}
+
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 5.2em;
+  height: 100px;
+  cursor: default;
+  margin: 0 -40px auto !important;
+  text-align: center; 
+  line-height: 35px;
+  color: #FFFFFF;
+  font-size: 15px;
+    
+}
+
+.ui-slider .ui-slider-handle .glyphicon {
+  color: #FFFFFF;
+  margin: 0 3px; 
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.ui-corner-all {
+  border-radius: 20px;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  top: -.9em;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+  border: 1px solid #f9f9f9;
+  background: #3498db;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  margin-left: -0.5em;
+}
+
+.ui-slider .ui-slider-handle {
+  cursor: pointer;
+}
+
+.ui-slider a,
+.ui-slider a:focus {
+  cursor: pointer;
+  outline: none;
+}
+
+.price, .lead p {
+  font-weight: 600;
+  font-size: 32px;
+  display: inline-block;
+  line-height: 60px;
+}
+
+h4.great {
+  border-style: solid;
+  border-color: #18A853;
+  background: white;
+  margin: 0 0 25px -60px;
+  padding: 7px 15px;
+  color: #18A853;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  display: inline-block;
+  -moz-box-shadow:    2px 4px 5px 0 #ccc;
+    -webkit-box-shadow: 2px 4px 5px 0 #ccc;
+    box-shadow:         2px 4px 5px 0 #ccc;
+}
+
+.total {
+  border-bottom: 1px solid #7f8c8d;
+  /*display: inline;
+  padding: 10px 5px;*/
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.total:before {
+  content: "";
+  display: inline;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 100%;
+  height: 3px;
+  background: #7f8c8d;
+  opacity: 0.5;
+}
+
+.price-slider {
+  margin-bottom: 70px;
+}
+
+.price-slider span {
+  font-weight: 200;
+  display: inline-block;
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+.form-pricing {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.price-form {
+  background: #F9FBF;
+  margin-bottom: 10px;
+  padding: 20px;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  /*-moz-box-shadow:    0 5px 5px 0 #ccc;
+    -webkit-box-shadow: 0 5px 5px 0 #ccc;
+    box-shadow:         0 5px 5px 0 #ccc;*/
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-group span.price {
+  font-weight: 200;
+  display: inline-block;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.help-text {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 10px;
+  color: #737373;
+  position: absolute;
+  /*margin-left: 20px;*/
+  font-weight: 200;
+  text-align: right;
+  width: 188px;
+}
+
+.price-form label {
+  font-weight: 200;
+  font-size: 21px;
+}
+
+img.payment {
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.ui-slider-range-min {
+  background: #2980b9;
+}
+
+
+/* HR */
+
+hr.style {
+  margin-top: 0;
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
