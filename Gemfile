@@ -59,3 +59,4 @@ gem 'geocoder', '~> 1.4', '>= 1.4.6'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'bootstrap-slider-rails'
