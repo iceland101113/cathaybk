@@ -3,20 +3,19 @@
 
 <div class="container">
 
-  <div class="row">
+  
     <div class="title">
       <h1>信貸試算</h1>
       <h4>一分鐘填答試算，幫助您快速了解可貸額度</h4>
     </div>
-    <br>
     <hr>
     <div class="flow">
       <p class="step">Step 1</p> <p class="step">Step 2</p> <p class="step">Step 3</p><br>
       <p class="flow-item-1"><%= image_tag("basic.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item"><%= image_tag("stats_w.svg", size: "30") %> 試算結果</p>
     </div>
-  </div>
-  <div class="row">
-    <div class="tab" style="height: 500px;">
+  
+ 
+    <div class="tab col-md-6" style="height: 500px;">
       <p class="basic"><%= image_tag("stats.svg", size: "40") %> 試算結果</p>
       <br>
       <div class="row">
@@ -65,14 +64,12 @@
         </div>
       </div>
     </div>
-  </div>
-
-
+  
 
  
       
       <!-- START -->
-      <div class="price-box">
+      <div class="price-box col-md-6">
 
         <form class="form-horizontal form-pricing" role="form">
 
