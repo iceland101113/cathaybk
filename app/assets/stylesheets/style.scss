@@ -247,7 +247,7 @@ h4.great {
   border-style: solid;
   border-color: #18A853;
   background: white;
-  margin: 0 0 25px -60px;
+  margin: 0 0 10px 30px;
   padding: 7px 15px;
   color: #18A853;
   font-size: 18px;
@@ -394,13 +394,17 @@ hr.style {
 .form-result-box {
   width: 100%;
   text-align: center;
+  
 }
 
-.box {
+.result-box {
   background-color: lightgrey;
-  width: 100%;
+  width: 50%;
   height: 100px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  margin:0px auto;
+  opacity: 0.9;
+  line-height: 100px;
 
 }
 
