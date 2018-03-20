@@ -171,7 +171,7 @@ i {
 }
 
 .ui-widget-content {
-  border: 1px solid #bdc3c7;
+  border: 2px solid #bdc3c7;
   background: #e1e1e1;
   color: #222222;
   margin-top: 4px;
@@ -182,7 +182,7 @@ background:transparent !important;
 border:none !important;
 }
 .ui-slider .ui-slider-handle label{
-    background: #EEEE00;
+    background: #18A853;
     border-radius: 20px;
     width:5.2em;
 }
@@ -190,8 +190,8 @@ border:none !important;
 .ui-slider .ui-slider-handle {
   position: absolute;
   z-index: 2;
-  width: 5.2em;
-  height: 100px;
+  width: 100px;
+  height: 10px;
   cursor: default;
   margin: 0 -40px auto !important;
   text-align: center; 
@@ -203,7 +203,7 @@ border:none !important;
 
 .ui-slider .ui-slider-handle .glyphicon {
   color: #FFFFFF;
-  margin: 0 3px; 
+  margin: 0 0px; 
   font-size: 11px;
   opacity: 0.5;
 }
@@ -222,9 +222,6 @@ border:none !important;
   background: #3498db;
 }
 
-.ui-slider-horizontal .ui-slider-handle {
-  margin-left: -0.5em;
-}
 
 .ui-slider .ui-slider-handle {
   cursor: pointer;
@@ -247,7 +244,7 @@ h4.great {
   border-style: solid;
   border-color: #18A853;
   background: white;
-  margin: 0 0 10px 30px;
+  margin: 0 0 20px 30px;
   padding: 7px 15px;
   color: #18A853;
   font-size: 18px;
@@ -260,27 +257,18 @@ h4.great {
 }
 
 .total {
-  border-bottom: 1px solid #7f8c8d;
+  
   /*display: inline;
   padding: 10px 5px;*/
   position: relative;
   padding-bottom: 20px;
 }
 
-.total:before {
-  content: "";
-  display: inline;
-  position: absolute;
-  left: 0;
-  bottom: 5px;
-  width: 100%;
-  height: 3px;
-  background: #7f8c8d;
-  opacity: 0.5;
-}
 
 .price-slider {
+  margin-top: 10px;
   margin-bottom: 70px;
+  margin-left: 0px;
 }
 
 .price-slider span {
@@ -297,15 +285,13 @@ h4.great {
 }
 
 .price-form {
-  background: #F9FBF;
-  margin-bottom: 10px;
-  padding: 20px;
-  border: 1px solid #eeeeee;
-  border-radius: 4px;
-  /*-moz-box-shadow:    0 5px 5px 0 #ccc;
-    -webkit-box-shadow: 0 5px 5px 0 #ccc;
-    box-shadow:         0 5px 5px 0 #ccc;*/
+  width: 100%;
+  margin: 0px auto;
+  background-color:#e6ffe6;
+  
+
 }
+
 
 .form-group {
   margin-bottom: 0;
@@ -331,7 +317,7 @@ h4.great {
 }
 
 .price-form label {
-  font-weight: 200;
+  
   font-size: 21px;
 }
 
@@ -356,55 +342,23 @@ hr.style {
 }
 
 
-.slider-1 {
-  margin-right: 30px;
-
-  #ex1Slider {
-      .slider-selection {
-    background: grey;
-    }
-
-      .slider-track {
-    background: lightgrey;
-    }
-
-      .slider-handle {
-    background: #11a847;
-    }
-
-      .slider {
-        .slider-horizontal {
-      width: 700px;
-      }
-
-    }
-    width: 100%;
-  }
-
-}
 
 .form-result {
   text-align: center;
   width: 100%;
   border-color: red;
-  
 
 }
 
-.form-result-box {
-  width: 100%;
-  text-align: center;
-  
-}
+
 
 .result-box {
-  background-color: lightgrey;
-  width: 50%;
+  width: 100%;
   height: 100px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  background-color: #F9FBF7;
   margin:0px auto;
   opacity: 0.9;
-  line-height: 100px;
+  border-radius: 100px;
 
 }
 
@@ -541,4 +495,7 @@ background-image: image-url("arrow-right.svg");
 }
 
 
+.loan-label {
+  margin-left: 150px;
+}
 
