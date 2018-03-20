@@ -1,9 +1,23 @@
-footer{
-	margin-top: 40px;
-
-	section{
-		height: 146px;
-		border-top:8px solid #fff200;
-		background: #11a847;
-	}
+.footer{
+	
+  }
+.footer-top{
+  height: 55px;
+  background-color: white;
 }
+.footer-bottom{
+	height: 15px;
+  background-color: #18A853;
+}
+ .footer-reserve{
+  color: #333333;
+  opacity: 100%;
+  font-size: 14px;  
+  font-face: 微軟正黑體;
+  padding-top:24px;
+  
+}
+
+ .footer-reserve >.p{
+  float:right; }
+
