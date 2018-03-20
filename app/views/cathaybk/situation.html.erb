@@ -15,25 +15,27 @@
     <div class="tab ">
       <p class="basic"><%= image_tag("stats.svg", size: "40") %> 試算結果</p>
       <br>
+      <br>
       <div class="row">
-        <div class="form-result-box">
-          <div class="form-result">
-            <div class="result-box">
-              <h3>您最高可貸</h3>
-              <h3><span style="color:#ff651b"> 50 </span>萬</h3>
+        <div class="form-result col-sm-4">
+          <div class="result-box">
+            <div>
+              <br>
+              <h3>最高可貸<span style="color:#ff751a;"> 50 </span>萬</h3>
             </div>
           </div>
-          <div class="form-result">
-            <div class="result-box">
-              <h3>貸款期限最長</h3>
-              <h3><span style="color:#ff651b"> 5 </span>年</h3>
-            </div>
+        </div>
+        <div class="form-result col-sm-4">
+          <div class="result-box">
+            <br>
+            <h3>貸款期限最長<span style="color:#ff751a;"> 5 </span>年</h3>
           </div>
-          <div class="form-result">
-            <div class="result-box">
-              <h3>貸款利率</h3>
-              <h3><span style="color:#ff651b"> 1.66% </span>起</h3>
-            </div>
+        </div>
+        <br>
+        <div class="form-result col-sm-4">
+          <div class="result-box">
+            <br>
+            <h3>貸款利率<span style="color:#ff751a;"> 1.66% </span>起</h3>
           </div>
         </div>
       </div>
@@ -42,47 +44,59 @@
       <br>
       <hr>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-10" style="margin:0px auto;">
           <form class="form-horizontal" role="form">
 
 
             <div class="price-form">
-
+              <div class="month-loan">
+                <br>
+                <h3 style="text-align: center;color: grey;">月付金試算</h3>
+              </div>
               <div class="form-group">
                 <h4 class="great">您的貸款總額(萬)</h4><br>
                 <div class="row">
                   <div class="col-sm-6">
-                    <label for="amount" class="col-sm-6 control-label">萬: </label>
-                    <div class="col-sm-6">
-                      <input type="hidden" id="amount" class="form-control">
-                      <p class="price lead" id="amount-label"></p>
-                      <span class="price">.00</span>
+                    <div class="row">
+                        <div class="col-sm-2 loan-label">
+                          <label for="amount" style="color: grey;">萬: </label>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="hidden" id="amount" class="form-control">
+                          <p class="price lead" id="amount-label"></p>
+                          <span class="price"></span>
+                        </div>
                     </div>
                   </div>
+                  
                   <div class="col-sm-6">
                     <div class="price-slider">
-                      <div class="col-sm-12">
+                      <div class="col-sm-10">
                       <div id="slider"></div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
+            </div>
               <div class="form-group">
                 <h4 class="great">您的貸款期間(年)</h4><br>
                   <div class="row">
                     <div class="col-sm-6">
-                      <label for="duration" class="col-sm-6 control-label">年: </label>
-                      <div class="col-sm-6">
-                        <input type="hidden" id="duration" class="form-control">
-                        <p class="price lead" id="duration-label"></p>
-                        <span class="price"></span>
+                      <div class="row">
+                        <div class="col-sm-2 loan-label">
+                          <label for="duration" style="color: grey;">年: </label>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="hidden" id="duration" class="form-control">
+                          <p class="price lead" id="duration-label"></p>
+                          <span class="price"></span>
+                        </div>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="price-slider">
                         
-                        <div class="col-sm-12">
+                        <div class="col-sm-10">
                           <div id="slider2"></div>
                         </div>
                       </div>                  
@@ -91,12 +105,12 @@
               </div>
               <hr class="style">
               <div class="form-group total">
-                <label for="total" class="col-sm-6 control-label"><strong>您的每月應繳本息: </strong></label>
+                <label for="total" class="col-sm-6 control-label" style="color: grey;"><strong>您的每月應繳本息: </strong></label>
                 <span class="help-text"></span>
                 <div class="col-sm-6">
                   <input type="hidden" id="total" class="form-control">
                   <p class="price lead" id="total-label"></p>
-                  <span class="price">.00</span>
+                  <span class="price"></span>
                 </div>
               </div>
 
@@ -301,7 +315,7 @@
               animate: true,
               value:1,
               min: 0,
-              max: 1000,
+              max: 600,
               step: 10,
               slide: function(event, ui) {
                   update(1,ui.value); //changed
@@ -312,7 +326,7 @@
               animate: true,
               value:0,
               min: 0,
-              max: 500,
+              max: 400,
               step: 1,
               slide: function(event, ui) {
                   update(2,ui.value); //changed
