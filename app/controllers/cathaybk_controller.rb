@@ -1,12 +1,19 @@
 class CathaybkController < ApplicationController
   before_action :set_gmap, only: [:show, :edit, :update, :destroy]
+
+  helper_method :authorize
+  
+
+
   def index
     @select = Select.first
   end
 
   #基本資料
   def basic
-    @basic = Basic.new
+   
+      @basic = Basic.new
+    
   end
 
   def basic_submit
@@ -21,7 +28,9 @@ class CathaybkController < ApplicationController
 
   #信用嘅＆貸款資訊
   def credit
-    @credit = Credit.new
+   
+      @credit = Credit.new
+
   end
 
   def credit_submit
@@ -36,13 +45,15 @@ class CathaybkController < ApplicationController
   end
 
   def situation
-    @select = Select.first
-    @gmaps = Bank.all
-      @hash = Gmaps4rails.build_markers(@gmaps) do |gmap, marker|
-        marker.lat gmap.latitude
-        marker.lng gmap.longitude
-        marker.infowindow gmap.address
-      end
+  
+      @select = Select.first
+      @gmaps = Bank.all
+        @hash = Gmaps4rails.build_markers(@gmaps) do |gmap, marker|
+          marker.lat gmap.latitude
+          marker.lng gmap.longitude
+          marker.infowindow gmap.address
+        end
+     
   end
 
   def credit
@@ -108,5 +119,10 @@ class CathaybkController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def gmap_params
       params.require(:bank).permit(:latitude, :longitude, :address)
+    end
+     def authorize
+      unless PhoneNumber.find_by(session[:phone_number])
+        redirect_to root_path, notice: "請電話驗證"
+      end
     end
 end
