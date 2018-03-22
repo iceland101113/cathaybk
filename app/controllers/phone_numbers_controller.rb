@@ -16,8 +16,6 @@ class PhoneNumbersController < ApplicationController
   def verify
     @phone_number = PhoneNumber.find_by(phone_number: params[:hidden_phone_number])
     @phone_number.verify(params[:pin])
-    respond_to do |format|
-      format.js
-    end
+    redirect_to basic_path
   end
 end
