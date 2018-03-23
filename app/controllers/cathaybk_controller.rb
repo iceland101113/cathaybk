@@ -1,7 +1,7 @@
 class CathaybkController < ApplicationController
   before_action :set_gmap, only: [:show, :edit, :update, :destroy]
 
-  helper_method :authorize
+  before_action :authorize
   
 
 
@@ -11,8 +11,8 @@ class CathaybkController < ApplicationController
 
   #基本資料
   def basic
-   
-      @basic = Basic.new
+   @basic = Basic.new
+
     
   end
 
@@ -53,7 +53,9 @@ class CathaybkController < ApplicationController
           marker.lng gmap.longitude
           marker.infowindow gmap.address
         end
-     
+
+
+       session[:phone_number] = nil
   end
 
   def credit
@@ -121,7 +123,7 @@ class CathaybkController < ApplicationController
       params.require(:bank).permit(:latitude, :longitude, :address)
     end
      def authorize
-      unless PhoneNumber.find_by(session[:phone_number])
+      if session[:phone_number] == nil
         redirect_to root_path, notice: "請電話驗證"
       end
     end
