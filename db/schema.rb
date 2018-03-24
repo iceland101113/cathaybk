@@ -36,12 +36,7 @@ ActiveRecord::Schema.define(version: 20180324015856) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.integer "partA", default: 0, null: false
-    t.integer "partB", default: 0, null: false
-    t.integer "partC", default: 0, null: false
-    t.integer "partD", default: 0, null: false
-    t.integer "partE", default: 0, null: false
-    t.integer "partF", default: 0, null: false
+    t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
