@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk
   resources :phone_numbers, only: [:new, :create]
+  resources :cards
   post 'phone_numbers/verify' => "phone_numbers#verify"
 
   root "phone_numbers#new"
