@@ -4,7 +4,7 @@ class CardsController < ApplicationController
 
 
 
- before_action :set_card, only: [:update, :destroy, :show]
+ before_action :set_card, only: [:update, :destroy, :show, :take]
 
 
   def index
@@ -39,6 +39,15 @@ class CardsController < ApplicationController
   end
 
   def show
+    @cards = Card.all
+    @phone_number = session[:phone_number]
+    @id = @phone_number["id"]
+    @myphone = PhoneNumber.find_by(id: @id).phone_number
+    @yournumber = TakeLog.find_by(ip_address: @myphone ,card_id: @card)
+    if @yournumber != nil
+      @yournumber = @yournumber.take_count 
+    end
+    
     
   end
 
@@ -47,9 +56,17 @@ class CardsController < ApplicationController
       
       @card.destroy
      
-      redirect_to admin_cards_path
+      redirect_to cards_path
     end
 
+    def take
+      @phone_number = session[:phone_number]
+      @id = @phone_number["id"]
+      @myphone = PhoneNumber.find_by(id: @id).phone_number
+      @yournumber = @card.take_logs.create(ip_address: @myphone, take_count: @card.take_logs.size+1) 
+     
+      redirect_to cards_path
+    end
 
   private
 
