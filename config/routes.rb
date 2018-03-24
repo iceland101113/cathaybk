@@ -23,4 +23,9 @@ Rails.application.routes.draw do
   root "phone_numbers#new"
 
 
+  namespace :admin do
+    resources :cards
+  end
+
+
 end

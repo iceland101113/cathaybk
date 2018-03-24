@@ -10,11 +10,7 @@ class CardsController < ApplicationController
   def index
     @cards = Card.all
 
-    if params[:id]
-      set_card
-    else
-      @card = Card.new
-    end
+
   end
   def create
     @card = Card.new(card_params)

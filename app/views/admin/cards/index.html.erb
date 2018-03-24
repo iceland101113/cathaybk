@@ -1,0 +1,13 @@
+<% @takes.each do |take| %>
+ 
+    <h3>時段:<%= take.card.title%></h3>
+    <h3>電話號碼:<%= take.ip_address %></h3>
+    <h5>號碼牌:<%= take.take_count %></h5>
+    
+      
+      <%= link_to 'Delete', admin_card_path(take), method: :delete, data: { confirm: "Are you sure?"} %>
+
+  <% end %>
+
+
+  
