@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "credit", to: "cathaybk#credit"
   post "credit_submit", to: "cathaybk#credit_submit"
 
-    
+  get "/delete_session", to: "cathaybk#delete_session"
   get "situation", to: "cathaybk#situation"
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk

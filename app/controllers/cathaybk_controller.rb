@@ -55,7 +55,7 @@ class CathaybkController < ApplicationController
         end
 
 
-       session[:phone_number] = nil
+    
   end
 
   def credit
@@ -97,6 +97,10 @@ class CathaybkController < ApplicationController
     
   end
 
+  def delete_session
+    session[:phone_number] = nil
+    redirect_to root_path
+  end
 
   def destroy
     @gmap.destroy

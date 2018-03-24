@@ -11,7 +11,6 @@ class PhoneNumbersController < ApplicationController
     @phone_number.send_pin
     session[:phone_number] = @phone_number
     
-    
     respond_to do |format|
       format.js # render app/views/phone_numbers/create.js.erb
     end

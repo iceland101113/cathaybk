@@ -1,5 +1,10 @@
-<div class="container">
-
+<div class="container" >
+<script>
+  $(function(){
+    setTimeout(clearSession(), 3000);
+    console.log(3)
+  })
+</script>
   
     <div class="title">
       <h1>信貸試算</h1>
@@ -623,3 +628,17 @@
 
   </div>
 </div>
+
+
+
+
+
+<script>
+  function clearSession(){
+    $.ajax({
+      url: "/delete_session",
+      method: "GET",
+      success:()=>{console.log(1)}
+    })
+  }
+</script>
