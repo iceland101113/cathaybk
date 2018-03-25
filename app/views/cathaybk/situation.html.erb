@@ -123,7 +123,7 @@
       </div>
       <br>
     </div>
-  
+<hr> 
 
   
         <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -414,148 +414,229 @@
   }
 </script>
 
+
+  <div class="situation">
+    <div class="row" style="margin-left: 140px;margin-right: 140px;">
+
+      <div class="col-sm-8" id="geolocation" style="width:100%;height:400px;">地圖預留</div>
+      <div class="col-sm-4">
+        <button onclick="get_user_pos()" class="b" style="margin-bottom:5px;">立即預約申辦</button>
+        <p style="color:#ff651b"">提供距離您最鄰近分行資訊</p>
+        <div id="bank_info" style="display:none;">
+          <h3><%= @bank_near_name %></h3>
+          <p>距離您<%= @bank_distance %>公尺</p>
+          <p>車程<%= @bank_duration %>分鐘可達</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      var handler = Gmaps.build('Google', {marker: { maxRandomDistance: null} });
+        handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+      // be aware chrome >= 50 requires https for geolocation to work      
+        var markers = handler.addMarkers([
+          { lat: 25.040818, lng: 121.504449, infowindow: "國泰世華銀行(西門分行)"},
+          { lat: 25.044361, lng: 121.511745, infowindow: "國泰世華銀行(台北分行)"},
+          { lat: 25.040298, lng: 121.545906, infowindow: "國泰世華銀行(大安分行)"},
+          { lat: 25.030499, lng: 121.550283, infowindow: "國泰世華銀行(安和分行)"},
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();  
+     
+        });
+
+
+      function get_user_pos(){
+        console.log(3)
+          var directionsDisplay = new google.maps.DirectionsRenderer();
+          var directionsService = new google.maps.DirectionsService();
+
+
+          function calcRoute() {
+            var origin = new google.maps.LatLng(<%= @ip_lat %>, <%= @ip_lng %>);
+            var near_bank = <%= @bank_near %>
+            var destination = new google.maps.LatLng(near_bank[0], near_bank[1]);
+            var request = {
+                origin:      origin,
+                destination: destination,
+                travelMode:  google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+              }
+            });
+          }
+
+          calcRoute();
+
+
+        directionsDisplay.setMap(handler.getMap());   
+
+
+        var bank_near_re = document.getElementById("bank_info").style.display;
+        if (bank_near_re === "none"){
+          document.getElementById("bank_info").style.display="block";
+        }
+
         
-            
-<div class="row">
-<h1 class="title-unit" style = display:block;><i></i>信貸知識</h1>
+      } 
+      
 
 
-<ul class="collapse-list">
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>
-      只根據利率挑選銀行，您真的挑到最便宜的嗎？
-    </div>
-    <div class="list-content">
-      <h5 class="subtitle_article">利率的影響比想像中還小，選擇貸款規劃能力強的銀行，對您更有利。</h5>
-      <p class="paragraph">一般人挑選銀行時，往往僅比較利率，並選擇最低利率的銀行，但事實上，各間銀行的利率差距並不大，有時僅是0.1%~0.2%的差距，這樣的差距對每月付款金額的影響並沒有您想像中的大。</p>
-      <p class="paragraph"><%= image_tag("1.jpg") %>
-        
-      <p class="paragraph">利率、額度、貸款期數、各項費用...等等，皆會影響您的貸款負擔。一間值得信賴的銀行，不會僅以低利率與您溝通，而是依您的需求與現狀，幫您規劃並提供最合適的貸款商品。</p>
-      <br>
-      <table class="transparent">
-          <tbody>
-              <tr>
-                  <td rowspan="2"><%= image_tag("2.jpg") %></td>
-                  <td>
-                  <h3 class="title_article" style="text-align: left;">遠見雜誌「國泰世華，理財規劃客戶信賴度全國No.1」</h3>
-                  </td>
-              </tr>
-              <tr>
-                  <td>根據遠見雜誌2014銀行形象大調查，國泰世華全國理財規劃客戶數<br>
-                    No.1。我們致力於為客戶規劃最佳資金運用，為您設計最適合的信貸商品。</td>
-              </tr>
-          </tbody>
-      </table>
-      <p class="paragraph_remark">※以上資訊僅供參考</p>
-    </div>
-          
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>
-      甚麼樣的資金用途都可以申辦信貸嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">是的，資金用途沒有限制，並且也可以協助客戶資金整合、或償還其他貸款。</p>
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>透過代辦公司會有比較高的額度嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">不會，銀行會依據借款人信用狀況評估合適的貸款額度及利率訂價，而代辦公司不僅無法提高貸款額度，而且還可能收取較高的利率訂價及手續費用。如需進一步瞭解，您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
 
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>我可以指定信貸撥款日期嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">可以，借款人可逕向銀行承辦人員提出信貸指定撥款日期。</p>
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>信用卡待繳付金額可以轉成信貸嗎？
-    </div>
-    <div class="list-content">
-        <p class="paragraph">申辦信用貸款，其核貸金額可以依您自身需求靈活運用資金，除繳交信用卡待繳付金額外，多餘部份亦可使用於多元理財計劃。如需瞭解更多資訊，您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>
-                    辦理信貸需要準備甚麼文件呢？
-    </div>
-    <div class="list-content">
-        <p class="paragraph">需檢附下列文件：
-          <ul class="bullet light-green-large">
-            <li>身分證明文件正反面影本。</li>
-            <li>收入證明文件。</li>
-        </p>
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %> 可以提前清償信用貸款嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">可以，借款人可自行評估是否部分提前∕全額償還信用貸款，部分信用貸款專案更提供免收提前清償違約金優惠。您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
-    </div>
-  </li>
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>若我想申請「優職戶信貸專案」，有哪些企業屬於該專案認定之優質企業呢？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">
-        <ul class="bullet light-green-large">
-          <li>台灣上市、上櫃公司。</li>
-            <li>最新版「天下雜誌」製造業1,000大、服務業500大、金融業100大企業。</li>
-            <li>最新版「中華徵信所」1,000大企業。</li>
-            <li>最新版「財星雜誌(FORTUNE)」全球排名500大集團及其在台子公司/分公司。</li>
-            <li>大專院校及中小學。</li>
-            <li>「區域醫院」、「醫學中心及其分院」及「新制評鑑優等機構及其分院」醫療機構。</li>
-            <li>台灣金融服務業聯合總會或其會員機構。</li>
-            <li>安侯建業、資誠、勤業眾信、安永會計師事務所及理律法律事務所。</li>
-            <li>一般企業(須服務滿2年，且年收入連續2年≧80萬元)。</li>
-        </ul>
-      </p>
 
-  </li>
 
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>申請信貸需要有保證人嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">本行是依據借款人信用狀況評估合適的貸款額度及利率訂價，所以不需要提供保證人。</p>
-    </div>
-  </li>
-    
-  <li class="collapse-list-li">
-    <div class="list-header">
-      <%= image_tag("icon-question.png") %>一定要到國泰世華銀行分行據點才能申請信貸嗎？
-    </div>
-    <div class="list-content">
-      <p class="paragraph">國泰世華銀行提供您多元申請管道，您可透過下述通路擇一申請：</p>
-      <ul class="bullet light-green-large">
-          <li>國泰世華銀行各分行<a href="https://www.cathaybk.com.tw/cathaybk/about_query01.asp" target="_blank" class="link-primary">服務據點<i class="arrow_s_right"></i></a></li>
-          <li>國泰世華銀行<a href="https://www.cathaybk.com.tw/cathaybk/OnlineService/Loan/DigitalLoan/dg_step1_index.aspx" target="_blank" class="link-primary">線上申請信貸<i class="arrow_s_right"></i></a></li>
-          <li>國泰世華銀行服務專線(02)2383-1000</li>
-      </ul>
-      <p class="paragraph">
-      亦歡迎您留下聯絡方式，將有專人竭誠為您服務。
-      </p>
-    </div>
-         
-  </li>
-    
-</ul>
+    </script>
+
+  </div>
+<hr>
 </div>
+<div>
+  <div class="row" style="margin-left:140px;margin-right:140px;">
+      <h2 style="color:#18A853;margin-left:10px;">信貸知識</h2>
+
+
+      <ul class="collapse-list">
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>
+            只根據利率挑選銀行，您真的挑到最便宜的嗎？
+          </div>
+          <div class="list-content">
+            <h5 class="subtitle_article">利率的影響比想像中還小，選擇貸款規劃能力強的銀行，對您更有利。</h5>
+            <p class="paragraph">一般人挑選銀行時，往往僅比較利率，並選擇最低利率的銀行，但事實上，各間銀行的利率差距並不大，有時僅是0.1%~0.2%的差距，這樣的差距對每月付款金額的影響並沒有您想像中的大。</p>
+            <p class="paragraph"><%= image_tag("1.jpg") %>
+              
+            <p class="paragraph">利率、額度、貸款期數、各項費用...等等，皆會影響您的貸款負擔。一間值得信賴的銀行，不會僅以低利率與您溝通，而是依您的需求與現狀，幫您規劃並提供最合適的貸款商品。</p>
+            <br>
+            <table class="transparent">
+                <tbody>
+                    <tr>
+                        <td rowspan="2"><%= image_tag("2.jpg") %></td>
+                        <td>
+                        <h3 class="title_article" style="text-align: left;">遠見雜誌「國泰世華，理財規劃客戶信賴度全國No.1」</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>根據遠見雜誌2014銀行形象大調查，國泰世華全國理財規劃客戶數<br>
+                          No.1。我們致力於為客戶規劃最佳資金運用，為您設計最適合的信貸商品。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="paragraph_remark">※以上資訊僅供參考</p>
+          </div>
+                
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>
+            甚麼樣的資金用途都可以申辦信貸嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">是的，資金用途沒有限制，並且也可以協助客戶資金整合、或償還其他貸款。</p>
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>透過代辦公司會有比較高的額度嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">不會，銀行會依據借款人信用狀況評估合適的貸款額度及利率訂價，而代辦公司不僅無法提高貸款額度，而且還可能收取較高的利率訂價及手續費用。如需進一步瞭解，您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
+
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>我可以指定信貸撥款日期嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">可以，借款人可逕向銀行承辦人員提出信貸指定撥款日期。</p>
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>信用卡待繳付金額可以轉成信貸嗎？
+          </div>
+          <div class="list-content">
+              <p class="paragraph">申辦信用貸款，其核貸金額可以依您自身需求靈活運用資金，除繳交信用卡待繳付金額外，多餘部份亦可使用於多元理財計劃。如需瞭解更多資訊，您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>
+                          辦理信貸需要準備甚麼文件呢？
+          </div>
+          <div class="list-content">
+              <p class="paragraph">需檢附下列文件：
+                <ul class="bullet light-green-large">
+                  <li>身分證明文件正反面影本。</li>
+                  <li>收入證明文件。</li>
+              </p>
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %> 可以提前清償信用貸款嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">可以，借款人可自行評估是否部分提前∕全額償還信用貸款，部分信用貸款專案更提供免收提前清償違約金優惠。您可撥打本行服務專線(02)2383-1000，或逕洽國泰世華銀行任一分行諮詢，將有專人竭誠為您服務。</p>
+          </div>
+        </li>
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>若我想申請「優職戶信貸專案」，有哪些企業屬於該專案認定之優質企業呢？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">
+              <ul class="bullet light-green-large">
+                <li>台灣上市、上櫃公司。</li>
+                  <li>最新版「天下雜誌」製造業1,000大、服務業500大、金融業100大企業。</li>
+                  <li>最新版「中華徵信所」1,000大企業。</li>
+                  <li>最新版「財星雜誌(FORTUNE)」全球排名500大集團及其在台子公司/分公司。</li>
+                  <li>大專院校及中小學。</li>
+                  <li>「區域醫院」、「醫學中心及其分院」及「新制評鑑優等機構及其分院」醫療機構。</li>
+                  <li>台灣金融服務業聯合總會或其會員機構。</li>
+                  <li>安侯建業、資誠、勤業眾信、安永會計師事務所及理律法律事務所。</li>
+                  <li>一般企業(須服務滿2年，且年收入連續2年≧80萬元)。</li>
+              </ul>
+            </p>
+
+        </li>
+
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>申請信貸需要有保證人嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">本行是依據借款人信用狀況評估合適的貸款額度及利率訂價，所以不需要提供保證人。</p>
+          </div>
+        </li>
+          
+        <li class="collapse-list-li">
+          <div class="list-header">
+            <%= image_tag("icon-question.png") %>一定要到國泰世華銀行分行據點才能申請信貸嗎？
+          </div>
+          <div class="list-content">
+            <p class="paragraph">國泰世華銀行提供您多元申請管道，您可透過下述通路擇一申請：</p>
+            <ul class="bullet light-green-large">
+                <li>國泰世華銀行各分行<a href="https://www.cathaybk.com.tw/cathaybk/about_query01.asp" target="_blank" class="link-primary">服務據點<i class="arrow_s_right"></i></a></li>
+                <li>國泰世華銀行<a href="https://www.cathaybk.com.tw/cathaybk/OnlineService/Loan/DigitalLoan/dg_step1_index.aspx" target="_blank" class="link-primary">線上申請信貸<i class="arrow_s_right"></i></a></li>
+                <li>國泰世華銀行服務專線(02)2383-1000</li>
+            </ul>
+            <p class="paragraph">
+            亦歡迎您留下聯絡方式，將有專人竭誠為您服務。
+            </p>
+          </div>
+               
+        </li>
+          
+      </ul>
+    </div>
+    
+  </div>
+
 
 <script >
     $(".collapse-list-li").click(function() {
@@ -577,68 +658,4 @@
       tooltip: 'always'
     });
 </script>
-    
 
-
-
-
-
-
-  <div class="situation">
-
-
-
-
-
-  
-
-
-
-
-
-    <div id="geolocation" style="width:100%;height:400px;border-style: solid;
-    border-color: #18A853;">地圖預留</div>
-    <script type="text/javascript">
-      var handler = Gmaps.build('Google');
-        handler.buildMap({ internal: {id: 'geolocation'} }, function(){
-      // be aware chrome >= 50 requires https for geolocation to work
-        if(navigator.geolocation)
-          navigator.geolocation.getCurrentPosition(displayOnMap);
-      
-      
-     
-        });
-
-      function displayOnMap(position){
-        var marker = handler.addMarker({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-
-       
-
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-           handler.map.centerOn(marker);
-         
-          center: marker;
-      };
-    </script>
-
-  </div>
-</div>
-
-
-
-
-
-<script>
-  function clearSession(){
-    $.ajax({
-      url: "/delete_session",
-      method: "GET",
-      success:()=>{console.log(1)}
-    })
-  }
-</script>
