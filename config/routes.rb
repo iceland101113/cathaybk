@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     
   get "situation", to: "cathaybk#situation"
+  post "user_pos", to: "cathaybk#situation"
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk
   resources :phone_numbers, only: [:new, :create]
