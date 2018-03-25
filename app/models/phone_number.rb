@@ -1,6 +1,6 @@
 class PhoneNumber < ApplicationRecord
   
- 
+ validates :phone_number, numericality: { less_than: 4 }
 
   def generate_pin
     self.pin = rand(0000..9999).to_s.rjust(4, "0")
