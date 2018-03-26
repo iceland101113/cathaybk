@@ -105,8 +105,7 @@ class CathaybkController < ApplicationController
       end
 
        @total_money =  session[:point] * session[:month_money] 
-      session[:month_money] = nil
-      session[:point] = nil
+      
 
 
       # session[:phone_number] = nil
