@@ -1,10 +1,10 @@
 <div class="container" >
-<script>
+<!-- <script>
   $(function(){
     setTimeout(clearSession(), 1800000);
     console.log(3)
   })
-</script>
+</script> -->
   
     <div class="title">
       <h1>信貸試算</h1>
@@ -427,6 +427,7 @@
           <p>距離您<%= @bank_distance %>公尺</p>
           <p>車程<%= @bank_duration %>分鐘可達</p>
         </div>
+        <%= link_to "前去抽號碼牌" , cards_path %>
       </div>
     </div>
 
@@ -658,4 +659,15 @@
       tooltip: 'always'
     });
 </script>
+
+
+<!-- <script>
+  function clearSession(){
+    $.ajax({
+      url: "/delete_session",
+      method: "GET",
+      success:()=>{console.log(1)}
+    })
+  }
+</script> -->
 

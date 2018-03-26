@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
 
 
-  before_action :authorize
+  # before_action :authorize
 
 
   before_action :set_card, only: [:update, :destroy, :take]

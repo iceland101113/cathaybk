@@ -48,7 +48,7 @@ class CathaybkController < ApplicationController
   def situation
       @select = Select.first
 
-      session[:phone_number] = nil
+      # session[:phone_number] = nil
 
       #抓取使用者所在位置，使用http://freegeoip.net/json/這個API來把IP轉成經緯度
       @your_ip = request.ip
