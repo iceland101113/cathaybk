@@ -18,7 +18,7 @@
               <div class="col-6 form-group">
                 <%= f.label :credit_num, "目前持有幾家銀行的信用卡" %><br>
 
-                <%= f.select :credit_num,[['無信用卡','無信用卡'],['1家','1家'],['2家','2家'],['3家','3家'],['4家','4家'],['5家','5家'],['6家','6家'],['7家以上','7家以上'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control', required: true } %>
+                <%= f.select :credit_num,[['無信用卡','無信用卡'],['1家','1家'],['2家','2家'],['3家','3家'],['4家','4家'],['5家','5家'],['6家','6家'],['7家以上','7家以上'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control Q1', required: true } %>
               </div>
               
               <div class="col-6 form-group">
@@ -90,9 +90,7 @@
 </div>
 
 <script>
-  $(".form-control select").on("select", function(event) {
-  console.log("Button is clicked");
-});
+  
 </script>
 
 

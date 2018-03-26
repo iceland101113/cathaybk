@@ -1,24 +1,21 @@
-# README
+# 國泰世華 - 打造 in-branch banking O2O 新體驗
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## part 1
+- 傳入手機號碼
+- 一個號碼只能登入三次
+- sever會發送一組認證碼(4位數字)
+- 認證成功後登入
 
-* Ruby version
+## part 2
+- 填寫問券
+- 如果有問題沒回答,提醒使用者回答
+- 試算可以借貸金額
 
-* System dependencies
 
-* Configuration
+## part 3
+- 顯示出可信貸金額
+- 試算金額Slider
+- 選擇時段抽取號碼牌
+- google map 顯示出最近的分行,並規劃路線
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
