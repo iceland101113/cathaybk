@@ -1,10 +1,10 @@
 class CardsController < ApplicationController
 
 
+  before_action :authorize
 
 
-
- before_action :set_card, only: [:update, :destroy, :show, :take]
+  before_action :set_card, only: [:update, :destroy, :take]
 
 
   def index
@@ -36,12 +36,14 @@ class CardsController < ApplicationController
 
   def show
     @cards = Card.all
+    @card = Card.find(params[:id])
     @phone_number = session[:phone_number]
     @id = @phone_number["id"]
     @myphone = PhoneNumber.find_by(id: @id).phone_number
-    @yournumber = TakeLog.find_by(ip_address: @myphone ,card_id: @card)
+    @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
+    
     if @yournumber != nil
-      @yournumber = @yournumber.take_count 
+        @yournumber = @yournumber.take_count 
     end
     
     
@@ -72,6 +74,11 @@ class CardsController < ApplicationController
 
   def set_card
     @card = Card.find(params[:id])
+  end
+  def authorize
+    if session[:phone_number] == nil
+      redirect_to root_path, notice: "請電話驗證"
+    end
   end
 
 
