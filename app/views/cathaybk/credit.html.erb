@@ -18,13 +18,13 @@
               <div class="col-6 form-group">
                 <%= f.label :credit_num, "目前持有幾家銀行的信用卡" %><br>
 
-                <%= f.select :credit_num,[['無信用卡','無信用卡'],['1家','1家'],['2家','2家'],['3家','3家'],['4家','4家'],['5家','5家'],['6家','6家'],['7家以上','7家以上'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control Q1', required: true } %>
+                <%= f.select :credit_num,[['無信用卡','2'],['1家','4'],['2家','4.5'],['3家','5'],['4家','5'],['5家','5'],['6家','4.5'],['7家以上','4'],['不清楚','3']],{include_blank: 'Please choose'}, { :class => 'form-control Q1', required: true } %>
               </div>
               
               <div class="col-6 form-group">
                 <%= f.label :credit_time, "目前可使用的信用卡，最長已持有期間" %><br>
 
-                <%= f.select :credit_time, [['無信用卡','無信用卡'],['未滿3年','未滿3年'],['3年~未滿5年','3年~未滿5年'],['5年~未滿8年','5年~未滿8年'],['8年~未滿12年','8年~未滿12年'],['12年~未滿15年','12年~未滿15年'],['15年以上','15年以上'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :credit_time, [['無信用卡','3'],['未滿3年','4'],['3年~未滿5年','4.5'],['5年~未滿8年','4.5'],['8年~未滿12年','5'],['12年~未滿15年','5'],['15年以上','5'],['不清楚','3.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
             </div>
             <br>
@@ -32,13 +32,13 @@
               <div class="col-6 form-group">
                 <%= f.label :credit_money, "近三個月是否有使用信用卡循環或預借現金" %><br>
 
-                <%= f.select :credit_money, [['無信用卡','無信用卡'],['有使用信用卡循環或預借現金','有使用信用卡循環或預借現金'],['有信用卡，但無使用信用卡循環及預借現金','有信用卡，但無使用信用卡循環及預借現金'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :credit_money, [['無信用卡','3'],['有使用信用卡循環或預借現金','4'],['有信用卡，但無使用信用卡循環及預借現金','5'],['不清楚','3.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
               
               <div class="col-6 form-group">
                 <%= f.label :credit_all_money, "近一個月信用卡循環、信用卡分期、信用卡預借現金總金額" %><br>
 
-                <%= f.select :credit_all_money, [['無信用卡','無信用卡'],['有信用卡，但無使用循環、分期及預借現金','有信用卡，但無使用循環、分期及預借現金'],['未滿5千元','未滿5千元'],['5千~未滿1萬元','5千~未滿1萬元'],['1萬~未滿2萬元','1萬~未滿2萬元'],['2萬~未滿5萬元','2萬~未滿5萬元'],['5萬~未滿10萬元','5萬~未滿10萬元'],['10萬~未滿20萬元','10萬~未滿20萬元'],['20萬以上','20萬以上'],['不清楚','不清楚']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :credit_all_money, [['無信用卡','2'],['有信用卡，但無使用循環、分期及預借現金','5'],['未滿5千元','4.5'],['5千~未滿1萬元','4.5'],['1萬~未滿2萬元','4'],['2萬~未滿5萬元','4'],['5萬~未滿10萬元','3.5'],['10萬~未滿20萬元','3.5'],['20萬以上','3'],['不清楚','2.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
             </div>
             <br>
@@ -46,17 +46,17 @@
               <div class="col-6 form-group">
                 <%= f.label :credit_last, "近三個月內信用卡或貸款是否曾經遲繳" %><br>
 
-                <%= f.radio_button :credit_last, '無信用卡且無貸款', :required => true %> <%= f.label :credit_last, '無信用卡且無貸款' %><br>
-                <%= f.radio_button :credit_last, '曾經遲繳' %> <%= f.label :credit_last, '曾經遲繳' %><br>
-                <%= f.radio_button :credit_last, '不曾遲繳' %> <%= f.label :credit_last, '不曾遲繳' %>
+                <%= f.radio_button :credit_last, '3', :required => true %> <%= f.label :credit_last, '無信用卡且無貸款' %><br>
+                <%= f.radio_button :credit_last, '4' %> <%= f.label :credit_last, '曾經遲繳' %><br>
+                <%= f.radio_button :credit_last, '5' %> <%= f.label :credit_last, '不曾遲繳' %>
               </div>
 
               <div class="col-6 form-group">
                 <%= f.label :credit_new, "近三個月內是否有新增貸款" %><br>
 
-                <%= f.radio_button :credit_new, '無貸款', :required => true %> <%= f.label :credit_new, '無貸款' %><br>
-                <%= f.radio_button :credit_new, '有貸款，但近三個月無新增貸款' %> <%= f.label :credit_new, '有貸款，但近三個月無新增貸款' %><br>
-                <%= f.radio_button :credit_new, '近三個月有新增貸款' %> <%= f.label :credit_new, '近三個月有新增貸款' %>
+                <%= f.radio_button :credit_new, '4', :required => true %> <%= f.label :credit_new, '無貸款' %><br>
+                <%= f.radio_button :credit_new, '5' %> <%= f.label :credit_new, '有貸款，但近三個月無新增貸款' %><br>
+                <%= f.radio_button :credit_new, '3' %> <%= f.label :credit_new, '近三個月有新增貸款' %>
               </div>
             </div>
             <br>
@@ -64,20 +64,20 @@
               <div class="col-4 form-group">
                 <%= f.label :credit_current_money, "目前信用貸款及現金卡總額度" %><br>
 
-                <%= f.select :credit_current_money, [['無','無'],['未滿30萬元','未滿30萬元'],['30萬元~未滿50萬元','30萬元~未滿50萬元'],['50萬元~未滿80萬元','50萬元~未滿80萬元'],['80萬元~未滿100萬元','80萬元~未滿100萬元'],['100萬元~未滿150萬元','100萬元~未滿150萬元'],['150萬元以上','150萬元以上']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :credit_current_money, [['無','3'],['未滿30萬元','3.5'],['30萬元~未滿50萬元','4'],['50萬元~未滿80萬元','4.5'],['80萬元~未滿100萬元','4.5'],['100萬元~未滿150萬元','5'],['150萬元以上','5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
             
 
               <div class="col-4 form-group">
                 <%= f.label :credit_current_all_money, "目前信用貸款及現金卡總餘額" %><br>
 
-                <%= f.select :credit_current_all_money, [['無','無'],['未滿30萬元','未滿30萬元'],['30萬元~未滿50萬元','30萬元~未滿50萬元'],['50萬元~未滿80萬元','50萬元~未滿80萬元'],['80萬元~未滿100萬元','80萬元~未滿100萬元'],['100萬元~未滿150萬元','100萬元~未滿150萬元'],['150萬元以上','150萬元以上']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :credit_current_all_money, [['無','5'],['未滿30萬元','5'],['30萬元~未滿50萬元','4.5'],['50萬元~未滿80萬元','4.5'],['80萬元~未滿100萬元','4'],['100萬元~未滿150萬元','4'],['150萬元以上','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
 
               <div class="col-4 form-group">
                 <%= f.label :repay_month, "房貸每月還款金額" %><br>
 
-                <%= f.select :repay_month, [['無房貸','無房貸'],['未滿5千元','未滿5千元'],['5千~未滿1萬元','5千~未滿1萬元'],['1萬~未滿1萬5千元','1萬~未滿1萬5千元'],['1萬5千元~未滿2萬元','1萬5千元~未滿2萬元'],['2萬元~未滿2萬5千元','2萬元~未滿2萬5千元'],['2萬5千元~未滿3萬元','2萬5千元~未滿3萬元'],['3萬~未滿4萬元','3萬~未滿4萬元'],['4萬~未滿5萬元','4萬~未滿5萬元'],['5萬~未滿7萬元','5萬~未滿7萬元'],['7萬~未滿10萬元','7萬~未滿10萬元'],['10萬以上','10萬以上']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
+                <%= f.select :repay_month, [['無房貸','4'],['未滿5千元','5'],['5千~未滿1萬元','5'],['1萬~未滿1萬5千元','5'],['1萬5千元~未滿2萬元','4.5'],['2萬元~未滿2萬5千元','4.5'],['2萬5千元~未滿3萬元','4.5'],['3萬~未滿4萬元','4'],['4萬~未滿5萬元','4'],['5萬~未滿7萬元','3.5'],['7萬~未滿10萬元','3.5'],['10萬以上','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>     
             </div>
             <hr>

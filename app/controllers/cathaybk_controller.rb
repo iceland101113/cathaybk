@@ -14,11 +14,28 @@ class CathaybkController < ApplicationController
   def basic
    @basic = Basic.new
 
+
+
+
     
   end
 
   def basic_submit
     @basic = Basic.new(basic_params)
+
+    
+    @point_basic = @basic.age.to_i + @basic.education.to_i + @basic.marriage.to_i + @basic.house.to_i + @basic.job.to_i + @basic.job_title.to_i + @basic.longevity.to_i + @basic.income.to_i
+    @month_money = @basic.income.to_i
+    # @point = 0
+    # @basic[:age]
+    # @basic.each_value { |value|  @point + value.to_i }
+    session[:point] = @point_basic
+    session[:month_money] = @month_money
+       
+    puts "++++++++++++++++++++++++++++++"
+    puts session[:point] 
+    puts "+++++++++++++++++++++++++++++++++++++++++++"
+    
     if @basic.save
       redirect_to '/credit'
     else 
@@ -36,6 +53,14 @@ class CathaybkController < ApplicationController
 
   def credit_submit
     @credit = Credit.new(credit_params)
+    @point_credit = @credit.credit_num.to_i + @credit.credit_time.to_i + @credit.credit_money.to_i + @credit.credit_all_money.to_i + @credit.credit_last.to_i 
+                    + @credit.credit_new.to_i + @credit.credit_current_money.to_i + @credit.credit_current_all_money.to_i + @credit.repay_month.to_i
+    
+    session[:point] = session[:point] + @point_credit
+
+    puts "++++++++++++++++++++++++++++++"
+    puts session[:point] 
+    puts "+++++++++++++++++++++++++++++++++++++++++++"
     if @credit.save
       flash[:success] = "試算成功"
       redirect_to "/situation"
@@ -47,6 +72,42 @@ class CathaybkController < ApplicationController
 
   def situation
       @select = Select.first
+      case session[:point]
+       when 90..101
+        session[:point] == 18
+       when 80..90
+        session[:point]  == 15
+       when 70..80
+        session[:point] ==10
+       when 60..70
+        session[:point] == 8
+       else 
+        session[:point]  == 5
+      end
+
+      case session[:month_money]
+      when 2
+        session[:month_money] = 28000
+      when 3
+        session[:month_money] = 31000
+      when 4
+        session[:month_money] = 38000
+      when 5
+        session[:month_money] = 46000
+      when 5.1
+        session[:month_money] = 56000
+      when 5.2
+        session[:month_money] = 73000
+      when 6
+        session[:month_money] = 110000
+      else 6.1
+        session[:month_money] = 125000
+      end
+
+       @total_money =  session[:point] * session[:month_money] 
+      session[:month_money] = nil
+      session[:point] = nil
+
 
       # session[:phone_number] = nil
 
