@@ -41,6 +41,8 @@ class CardsController < ApplicationController
     @id = @phone_number["id"]
     @myphone = PhoneNumber.find_by(id: @id).phone_number
     @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
+    message = "您的號碼是: #{@yournumber.take_count}"
+      TwilioTextMessenger.new(message).call
     
     if @yournumber != nil
         @yournumber = @yournumber.take_count 
