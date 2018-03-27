@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 
-
+  before_action :authenticate_user!
   # before_action :authorize
 
 
@@ -9,7 +9,7 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.all
-
+    ContactMailer.say_hello_to(current_user).deliver_now
 
   end
   def create
@@ -75,13 +75,15 @@ class CardsController < ApplicationController
   def set_card
     @card = Card.find(params[:id])
   end
+
+
   def authorize
     if session[:phone_number] == nil
       redirect_to root_path, notice: "請電話驗證"
     end
   end
 
-
+ 
 
 
 
