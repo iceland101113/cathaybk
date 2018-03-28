@@ -9,7 +9,7 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.all
-    ContactMailer.say_hello_to(current_user).deliver_now
+    
 
   end
   def create
@@ -41,8 +41,12 @@ class CardsController < ApplicationController
     @id = @phone_number["id"]
     @myphone = PhoneNumber.find_by(id: @id).phone_number
     @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
-    message = "您的號碼是: #{@yournumber.take_count}"
-      TwilioTextMessenger.new(message).call
+    unless @yournumber == nil
+      ContactMailer.say_hello_to(current_user).deliver_now
+      message = "您的號碼是: #{@yournumber.take_count}
+                 時段: #{Card.find_by(id: @card).title}"
+        TwilioTextMessenger.new(message).call
+    end
     
     if @yournumber != nil
         @yournumber = @yournumber.take_count 
