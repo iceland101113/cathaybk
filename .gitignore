@@ -19,7 +19,9 @@
 
 /node_modules
 /yarn-error.log
-
+config/email.yml
+config/secrets.yml
 
 
 .byebug_history
+tmp
