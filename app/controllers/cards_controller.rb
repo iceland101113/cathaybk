@@ -42,7 +42,7 @@ class CardsController < ApplicationController
     @myphone = PhoneNumber.find_by(id: @id).phone_number
     @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
     unless @yournumber == nil
-      UserConfirmEmailJob.set(wait: 60.seconds).perform_later(current_user)
+      UserConfirmEmailJob.set(wait: 5.seconds).perform_later(current_user)
       message = "您的號碼是: #{@yournumber.take_count}
                  時段: #{Card.find_by(id: @card).title}"
         TwilioTextMessenger.new(message).call

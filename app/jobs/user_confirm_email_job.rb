@@ -3,6 +3,6 @@ class UserConfirmEmailJob < ApplicationJob
 
   def perform(user)
     @user = user
-    mail to:@user.email, subject:"歡迎加入國泰!!"
+   ContactMailer.say_hello_to(@user).deliver_now
   end
 end

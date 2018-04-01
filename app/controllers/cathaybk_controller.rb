@@ -23,12 +23,16 @@ class CathaybkController < ApplicationController
   def basic_submit
     @basic = Basic.new(basic_params)
 
+    # @basic.each_value do |value|
+    #   puts value.to_f
+    # end
+
     
-    @point_basic = @basic.age.to_i + @basic.education.to_i + @basic.marriage.to_i + @basic.house.to_i + @basic.job.to_i + @basic.job_title.to_i + @basic.longevity.to_i + @basic.income.to_i
-    @month_money = @basic.income.to_i
+    @point_basic = @basic.age.to_f + @basic.education.to_f + @basic.marriage.to_f + @basic.house.to_f + @basic.job.to_f + @basic.job_title.to_f + @basic.longevity.to_f + @basic.income.to_f
+    @month_money = @basic.income.to_f
     # @point = 0
     # @basic[:age]
-    # @basic.each_value { |value|  @point + value.to_i }
+    # @basic.each_value { |value|  @point + value.to_f }
     session[:point] = @point_basic
     session[:month_money] = @month_money
        
@@ -53,8 +57,8 @@ class CathaybkController < ApplicationController
 
   def credit_submit
     @credit = Credit.new(credit_params)
-    @point_credit = @credit.credit_num.to_i + @credit.credit_time.to_i + @credit.credit_money.to_i + @credit.credit_all_money.to_i + @credit.credit_last.to_i 
-                    + @credit.credit_new.to_i + @credit.credit_current_money.to_i + @credit.credit_current_all_money.to_i + @credit.repay_month.to_i
+    @point_credit = @credit.credit_num.to_f + @credit.credit_time.to_f + @credit.credit_money.to_f + @credit.credit_all_money.to_f + @credit.credit_last.to_f 
+                    + @credit.credit_new.to_f + @credit.credit_current_money.to_f + @credit.credit_current_all_money.to_f + @credit.repay_month.to_f
     
     session[:point] = session[:point] + @point_credit
 

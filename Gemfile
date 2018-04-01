@@ -62,4 +62,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-slider-rails'
- gem 'delayed_job_active_record'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'daemons'
