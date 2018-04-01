@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get "/delete_session", to: "cathaybk#delete_session"
   get "situation", to: "cathaybk#situation"
-  post "user_pos", to: "cathaybk#situation"
+  post "user_pos", to: "cathaybk#user_pos"
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk
   resources :phone_numbers, only: [:new, :create]
@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :addresslanlng
 
+  post "cathaybk/result", to: "cathaybk#result"
   post 'phone_numbers/verify' => "phone_numbers#verify"
 
   root "phone_numbers#new"

@@ -1,0 +1,41 @@
+$(function(){
+
+      function get_user_pos(){
+        
+          console.log(3)
+          var directionsDisplay = new google.maps.DirectionsRenderer();
+          var directionsService = new google.maps.DirectionsService();
+
+
+          function calcRoute() {
+            var origin = new google.maps.LatLng(<%= @ip_lat %>, <%= @ip_lng %>);
+            var near_bank = <%= @bank_near %>
+            var destination = new google.maps.LatLng(near_bank[0], near_bank[1]);
+            var request = {
+                origin:      origin,
+                destination: destination,
+                travelMode:  google.maps.TravelMode.WALKING
+            };
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+              }
+            });
+          }
+
+          calcRoute();
+
+
+        directionsDisplay.setMap(handler.getMap());   
+
+
+        var bank_near_re = document.getElementById("bank_info").style.display;
+        if (bank_near_re === "none"){
+          document.getElementById("bank_info").style.display="block"; 
+        }
+        console.log($("#bank_info"));
+        $("#bank_info").html("<h3><%= @bank_near_name %></h3><p>距離您<%= @bank_distance %>公尺</p><p>步行<%= @bank_duration %>分鐘可達</p>")
+                
+      } 
+      get_user_pos();
+})
