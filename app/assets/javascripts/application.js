@@ -12,9 +12,14 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
 //= require underscore
 //= require gmaps/google
+//= require gritter
+
+//= require jquery_ujs
+
 //= require_tree .
-//= require jquery
+
 //= require bootstrap-sprockets
 //= require bootstrap-slider

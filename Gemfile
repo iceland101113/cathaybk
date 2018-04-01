@@ -70,3 +70,4 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rspec-rails', :group => [:development, :test]
 gem 'factory_bot'
+gem 'gritter', '~> 1.2'

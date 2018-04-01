@@ -60,11 +60,11 @@ class CathaybkController < ApplicationController
     session[:point] = session[:point] + @point_credit
 
     if @credit.save
-      flash[:success] = "試算成功"
-      redirect_to "/situation"
+      
+      redirect_to "/situation", notice: "試算成功"
     else
-      render 'credit'
-      flash[:notice] = "填入資料有誤"
+      render 'credit', notice: "填入資料有誤"
+      
     end
   end
 
@@ -104,7 +104,7 @@ class CathaybkController < ApplicationController
 
        @total_money =  session[:point] * session[:month_money] 
       
-
+      
 
       # session[:phone_number] = nil
 

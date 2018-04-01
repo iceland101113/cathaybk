@@ -10,11 +10,7 @@
               <%= f.text_field :phone_number %>
             </div>
             <%= f.submit "取得驗證號碼", class: "b", id: 'send-pin-link' %>
-          
-            <%= flash[:notice] %>
-            
           <% end %>
-
         </div>
 
         <div id="verify-pin">
@@ -26,12 +22,9 @@
           </div>
           <%= submit_tag "驗證", class: "b" %>
           <% end %>
-          
         </div>
 
-        <div id="status-box" class="alert alert-success">
-          <p id="status-message">Status: Haven’t done anything yet</p>
-        </div>
+        
       <br>
       <%= video_tag(
                       'Cathay.mp4',

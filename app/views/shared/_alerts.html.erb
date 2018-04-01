@@ -1,0 +1,7 @@
+<% if flash[:alert] %>
+  <%= js add_gritter(flash[:alert], title: "國泰世華,你好", sticky: false,time: 3000) %>
+<% elsif flash[:error] %>
+  <%= js add_gritter(flash[:error], title: "國泰世華,你好", sticky: false,time: 3000) %>
+<% else %>
+  <%= js add_gritter(flash[:notice], title: "國泰世華,你好", sticky: false,time: 3000) %>
+<% end %>

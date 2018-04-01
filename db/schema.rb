@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20180401072558) do
     t.float "longitube"
     t.float "longitude"
   end
->>>>>>> cbk1
 
   create_table "banks", force: :cascade do |t|
     t.string "name"

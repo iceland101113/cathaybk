@@ -13,12 +13,13 @@ class PhoneNumbersController < ApplicationController
       session[:phone_number] = @phone_number
     
       respond_to do |format|
+        
         format.js # render app/views/phone_numbers/create.js.erb
       end
     
     else
-      flash[:notice] = "填入號碼有誤"
-      render :new
+     
+      render :new, notice:'填入號碼有誤'
       
     end
     
@@ -27,7 +28,12 @@ class PhoneNumbersController < ApplicationController
   def verify
     @phone_number = PhoneNumber.find_by(phone_number: params[:hidden_phone_number])
     @phone_number.verify(params[:pin])
-    redirect_to basic_path
+    if @phone_number.verified == true
+      redirect_to basic_path, notice:'驗證成功'
+    else
+      render :new, notice:'填入號碼有誤'
+    end
+
   end
 
 end
