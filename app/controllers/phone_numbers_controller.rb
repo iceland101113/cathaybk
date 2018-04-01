@@ -7,13 +7,21 @@ class PhoneNumbersController < ApplicationController
 
   def create
     @phone_number = PhoneNumber.find_or_create_by(phone_number: params[:phone_number][:phone_number])
-    @phone_number.generate_pin
-    @phone_number.send_pin
-    session[:phone_number] = @phone_number
+    if @phone_number.save
+      @phone_number.generate_pin
+      @phone_number.send_pin
+      session[:phone_number] = @phone_number
     
-    respond_to do |format|
-      format.js # render app/views/phone_numbers/create.js.erb
+      respond_to do |format|
+        format.js # render app/views/phone_numbers/create.js.erb
+      end
+    
+    else
+      flash[:notice] = "填入號碼有誤"
+      render :new
+      
     end
+    
   end
 
   def verify
