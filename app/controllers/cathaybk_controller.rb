@@ -31,10 +31,6 @@ class CathaybkController < ApplicationController
     # @basic.each_value { |value|  @point + value.to_i }
     session[:point] = @point_basic
     session[:month_money] = @month_money
-       
-    puts "++++++++++++++++++++++++++++++"
-    puts session[:point] 
-    puts "+++++++++++++++++++++++++++++++++++++++++++"
     
     if @basic.save
       redirect_to '/credit'
@@ -58,9 +54,6 @@ class CathaybkController < ApplicationController
     
     session[:point] = session[:point] + @point_credit
 
-    puts "++++++++++++++++++++++++++++++"
-    puts session[:point] 
-    puts "+++++++++++++++++++++++++++++++++++++++++++"
     if @credit.save
       flash[:success] = "試算成功"
       redirect_to "/situation"

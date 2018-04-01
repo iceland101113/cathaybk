@@ -20,20 +20,31 @@
 
                 <%= f.select :credit_num,[['無信用卡','2'],['1家','4'],['2家','4.5'],['3家','5'],['4家','5'],['5家','5'],['6家','4.5'],['7家以上','4'],['不清楚','3']],{include_blank: 'Please choose'}, { :class => 'form-control Q1', required: true } %>
               </div>
-
               <script>
                 $(function(){
                   $("#credit_credit_num").on("change", ()=>{
+                    let $credit_credit_time = $("#credit_credit_time");
+                    let $credit_credit_money = $("#credit_credit_money");
+                    let $credit_credit_all_money = $("#credit_credit_all_money");
                     if ($("#credit_credit_num").val() == "2" ){
-                      let $credit_credit_time = $("#credit_credit_time");
-                      let $credit_credit_money = $("#credit_credit_money");
-                      let $credit_credit_all_money = $("#credit_credit_all_money");
                       $credit_credit_time.val("3");
                       $credit_credit_time.attr("disabled", true);
 
                       $credit_credit_all_money.val("2");
                       $credit_credit_all_money.attr("disabled", true);
-
+                    } else{
+                      console.log($("#credit_credit_time option")[0].disabled)
+                      $("#credit_credit_time option")[1].disabled = true
+                      $("#credit_credit_all_money option")[1].disabled = true
+                      if ($credit_credit_time.val() == "3" ){
+                        $credit_credit_time.val("");
+                      }
+                      if ($credit_credit_all_money.val() == "2"){
+                        $credit_credit_all_money.val("") ;
+                      }
+                      
+                      $credit_credit_time.attr("disabled", false);
+                      $credit_credit_all_money.attr("disabled", false);
                     }
                   })
                 })
