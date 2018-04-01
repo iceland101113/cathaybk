@@ -448,6 +448,15 @@
       <div class="col-sm-4">
         <button onclick="get_user_pos()" class="b" style="margin-bottom:5px;">查看最近分行</button>
         <p style="color:#ff651b"">提供距離您最鄰近分行資訊</p>
+
+        <%= form_for @address, url: "/user_pos" , remote: true do |f| %>
+          <%= f.text_field :address, placeholder: "請輸入欲查詢地址",  class: "form-control"  %><br />
+          <%= f.submit "地址查詢", class: "btn btn-primary" %>
+        <% end %>
+        <% if @address.errors.any? %>
+          <%= @address.errors.full_messages.to_sentence %>
+        <% end %>
+
         <div id="bank_info" style="display:none;">
           <h3><%= @bank_near_name %></h3>
           <p>距離您<%= @bank_distance %>公尺</p>
@@ -476,6 +485,7 @@
 
 
       function get_user_pos(){
+
           //以html5找到使用者目前的位置
           var current_lat, current_lon;
           function get_user_position(position) {
@@ -490,6 +500,7 @@
           navigator.geolocation.getCurrentPosition(get_user_position);
 
           //計算路徑
+
           var directionsDisplay = new google.maps.DirectionsRenderer();
           var directionsService = new google.maps.DirectionsService();
 
@@ -501,7 +512,7 @@
             var request = {
                 origin:      origin,
                 destination: destination,
-                travelMode:  google.maps.TravelMode.DRIVING
+                travelMode:  google.maps.TravelMode.WALKING
             };
             directionsService.route(request, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
@@ -517,12 +528,14 @@
 
         var bank_near_re = document.getElementById("bank_info").style.display;
         if (bank_near_re === "none"){
-          document.getElementById("bank_info").style.display="block";
+          document.getElementById("bank_info").style.display="block"; 
         }
+
 
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(displayOnMap);
         });
+ 
 
         function displayOnMap(position){
           var marker = handler.addMarker({

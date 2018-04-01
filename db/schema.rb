@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330082347) do
+ActiveRecord::Schema.define(version: 20180401072558) do
+
+  create_table "address_lanlngs", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "addresslanlngs", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitube"
+    t.float "longitude"
+  end
+>>>>>>> cbk1
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
