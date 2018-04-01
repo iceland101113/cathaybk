@@ -170,37 +170,29 @@
 <script>
 
     (function ($) {
-
       // Detect touch support
       $.support.touch = 'ontouchend' in document;
-
       // Ignore browsers without touch support
       if (!$.support.touch) {
         return;
       }
-
       var mouseProto = $.ui.mouse.prototype,
           _mouseInit = mouseProto._mouseInit,
           _mouseDestroy = mouseProto._mouseDestroy,
           touchHandled;
-
       /**
        * Simulate a mouse event based on a corresponding touch event
        * @param {Object} event A touch event
        * @param {String} simulatedType The corresponding mouse event
        */
       function simulateMouseEvent (event, simulatedType) {
-
         // Ignore multi-touch events
         if (event.originalEvent.touches.length > 1) {
           return;
         }
-
         event.preventDefault();
-
         var touch = event.originalEvent.changedTouches[0],
-            simulatedEvent = document.createEvent('MouseEvents');
-        
+            simulatedEvent = document.createEvent('MouseEvents');        
         // Initialize the simulated mouse event using the touch event's coordinates
         simulatedEvent.initMouseEvent(
           simulatedType,    // type
@@ -223,20 +215,16 @@
         // Dispatch the simulated event to the target element
         event.target.dispatchEvent(simulatedEvent);
       }
-
       /**
        * Handle the jQuery UI widget's touchstart events
        * @param {Object} event The widget element's touchstart event
        */
       mouseProto._touchStart = function (event) {
-
         var self = this;
-
         // Ignore the event if another widget is already being handled
         if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
           return;
         }
-
         // Set the flag to prevent other widgets from inheriting the touch event
         touchHandled = true;
 
@@ -374,83 +362,82 @@
       $("#duration").change(update_slider2);
       // update_slider();
   });
+    //changed. now with parameter
+    function update(slider,val) {
+      //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+      var $amount = slider == 1?val:$("#amount").val();
+      var $duration = slider == 2?val:$("#duration").val();
 
-  //changed. now with parameter
-  function update(slider,val) {
-    //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
-    var $amount = slider == 1?val:$("#amount").val();
-    var $duration = slider == 2?val:$("#duration").val();
+      /* commented
+      $amount = $( "#slider" ).slider( "value" );
+      $duration = $( "#slider2" ).slider( "value" );
+       */
 
-    /* commented
-    $amount = $( "#slider" ).slider( "value" );
-    $duration = $( "#slider2" ).slider( "value" );
-     */
+       $total = "$" + ($amount * $duration);
+       $( "#amount" ).val($amount);
+       $( "#amount-label" ).text($amount);
+       $( "#duration" ).val($duration);
+       $( "#duration-label" ).text($duration);
+       $( "#total" ).val($total);
+       $( "#total-label" ).text($total);
 
-     $total = "$" + ($amount * $duration);
-     $( "#amount" ).val($amount);
-     $( "#amount-label" ).text($amount);
-     $( "#duration" ).val($duration);
-     $( "#duration-label" ).text($duration);
-     $( "#total" ).val($total);
-     $( "#total-label" ).text($total);
-
-     $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
-     $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
-  }
-
-  function update_slider1(slider,value){
-    let $amount = $("#amount").val();
-    if ($amount > 600) {
-      $("#amount").val(600);
-      $("#text_amount").text("金額上限600萬")
-    } else if (parseInt($amount).toString() != $amount) {
-      $("#amount").val(0);
-      $("#text_amount").text("請輸入數字");
-      $amount = 0;
-    } else if (!$amount) {
-      $("#amount").val(0);
-    } else{
-      $("#text_amount").text("");
+       $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+       $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
     }
-    $("#slider").slider({
-      animate: true,
-      value: $amount,
-      min: 0,
-      max: 600,
-      step: 10,
-      slide: function(event, ui) {
-          update(1,ui.value); //changed
+    // input's value control slider
+    function update_slider1(slider,value){
+      let $amount = $("#amount").val();
+      if ($amount > 600) {
+        $("#amount").val(600);
+        $("#text_amount").text("金額上限600萬")
+      } else if (parseInt($amount).toString() != $amount) {
+        $("#amount").val(0);
+        $("#text_amount").text("請輸入數字");
+        $amount = 0;
+      } else if (!$amount) {
+        $("#amount").val(0);
+      } else{
+        $("#text_amount").text("");
       }
-    });
-    update();
-  }
-  function update_slider2(slider,value){
-    let $duration = $("#duration").val();
-    if ($duration > 400) {
-      $("#duration").val(400);
-      $("#text_duration").text("最久400個月");
-    } else if (parseInt($duration).toString() != $duration) {
-      $("#duration").val(0);
-      $("#text_duration").text("請輸入數字");
-      $duration = 0;
-    } else if (!$duration){
-      $("#duration").val(0);
-    } else{
-      $("#text_duration").text("");
-    } ;
+      $("#slider").slider({
+        animate: true,
+        value: $amount,
+        min: 0,
+        max: 600,
+        step: 10,
+        slide: function(event, ui) {
+            update(1,ui.value); //changed
+        }
+      });
+      update();
+    }
+    function update_slider2(slider,value){
+      let $duration = $("#duration").val();
+      if ($duration > 400) {
+        $("#duration").val(400);
+        $("#text_duration").text("最久400個月");
+      } else if (parseInt($duration).toString() != $duration) {
+        $("#duration").val(0);
+        $("#text_duration").text("請輸入數字");
+        $duration = 0;
+      } else if (!$duration){
+        $("#duration").val(0);
+      } else{
+        $("#text_duration").text("");
+      } ;
 
-    $("#slider2").slider({
-      animate: true,
-      value: $duration,
-      min: 0,
-      max: 400,
-      step: 10,
-      slide: function(event, ui) {
-          update(1,ui.value); //changed
-      }
-    });
-    update();
-  }
+      $("#slider2").slider({
+        animate: true,
+        value: $duration,
+        min: 0,
+        max: 400,
+        step: 10,
+        slide: function(event, ui) {
+            update(1,ui.value); //changed
+        }
+      });
+      update();
+    }
 </script>
 
 <h2 style="color:#18A853;margin-left:10px;">立即開戶</h2><br>
@@ -485,16 +472,30 @@
         handler.fitMapToBounds();  
      
         });
+          
 
 
       function get_user_pos(){
-        console.log(3)
+          //以html5找到使用者目前的位置
+          var current_lat, current_lon;
+          function get_user_position(position) {
+            var current_lat  = position.coords.latitude;
+            var current_lon = position.coords.longitude;
+            console.log(current_lat, current_lon);
+
+          }
+          function error() {
+            output.innerHTML = "Unable to retrieve your location";
+          }
+          navigator.geolocation.getCurrentPosition(get_user_position);
+
+          //計算路徑
           var directionsDisplay = new google.maps.DirectionsRenderer();
           var directionsService = new google.maps.DirectionsService();
 
-
           function calcRoute() {
-            var origin = new google.maps.LatLng(<%= @ip_lat %>, <%= @ip_lng %>);
+            console.log(current_lat, current_lon);
+            var origin = new google.maps.LatLng(current_lat,current_lon);
             var near_bank = <%= @bank_near %>
             var destination = new google.maps.LatLng(near_bank[0], near_bank[1]);
             var request = {
@@ -508,26 +509,14 @@
               }
             });
           }
-
           calcRoute();
 
-
-        directionsDisplay.setMap(handler.getMap());   
-
-
-        var bank_near_re = document.getElementById("bank_info").style.display;
-        if (bank_near_re === "none"){
-          document.getElementById("bank_info").style.display="block";
-        }
-
-        
+          directionsDisplay.setMap(handler.getMap());   
+          var bank_near_re = document.getElementById("bank_info").style.display;
+          if (bank_near_re === "none"){
+            document.getElementById("bank_info").style.display="block";
+          }        
       } 
-      
-
-
-
-
-
     </script>
 
   </div>
@@ -680,8 +669,6 @@
 
 <script >
     $(".collapse-list-li").click(function() {
-      console.log(1)
-      console.log(this)
       $(this).find(".list-content").toggle();
       }
     );
@@ -700,13 +687,4 @@
 </script>
 
 
-<!-- <script>
-  function clearSession(){
-    $.ajax({
-      url: "/delete_session",
-      method: "GET",
-      success:()=>{console.log(1)}
-    })
-  }
-</script> -->
 
