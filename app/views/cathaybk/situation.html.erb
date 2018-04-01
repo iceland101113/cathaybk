@@ -442,27 +442,31 @@
 
 <h2 style="color:#18A853;margin-left:10px;">立即開戶</h2><br>
   <div class="situation">
-    <div class="row" style="margin-left: 140px;margin-right: 140px;">
+    <div class="row" style="margin-left: 20px;">
 
       <div class="col-sm-8" id="geolocation" style="width:100%;height:400px;">地圖預留</div>
       <div class="col-sm-4">
-        <button onclick="get_user_pos()" class="b" style="margin-bottom:5px;">查看最近分行</button>
-        <p style="color:#ff651b"">提供距離您最鄰近分行資訊</p>
-
-        <%= form_for @address, url: "/user_pos" , remote: true do |f| %>
-          <%= f.text_field :address, placeholder: "請輸入欲查詢地址",  class: "form-control"  %><br />
-          <%= f.submit "地址查詢", class: "btn btn-primary" %>
-        <% end %>
-        <% if @address.errors.any? %>
-          <%= @address.errors.full_messages.to_sentence %>
-        <% end %>
-
+        <%= link_to "立即抽號碼牌預約" , cards_path, class: "btn btn-primary" %>
+        <h4 style="color:#ff651b">鄰近分行資訊查詢</h4>
+        <button onclick="get_user_pos()" class="b" style="margin-bottom:10px;width:75%;">查看最近分行</button>
+        
+        <div class="form-inline" >
+          <%= form_for @address, url: "/user_pos" , remote: true do |f| %>
+            <div class="form-group">
+              <%= f.text_field :address, placeholder: "請輸入欲查詢地址",  class: "form-control"  %>
+            </div>
+            <%= f.submit "地址查詢", class: "b" %>
+          <% end %>
+          <% if @address.errors.any? %>
+            <%= @address.errors.full_messages.to_sentence %>
+          <% end %>
+        </div>
+        
         <div id="bank_info" style="display:none;">
           <h3><%= @bank_near_name %></h3>
           <p>距離您<%= @bank_distance %>公尺</p>
           <p>車程<%= @bank_duration %>分鐘可達</p>
         </div>
-        <%= link_to "前去抽號碼牌" , cards_path %>
       </div>
     </div>
 
@@ -486,7 +490,6 @@
 
       function get_user_pos(){
 
-          
           var current_lat, current_lon;
           function get_user_position(position) {
             var current_lat = position.coords.latitude;
@@ -532,7 +535,7 @@
           navigator.geolocation.getCurrentPosition(get_user_position);
 
           //計算路
-          
+
 
 
     }
