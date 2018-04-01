@@ -42,6 +42,9 @@ end
 group :development, :test do
   gem 'sqlite3'
 end
+group :test, :development do
+  gem "rspec-rails"
+end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -65,3 +68,5 @@ gem 'bootstrap-slider-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'rspec-rails', :group => [:development, :test]
+gem 'factory_bot'
