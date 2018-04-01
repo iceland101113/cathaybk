@@ -1,39 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="row col-sm-12">
+      <h3><%= current_user.name %>,您好</h3>
+    </div>
+    <div class="row col-sm-12">
+        <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
+    </div>
+    <div class="row col-sm-12">
+        <h3>可預約時段:</h3>
+        <ul class="nav nav-pills nav-pills-center">
+          
+          <% @cards.each do |card|%> 
+          <li role = "presentation"><%= link_to card.title, card_path(card) %></li><br>
+          <% end %>
+        </ul>
+    </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
 
-
-
-
-<h3><%= current_user.name %>,您好</h3>
-
-    <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
-  
-    <h3>可預約時段:</h3>
-    <ul class="nav nav-pills nav-pills-center">
-      
-      <% @cards.each do |card|%> 
-      <li role = "presentation"><%= link_to card.title, card_path(card) %></li><br>
-      <% end %>
-    </ul>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
  
 
 

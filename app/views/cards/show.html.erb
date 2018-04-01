@@ -1,37 +1,39 @@
-<h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
-  
-<h3>可預約時段:</h3>
+<div class="row">
+  <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
+    
+  <h3>可預約時段:</h3>
 
 
-<ul class="nav nav-pills nav-pills-center">
-  <% @cards.each do |card| %>
-    <li role="presentation" class="<%= "active" if card == 
-      @card %>">
-        <%= link_to card.title, card_path(card) %>
-    </li>
-  <% end %>
-</ul>
+  <ul class="nav nav-pills nav-pills-center">
+    <% @cards.each do |card| %>
+      <li role="presentation" class="<%= "active" if card == 
+        @card %>">
+          <%= link_to card.title, card_path(card) %>
+      </li>
+    <% end %>
+  </ul>
 
 
-<h1>等待人數: <%= @card.take_logs.today.size%></h1>
+  <h1>等待人數: <%= @card.take_logs.today.size%></h1>
 
 
-<%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"} %>
+  <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"} %>
 
 
-<h1>您的號碼:<%= @yournumber %> </h1>
+  <h1>您的號碼:<%= @yournumber %> </h1>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
+</div>

@@ -1,7 +1,11 @@
 $(function(){
 
       function get_user_pos(){
-        
+
+        handler = Gmaps.build('Google');
+        handler.buildMap({ internal: {id: 'geolocation' }});
+          
+
           console.log(3)
           var directionsDisplay = new google.maps.DirectionsRenderer();
           var directionsService = new google.maps.DirectionsService();
