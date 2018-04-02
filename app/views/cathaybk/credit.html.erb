@@ -28,10 +28,13 @@
                     let $credit_credit_all_money = $("#credit_credit_all_money");
                     if ($("#credit_credit_num").val() == "2" ){
                       $credit_credit_time.val("3");
-                      $credit_credit_time.attr("disabled", true);
+                      $credit_credit_time.attr("readonly", true);
+
+                      $credit_credit_money.val("3");
+                      $credit_credit_money.attr("readonly", true);
 
                       $credit_credit_all_money.val("2");
-                      $credit_credit_all_money.attr("disabled", true);
+                      $credit_credit_all_money.attr("readonly", true);
                     } else{
                       console.log($("#credit_credit_time option")[0].disabled)
                       $("#credit_credit_time option")[1].disabled = true
