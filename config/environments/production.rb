@@ -88,7 +88,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "http://www.cathaybk.herokuapp.com" }
   
-   config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+   config.action_mailer.smtp_settings = get_smtp_setting.symbolize_keys
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

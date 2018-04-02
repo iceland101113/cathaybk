@@ -61,6 +61,7 @@ class CardsController < ApplicationController
     end
 
     def take
+      
       @phone_number = session[:phone_number]
       @id = @phone_number["id"]
       @myphone = PhoneNumber.find_by(id: @id).phone_number
