@@ -9,7 +9,7 @@ class Admin::CardsController < ApplicationController
     @take = TakeLog.find(params[:id])
     @take.destroy
    
-    redirect_to admin_cards_path
+    redirect_to admin_cards_path, notice: "刪除成功"
   end
 
 

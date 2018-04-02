@@ -41,11 +41,8 @@ class CardsController < ApplicationController
     @id = @phone_number["id"]
     @myphone = PhoneNumber.find_by(id: @id).phone_number
     @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
-    unless @yournumber == nil
-      ContactMailer.say_hello_to(current_user).deliver_now
-      message = "您的號碼是: #{@yournumber.take_count}
-                 時段: #{Card.find_by(id: @card).title}"
-        TwilioTextMessenger.new(message).call
+    if @card.points > 6
+      redirect_to cards_path, notice: "時段額滿"
     end
     
     if @yournumber != nil
@@ -60,7 +57,7 @@ class CardsController < ApplicationController
       
       @card.destroy
      
-      redirect_to cards_path
+      redirect_to cards_path, notice: "刪除成功"
     end
 
     def take
@@ -68,8 +65,13 @@ class CardsController < ApplicationController
       @id = @phone_number["id"]
       @myphone = PhoneNumber.find_by(id: @id).phone_number
       @yournumber = @card.take_logs.create(ip_address: @myphone, take_count: @card.take_logs.size+1) 
-     
-      redirect_to cards_path
+      unless @yournumber == nil
+        ContactMailer.say_hello_to(current_user).deliver_now
+        message = "您的號碼是: #{@yournumber.take_count}
+                   時段: #{Card.find_by(id: @card).title}"
+          TwilioTextMessenger.new(message).call
+      end
+      redirect_to cards_path, notice: "預約成功,請看簡訊或者信箱"
     end
 
   private

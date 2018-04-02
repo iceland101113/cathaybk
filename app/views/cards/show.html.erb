@@ -17,7 +17,12 @@
   <h1>等待人數: <%= @card.take_logs.today.size%></h1>
 
 
+
+
   <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"} %>
+
+
+
 
 
   <h1>您的號碼:<%= @yournumber %> </h1>
