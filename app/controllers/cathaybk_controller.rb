@@ -61,7 +61,7 @@ class CathaybkController < ApplicationController
 
     if @credit.save
       
-      redirect_to "/situation", notice: "試算成功"
+      redirect_to situation_path, notice: "試算成功"
     else
       render 'credit', notice: "填入資料有誤"
       
