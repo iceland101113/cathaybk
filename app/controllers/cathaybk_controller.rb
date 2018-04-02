@@ -53,7 +53,7 @@ class CathaybkController < ApplicationController
   end
 
   def credit_submit
-    @credit = Credit.new(credit_params)
+    @credit = Credit.create(credit_params)
     @point_credit = @credit.credit_num.to_f + @credit.credit_time.to_f + @credit.credit_money.to_f + @credit.credit_all_money.to_f + @credit.credit_last.to_f 
                     + @credit.credit_new.to_f + @credit.credit_current_money.to_f + @credit.credit_current_all_money.to_f + @credit.repay_month.to_f
     
