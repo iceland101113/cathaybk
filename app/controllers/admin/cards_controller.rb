@@ -1,7 +1,7 @@
 class Admin::CardsController < ApplicationController
 
   def index 
-    @takes  = TakeLog.all
+    @takes  = TakeLog.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
   def destroy

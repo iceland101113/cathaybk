@@ -1,13 +1,40 @@
-<% @takes.each do |take| %>
- 
-    <h3>時段:<%= take.card.title%></h3>
-    <h3>電話號碼:<%= take.ip_address %></h3>
-    <h5>號碼牌:<%= take.take_count %></h5>
-    
-      
-      <%= link_to 'Delete', admin_card_path(take), method: :delete, data: { confirm: "Are you sure?"} %>
+<div class="container">
 
-  <% end %>
+    <% @takes.each do |take| %>
+     
+        <h3>時段:<%= take.card.title%></h3><br>
+        <h3>電話號碼:<%= take.ip_address %></h3><br>
+        <h5>號碼牌:<%= take.take_count %></h5><br>
+        <h5>抽牌時間:<%= take.created_at.strftime("%m/%d %H:%M:%S") %></h5><br>
+          
+          <%= link_to 'Delete', admin_card_path(take), method: :delete, data: { confirm: "Are you sure?"} %>
+
+      <% end %>
 
 
+
+  
+</div>
+<br>
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <br>
   
