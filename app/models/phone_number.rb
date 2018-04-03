@@ -24,8 +24,8 @@ class PhoneNumber < ApplicationRecord
     update(verified: true) if self.pin == entered_pin
   end    
 
-  def self.times
-    where("phone_number = ?" , @phone_number.phone_number.to_s).size
-  end
+  # def self.times
+  #   where("phone_number = ?" , @phone_number.phone_number.to_s).size
+  # end
 
 end
