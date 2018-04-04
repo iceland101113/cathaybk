@@ -1,16 +1,17 @@
-class TwilioTextMessenger
-  attr_reader :message
+# class TwilioTextMessenger
+#   attr_reader :message
  
-  def initialize(message)
-    @message = message
-  end
+#   def initialize(message)
+#     @message = message
+#   end
  
-  def call
-    client = Twilio::REST::Client.new
-    client.messages.create({
-      from: Rails.application.secrets.twilio_phone_number,
-      to: '+8860932130072',
-      body: message
-    })
-  end
-end
+#   def call
+   
+#     client = Twilio::REST::Client.new
+#     client.messages.create({
+#       from: Rails.application.secrets.twilio_phone_number,
+#       to: "+886#{phone_number}",
+#       body: message
+#     })
+#   end
+# end

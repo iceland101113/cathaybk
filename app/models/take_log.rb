@@ -12,4 +12,8 @@ class TakeLog < ApplicationRecord
     order("position ASC")
   end
 
+
+
+  
+
 end
