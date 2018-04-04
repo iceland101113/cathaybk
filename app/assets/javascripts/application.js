@@ -16,9 +16,9 @@
 //= require underscore
 //= require gmaps/google
 //= require gritter
-
+//= require jquery-ui
 //= require jquery_ujs
-
+//= require html.sortable
 //= require_tree .
 
 //= require bootstrap-sprockets

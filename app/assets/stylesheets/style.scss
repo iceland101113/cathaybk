@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "gritter";
+@import "jquery-ui";
 
 
 .tab {
@@ -629,4 +630,21 @@ background-image: image-url("arrow-right.svg");
   width: 100%;
   font-size: 15px !important;
   line-height: 38px !important;
+}
+
+
+.card {
+  float: left;
+  width: 100%;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  border: 0;
+}
+
+.card-text {
+  font-size: 85%;
+}
+
+.container-card {
+  background-color: black;
 }

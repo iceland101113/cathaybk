@@ -27,7 +27,13 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    resources :cards
+    resources :cards do
+      put :sort, on: :collection
+      member do
+        post :remind
+      end
+    end
+
   end
 
 

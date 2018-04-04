@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401072558) do
+ActiveRecord::Schema.define(version: 20180404040848) do
 
   create_table "address_lanlngs", force: :cascade do |t|
     t.string "address"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20180401072558) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "take_count", default: 0
+    t.integer "position"
     t.index ["card_id"], name: "index_take_logs_on_card_id"
   end
 
