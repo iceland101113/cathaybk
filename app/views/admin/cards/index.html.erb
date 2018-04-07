@@ -12,12 +12,13 @@
             <h3>電話號碼:<%= take.ip_address %></h3><br>
             <h5>號碼牌:<%= take.take_count %></h5><br>
             <h5>抽牌時間:<%= take.created_at.strftime("%m/%d %H:%M:%S") %></h5><br>
-            
+            <h5><%= status_label take.status %></h5>
             
               <%= link_to '刪除', admin_card_path(take), method: :delete, data: { confirm: "Are you sure?"} , :style=>"color:white" ,class: "button-card card-salmon center col-md-6"%>
              
+
               <%= link_to '提醒', remind_admin_card_path(take), method: :post , :style=>"color:#e7ff20",class: "button-card card-alge center col-md-6"%>
-          
+
          
         </p>
          
