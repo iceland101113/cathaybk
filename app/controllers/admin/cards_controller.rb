@@ -33,6 +33,7 @@ class Admin::CardsController < ApplicationController
       to: "+886#{@phone_number}",
       body: message
     })
+    @take.update(status: 1)
     redirect_to admin_cards_path, notice: "提醒成功"
   end
 
