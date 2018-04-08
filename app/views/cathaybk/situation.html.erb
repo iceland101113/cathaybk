@@ -550,7 +550,7 @@
             if (bank_near_re === "none"){
               document.getElementById("bank_info").style.display="block"; 
             }
-            $("#bank_info").html("<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
+            $("#bank_info").html("<p>A:您所在位置  B:距離您最近銀行</p>"+"<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
 
 
               }
@@ -616,7 +616,7 @@
           if (bank_near_re === "none"){
             document.getElementById("bank_info").style.display="block"; 
             }
-          $("#bank_info").html("<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
+          $("#bank_info").html("<p>A:您查詢的位置  B:距離最近的銀行</p>"+"<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
 
 
         }
