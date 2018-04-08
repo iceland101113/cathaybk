@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   get "/delete_session", to: "cathaybk#delete_session"
   get "situation", to: "cathaybk#situation"
-  post "user_pos", to: "cathaybk#user_pos"
+  get "user_pos", to: "cathaybk#user_pos"
+  get "pos", to: "cathaybk#pos"
   get "cathaybk", to: "cathaybk#index"
   resources :cathaybk
   resources :phone_numbers, only: [:new, :create]

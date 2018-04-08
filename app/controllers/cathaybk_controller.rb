@@ -108,35 +108,6 @@ class CathaybkController < ApplicationController
 
       # session[:phone_number] = nil
 
-      
-      @ip_lat = 25.037656
-      @ip_lng = 121.505297
-
-      #計算使用者到各個分行的距離，並計算最短距離的分行為何，使用Google Maps Distance Matrix API回傳使用者位置與各分行距離與到達時間
-      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行']
-      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283]]
-      
-      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283'
-      origins=@ip_lat.to_s+','+@ip_lng.to_s
-
-      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
-
-      response = RestClient.get(url)
-      data = JSON.parse(response.body)
-      bank_num = bank.length
-      data1=[]
-      data2=[]
-      for i in 1..bank_num
-        b_distance = data["rows"][0]["elements"][i-1]["distance"]["value"]
-        b_duration = data["rows"][0]["elements"][i-1]["duration"]["value"]
-        data1.push(b_distance)
-        data2.push(b_duration)
-      end
-        b_where = data1.index(data1.min)
-        @bank_near_name = bank[b_where]
-        @bank_near = bank_p[b_where]
-        @bank_distance = data1[b_where]
-        @bank_duration = data2[b_where]/60 
 
       @address = Addresslanlng.new
 
@@ -186,6 +157,17 @@ class CathaybkController < ApplicationController
     
   end
 
+  def pos
+    @ip_lat = params[:lat]
+    @ip_lng = params[:lon]
+
+    cal_nearbank
+
+    @address = Addresslanlng.new
+
+    render :json => { :lat => @ip_lat, :lng=> @ip_lng, :near_bank=> @bank_near, :bank_near_name=> @bank_near_name, :bank_distance=> @bank_distance, :bank_duration=> @bank_duration }
+
+  end
 
   def user_pos
 
@@ -195,32 +177,9 @@ class CathaybkController < ApplicationController
       @ip_lat = Addresslanlng.last.latitude
       @ip_lng = Addresslanlng.last.longitude
 
+      cal_nearbank
 
-      #計算使用者到各個分行的距離，並計算最短距離的分行為何，使用Google Maps Distance Matrix API回傳使用者位置與各分行距離與到達時間
-      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行']
-      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283]]
-        
-      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283'
-      origins=@ip_lat.to_s+','+@ip_lng.to_s
-
-      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
-
-      response = RestClient.get(url)
-      data = JSON.parse(response.body)
-      bank_num = bank.length
-      data1=[]
-      data2=[]
-        for i in 1..bank_num
-          b_distance = data["rows"][0]["elements"][i-1]["distance"]["value"]
-          b_duration = data["rows"][0]["elements"][i-1]["duration"]["value"]
-          data1.push(b_distance)
-          data2.push(b_duration)
-        end
-      b_where = data1.index(data1.min)
-      @bank_near_name = bank[b_where]
-      @bank_near = bank_p[b_where]
-      @bank_distance = data1[b_where]
-      @bank_duration = data2[b_where]/60 
+      render :json => { :lat => @ip_lat, :lng=> @ip_lng, :near_bank=> @bank_near, :bank_near_name=> @bank_near_name, :bank_distance=> @bank_distance, :bank_duration=> @bank_duration }
     end
 
     
@@ -254,6 +213,35 @@ class CathaybkController < ApplicationController
 
     def add_param
       params.require(:addresslanlng).permit(:address)
+    end
+
+    def cal_nearbank
+
+      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行', '國泰世華 臨沂分行']
+      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283], [25.038744, 121.530838]]
+      
+      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283%7C25.038744%2C121.530838'
+      origins=@ip_lat.to_s+','+@ip_lng.to_s
+
+      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&mode=walking&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
+
+      response = RestClient.get(url)
+      data = JSON.parse(response.body)
+      bank_num = bank.length
+      data1=[]
+      data2=[]
+      for i in 1..bank_num
+        b_distance = data["rows"][0]["elements"][i-1]["distance"]["value"]
+        b_duration = data["rows"][0]["elements"][i-1]["duration"]["value"]
+        data1.push(b_distance)
+        data2.push(b_duration)
+      end
+        b_where = data1.index(data1.min)
+        @bank_near_name = bank[b_where]
+        @bank_near = bank_p[b_where]
+        @bank_distance = data1[b_where]
+        @bank_duration = data2[b_where]/60 
+
     end
 
     def set_gmap
