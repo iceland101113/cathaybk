@@ -71,12 +71,7 @@ class CardsController < ApplicationController
 
         message = "您的號碼是: #{@yournumber.take_count}
                    時段: #{Card.find_by(id: @card).title}"
-        @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
-    @client.messages.create(
-      from: ENV['TWILIO_PHONE_NUMBER'],
-      to: "+886#{@phone_number}",
-      body: message
-    )
+        TwilioTextMessenger.new(message).call
       end
       redirect_to cards_path, notice: "預約成功,請看簡訊或者信箱"
     end
