@@ -448,20 +448,17 @@
       <div class="col-sm-4">
         <%= link_to "立即抽號碼牌預約" , cards_path, class: "btn btn-primary" %>
         <h4 style="color:#ff651b">鄰近分行資訊查詢</h4>
-        <button onclick="get_user_pos()" class="b" style="margin-bottom:10px;width:75%;">查看最近分行</button>
-        
-        <div class="form-inline" >
-          <%= form_for @address, url: "/user_pos" , remote: true do |f| %>
-            <div class="form-group">
-              <%= f.text_field :address, placeholder: "請輸入欲查詢地址",  class: "form-control"  %>
-            </div>
-            <%= f.submit "地址查詢", class: "b" %>
-          <% end %>
-          <% if @address.errors.any? %>
-            <%= @address.errors.full_messages.to_sentence %>
-          <% end %>
+        <button onclick="get_user_pos()" class="b" style="margin-bottom:10px;width:75%;">查看最近分行</button> 
+      
+      <form>
+        <div class="input-group" >
+          <input type="text_area" id="new-todo" class="form-control" />
+          <div class="input-group-addon">
+            <button id="create-todo" class="my-btn my-btn-transparent">地址查詢</button>
+          </div>
         </div>
-        
+      </form>
+        <div class="mypanel"></div>
         <div id="bank_info" style="display:none;">
           <h3>測試</h3>
         </div>
@@ -483,6 +480,21 @@
         handler.fitMapToBounds();  
      
         });
+
+
+        // var destinations = '25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283'
+
+        // var origins = '25.037656,121.505297'
+
+        // var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
+
+        // $.getJSON(url, function(data) {
+            
+        //     var text = `${data}`
+        //     console.log(text[1]);            
+            
+        //     $(".mypanel").html(text);
+        // });
           
 
 
@@ -495,14 +507,28 @@
             console.log(current_lat);
             console.log(current_lon);
 
+            $.ajax({
+              url: "pos/",
+              method: "GET",
+              datatype: "json",
+              data : {
+                lat: current_lat,
+                lon: current_lon
+              },
+              success: function(data) {
+                console.log(data["lat"]);
+                console.log("成功！")
+                console.log(data["near_bank"])
+                console.log(data["bank_near_name"])
 
             var directionsDisplay = new google.maps.DirectionsRenderer();
             var directionsService = new google.maps.DirectionsService();
 
             function calcRoute() {
               console.log(current_lat, current_lon);
+              console.log(typeof(current_lat));
               var origin = new google.maps.LatLng(current_lat,current_lon);
-              var near_bank = <%= @bank_near %>
+              var near_bank = data["near_bank"]
               var destination = new google.maps.LatLng(near_bank[0], near_bank[1]);
               var request = {
                   origin:      origin,
@@ -519,12 +545,15 @@
 
             directionsDisplay.setMap(handler.getMap());   
 
-
             var bank_near_re = document.getElementById("bank_info").style.display;
             if (bank_near_re === "none"){
               document.getElementById("bank_info").style.display="block"; 
             }
-            $("#bank_info").html("<h3><%= @bank_near_name %></h3><p>距離您<%= @bank_distance %>公尺</p><p>步行<%= @bank_duration %>分鐘可達</p>")
+            $("#bank_info").html("<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
+
+
+              }
+            });
 
             }
           function error() {
@@ -532,11 +561,68 @@
           }
           navigator.geolocation.getCurrentPosition(get_user_position);
 
-          //計算路
-
 
 
     }
+
+    $("#create-todo").on("click",function(event){
+      event.preventDefault();
+      $.ajax({
+        url: "user_pos/",
+        method: "GET",
+        dataType: "json",
+        data: {
+          addresslanlng: {
+            address: $("#new-todo").val()
+          }
+        },
+        success: function(data) {
+          console.log(data);
+          console.log("成功！")
+          console.log(data["near_bank"])                  
+
+          handler = Gmaps.build('Google');
+          handler.buildMap({ internal: {id: 'geolocation' }});
+
+          var directionsDisplay = new google.maps.DirectionsRenderer();
+          var directionsService = new google.maps.DirectionsService();
+
+          function calcRoute() {
+            var ad_lan = data["lat"];
+            var ad_lon = data["lng"];
+            console.log(ad_lan);
+            console.log(typeof(ad_lan));
+            console.log(typeof(ad_lon));
+            var origin = new google.maps.LatLng(ad_lan, ad_lon);
+            var near_bank = data["near_bank"];
+            var destination = new google.maps.LatLng(near_bank[0], near_bank[1]);
+            var request = {
+                origin:      origin,
+                destination: destination,
+                travelMode:  google.maps.TravelMode.WALKING
+            };
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+              }
+            });
+          }
+          calcRoute();
+
+          directionsDisplay.setMap(handler.getMap());  
+
+          var bank_near_re = document.getElementById("bank_info").style.display;
+          if (bank_near_re === "none"){
+            document.getElementById("bank_info").style.display="block"; 
+            }
+          $("#bank_info").html("<h3>"+ data["bank_near_name"] +"</h3><p>距離您"+ data["bank_distance"] +"公尺</p><p>步行" + data["bank_duration"] + "分鐘可達</p>")
+
+
+        }
+
+      });
+
+    });
     </script>
 
   </div>
