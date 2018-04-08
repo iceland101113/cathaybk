@@ -11,7 +11,7 @@ class TakeLog < ApplicationRecord
   
 
 
-  def today
+  def self.today
     where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
