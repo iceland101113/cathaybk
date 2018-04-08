@@ -161,13 +161,13 @@ class CathaybkController < ApplicationController
     @ip_lat = params[:lat]
     @ip_lng = params[:lon]
 
-      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行']
-      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283]]
+      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行', '國泰世華 臨沂分行']
+      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283], [25.038744, 121.530838]]
       
-      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283'
+      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283%7C25.038744%2C121.530838'
       origins=@ip_lat.to_s+','+@ip_lng.to_s
 
-      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
+      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&mode=walking&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
 
       response = RestClient.get(url)
       data = JSON.parse(response.body)
@@ -202,13 +202,13 @@ class CathaybkController < ApplicationController
 
 
       #計算使用者到各個分行的距離，並計算最短距離的分行為何，使用Google Maps Distance Matrix API回傳使用者位置與各分行距離與到達時間
-      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行']
-      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283]]
-        
-      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283'
+      bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行', '國泰世華 臨沂分行']
+      bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283], [25.038744, 121.530838]]
+      
+      destinations='25.040818%2C121.504449%7C25.044361%2C121.511745%7C25.040298%2C121.545906%7C25.030499%2C121.550283%7C25.038744%2C121.530838'
       origins=@ip_lat.to_s+','+@ip_lng.to_s
 
-      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
+      url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+origins+'&destinations='+destinations+'&mode=walking&key=AIzaSyAFGz_0KE-4QFRP2yG2v-cwS27CPCt8UcQ'
 
       response = RestClient.get(url)
       data = JSON.parse(response.body)
