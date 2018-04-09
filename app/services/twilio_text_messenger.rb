@@ -7,9 +7,9 @@ class TwilioTextMessenger
  
   def call
     @phone_number = "0932130072"
-    client = Twilio::REST::Client.new
+    client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
     client.messages.create({
-      from: Rails.application.secrets.twilio_phone_number,
+      from: '+16144125358',
       to: "+886#{@phone_number}",
       body: message
     })

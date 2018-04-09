@@ -5,7 +5,7 @@ lock "~> 3.10.1"
 set :application, "cathaybk"
 set :repo_url, "git@github.com:iceland101113/cathaybk.git"
 set :deploy_to, '/home/deploy/cathaybk'
-append:linked_files, 'config/database.yml', 'config/secrets.yml', 'config/email.yml', '.env'
+append:linked_files, 'config/database.yml', 'config/secrets.yml', 'config/email.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/uploads'
 set :passenger_restart_with_touch, true
 
