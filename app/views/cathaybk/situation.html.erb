@@ -1,16 +1,10 @@
 <div class="container" >
-<!-- <script>
-  $(function(){
-    setTimeout(clearSession(), 1800000);
-    console.log(3)
-  })
-</script> -->
-  
     <div class="title">
       <h1>信貸試算</h1>
       <h4>一分鐘填答試算，幫助您快速了解可貸額度</h4>
     </div>
     <hr>
+
     <div class="flow">
       <p class="step">Step 1</p> <p class="step">Step 2</p> <p class="step">Step 3</p><br>
       <p class="flow-item-1"><%= image_tag("basic.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item"><%= image_tag("stats_w.svg", size: "30") %> 試算結果</p>
@@ -26,14 +20,14 @@
           <div class="result-box">
             <div>
               <br>
-              <h3>最高可貸<span style="color:#ff751a;"> <%= @total_money/10000 %>  </span>萬</h3>
+              <h3>最高可貸<span style="color:#ff751a;" class="lend_money"> <%= @total_money/10000 %>  </span>萬</h3>
             </div>
           </div>
         </div>
         <div class="form-result col-sm-4">
           <div class="result-box">
             <br>
-            <h3>貸款期限最長<span style="color:#ff751a;"> 5 </span>年</h3>
+            <h3>貸款期限最長<span style="color:#ff751a;"> 10 </span>年</h3>
           </div>
         </div>
         <br>
@@ -156,19 +150,14 @@
           <h4>泰幸福信貸利率僅1.98%起</h4>
           <p>國泰世華滿足您生活上的小確幸，小額貸款超輕鬆， 讓您購車、結婚、旅遊等等，資金運用自如。</p>
         </div>
-      </div>
-      
+      </div>  
     </div>
+    <hr> 
 
-
-
-<hr> 
-
-  
-        <script src="http://code.jquery.com/jquery.min.js"></script>
+    
+    <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script>
-
     (function ($) {
       // Detect touch support
       $.support.touch = 'ontouchend' in document;
@@ -326,16 +315,15 @@
         _mouseDestroy.call(self);
       };
 
-    })(jQuery);
-        
+    })(jQuery);    
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
       $("#slider").slider({
           animate: true,
           value:1,
-          min: 5,
-          max: 600,
+          min: 0,
+          max: <%= @total_money/10000 %>,
           step: 10,
           slide: function(event, ui) {
               update(1,ui.value); //changed
@@ -346,7 +334,7 @@
           animate: true,
           value:0,
           min: 0,
-          max: 400,
+          max: 120,
           step: 1,
           slide: function(event, ui) {
               update(2,ui.value); //changed
@@ -368,10 +356,10 @@
       var $amount = slider == 1?val:$("#amount").val();
       var $duration = slider == 2?val:$("#duration").val();
 
-      /* commented
-      $amount = $( "#slider" ).slider( "value" );
-      $duration = $( "#slider2" ).slider( "value" );
-       */
+      //  commented
+      // $amount = $( "#slider" ).slider( "value" );
+      // $duration = $( "#slider2" ).slider( "value" );
+       
 
        $total = "$" + ($amount * $duration);
        $( "#amount" ).val($amount);
@@ -387,9 +375,9 @@
     // input's value control slider
     function update_slider1(slider,value){
       let $amount = $("#amount").val();
-      if ($amount > 600) {
-        $("#amount").val(600);
-        $("#text_amount").text("金額上限600萬")
+      if ($amount > <%= @total_money/10000 %>) {
+        $("#amount").val(<%= @total_money/10000 %>);
+        $("#text_amount").text("金額上限"+<%= @total_money/10000 %>+"萬")
       } else if (parseInt($amount).toString() != $amount) {
         $("#amount").val(0);
         $("#text_amount").text("請輸入數字");
@@ -403,19 +391,19 @@
         animate: true,
         value: $amount,
         min: 0,
-        max: 600,
+        max: <%= @total_money/10000 %>,
         step: 10,
         slide: function(event, ui) {
             update(1,ui.value); //changed
         }
       });
-      update();
+      $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$("#amount").val()+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
     }
     function update_slider2(slider,value){
       let $duration = $("#duration").val();
-      if ($duration > 400) {
-        $("#duration").val(400);
-        $("#text_duration").text("最久400個月");
+      if ($duration > 120) {
+        $("#duration").val(120);
+        $("#text_duration").text("最久120個月");
       } else if (parseInt($duration).toString() != $duration) {
         $("#duration").val(0);
         $("#text_duration").text("請輸入數字");
@@ -430,20 +418,19 @@
         animate: true,
         value: $duration,
         min: 0,
-        max: 400,
-        step: 10,
+        max: 120,
+        step: 5,
         slide: function(event, ui) {
-            update(1,ui.value); //changed
+            update(2,ui.value); //changed
         }
       });
-      update();
+      $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$("#duration").val()+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
     }
 </script>
 
-<h2 style="color:#18A853;margin-left:10px;">立即開戶</h2><br>
+  <h2 style="color:#18A853;margin-left:10px;">立即開戶</h2><br>
   <div class="situation">
     <div class="row" style="margin-left: 20px;">
-
       <div class="col-sm-8" id="geolocation" style="width:100%;height:400px;">地圖預留</div>
       <div class="col-sm-4">
         <%= link_to "立即抽號碼牌預約" , cards_path, class: "btn btn-primary" %>

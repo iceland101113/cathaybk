@@ -5,21 +5,24 @@
       <h4>一分鐘填答試算，幫助您快速了解可貸額度</h4>
     </div>
     <hr>
+
     <div class="flow">
       <p class="step">Step 1</p> <p class="step">Step 2</p> <p class="step">Step 3</p><br>
       <p class="flow-item-1"><%= image_tag("basic.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item"><%= image_tag("savings_w.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("stats.svg", size: "30") %> 試算結果</p>
     </div>
+
     <div class="tab">       
         <%= form_for @credit, url: "/credit_submit" do |f| %>
           <p class="basic"><%= image_tag("savings.svg", size: "40") %> 借貸資訊</p>       
           <br>
+
           <div class="form-all">
             <div class="row">
               <div class="col-6 form-group">
                 <%= f.label :credit_num, "目前持有幾家銀行的信用卡" %><br>
-
                 <%= f.select :credit_num,[['無信用卡','2'],['1家','4'],['2家','4.5'],['3家','5'],['4家','5'],['5家','5'],['6家','4.5'],['7家以上','4'],['不清楚','3']],{include_blank: 'Please choose'}, { :class => 'form-control Q1', required: true } %>
               </div>
+
               <script>
                 $(function(){
                   $("#credit_credit_num").on("change", ()=>{
@@ -29,10 +32,8 @@
                     if ($("#credit_credit_num").val() == "2" ){
                       $credit_credit_time.val("3");
                       $credit_credit_time.attr("readonly", true);
-
                       $credit_credit_money.val("3");
                       $credit_credit_money.attr("readonly", true);
-
                       $credit_credit_all_money.val("2");
                       $credit_credit_all_money.attr("readonly", true);
                     } else{
@@ -44,8 +45,7 @@
                       }
                       if ($credit_credit_all_money.val() == "2"){
                         $credit_credit_all_money.val("") ;
-                      }
-                      
+                      }                      
                       $credit_credit_time.attr("disabled", false);
                       $credit_credit_all_money.attr("disabled", false);
                     }
@@ -55,29 +55,27 @@
               
               <div class="col-6 form-group">
                 <%= f.label :credit_time, "目前可使用的信用卡，最長已持有期間" %><br>
-
                 <%= f.select :credit_time, [['無信用卡','3'],['未滿3年','4'],['3年~未滿5年','4.5'],['5年~未滿8年','4.5'],['8年~未滿12年','5'],['12年~未滿15年','5'],['15年以上','5'],['不清楚','3.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
             </div>
             <br>
+
             <div class="row">
               <div class="col-6 form-group">
                 <%= f.label :credit_money, "近三個月是否有使用信用卡循環或預借現金" %><br>
-
                 <%= f.select :credit_money, [['無信用卡','3'],['有使用信用卡循環或預借現金','4'],['有信用卡，但無使用信用卡循環及預借現金','5'],['不清楚','3.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
               
               <div class="col-6 form-group">
                 <%= f.label :credit_all_money, "近一個月信用卡循環、信用卡分期、信用卡預借現金總金額" %><br>
-
                 <%= f.select :credit_all_money, [['無信用卡','2'],['有信用卡，但無使用循環、分期及預借現金','5'],['未滿5千元','4.5'],['5千~未滿1萬元','4.5'],['1萬~未滿2萬元','4'],['2萬~未滿5萬元','4'],['5萬~未滿10萬元','3.5'],['10萬~未滿20萬元','3.5'],['20萬以上','3'],['不清楚','2.5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
             </div>
             <br>
+
             <div class="row">
               <div class="col-6 form-group">
                 <%= f.label :credit_last, "近三個月內信用卡或貸款是否曾經遲繳" %><br>
-
                 <%= f.radio_button :credit_last, '3', :required => true %> <%= f.label :credit_last, '無信用卡且無貸款' %><br>
                 <%= f.radio_button :credit_last, '4' %> <%= f.label :credit_last, '曾經遲繳' %><br>
                 <%= f.radio_button :credit_last, '5' %> <%= f.label :credit_last, '不曾遲繳' %>
@@ -85,46 +83,34 @@
 
               <div class="col-6 form-group">
                 <%= f.label :credit_new, "近三個月內是否有新增貸款" %><br>
-
                 <%= f.radio_button :credit_new, '4', :required => true %> <%= f.label :credit_new, '無貸款' %><br>
                 <%= f.radio_button :credit_new, '5' %> <%= f.label :credit_new, '有貸款，但近三個月無新增貸款' %><br>
                 <%= f.radio_button :credit_new, '3' %> <%= f.label :credit_new, '近三個月有新增貸款' %>
               </div>
             </div>
             <br>
+
             <div class="row">
               <div class="col-4 form-group">
                 <%= f.label :credit_current_money, "目前信用貸款及現金卡總額度" %><br>
-
                 <%= f.select :credit_current_money, [['無','3'],['未滿30萬元','3.5'],['30萬元~未滿50萬元','4'],['50萬元~未滿80萬元','4.5'],['80萬元~未滿100萬元','4.5'],['100萬元~未滿150萬元','5'],['150萬元以上','5']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
-              </div>
-            
+              </div>     
 
               <div class="col-4 form-group">
                 <%= f.label :credit_current_all_money, "目前信用貸款及現金卡總餘額" %><br>
-
                 <%= f.select :credit_current_all_money, [['無','5'],['未滿30萬元','5'],['30萬元~未滿50萬元','4.5'],['50萬元~未滿80萬元','4.5'],['80萬元~未滿100萬元','4'],['100萬元~未滿150萬元','4'],['150萬元以上','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>
 
               <div class="col-4 form-group">
                 <%= f.label :repay_month, "房貸每月還款金額" %><br>
-
                 <%= f.select :repay_month, [['無房貸','4'],['未滿5千元','5'],['5千~未滿1萬元','5'],['1萬~未滿1萬5千元','5'],['1萬5千元~未滿2萬元','4.5'],['2萬元~未滿2萬5千元','4.5'],['2萬5千元~未滿3萬元','4.5'],['3萬~未滿4萬元','4'],['4萬~未滿5萬元','4'],['5萬~未滿7萬元','3.5'],['7萬~未滿10萬元','3.5'],['10萬以上','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
               </div>     
             </div>
             <hr>
-            <button class=" button arrow center-block ">送出</button>
 
+            <button class=" button arrow center-block ">送出</button>
           </div>  
         <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  
-</script>
-
-
-
-
