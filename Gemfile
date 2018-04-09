@@ -40,6 +40,8 @@ group :production do
 end
 
 group :development, :test do
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
   gem 'sqlite3'
 end
 group :test, :development do
