@@ -1,4 +1,5 @@
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-md-5 col-sm-5 col-lg-5">
       <div class="varify-phone">
         <br>
@@ -12,51 +13,34 @@
             <%= f.submit "取得驗證號碼", class: "b", id: 'send-pin-link' %>
           <% end %>
         </div>
-
+  
         <div id="verify-pin">
-        <h3>輸入驗證碼</h3>
-        <%= form_tag phone_numbers_verify_path, remote: true do |f| %>
-          <%= hidden_field_tag 'hidden_phone_number', '' %>
-          <div class="form-group">
-            <%= text_field_tag :pin %>
-          </div>
-          <%= submit_tag "驗證", class: "b" %>
-          <% end %>
+          <h3>輸入驗證碼</h3>
+            <%= form_tag phone_numbers_verify_path, remote: true do |f| %>
+              <%= hidden_field_tag 'hidden_phone_number', '' %>
+              <div class="form-group">
+                <%= text_field_tag :pin %>
+              </div>
+            <%= submit_tag "驗證", class: "b" %>
+            <% end %>
         </div>
 
         
-      <br>
-      <%= video_tag(
-                      'Cathay.mp4',
-                      autoplay: true,
-                      width: "100%",
-                      loop: true,
-                      muted: true,
-                      class: "video", display: "inline-block") %>
-      <!--
-      <iframe width="700" height="500" src="http://www.youtube.com/embed/792SkcOkgY8?rel=0&autoplay=1" ></iframe>-->
-      <%= link_to '了解更多', 'https://www.cathaybk.com.tw/mobile/personal/mobile_sevice/index.aspx', class: "pull-left" %>
+        <br>
+        <%= video_tag('Cathay.mp4', autoplay: true, width: "100%", loop: true, muted: true, class: "video", display: "inline-block") %>
+        <%= link_to '了解更多', 'https://www.cathaybk.com.tw/mobile/personal/mobile_sevice/index.aspx', class: "pull-left" %>
       </div>
     </div>
     <div class="col-md-7 col-sm-7 col-lg-7" style="text-align:center;">
       <%= image_tag("http://www.silent.com.tw/photo/6272CUB_TSF_900x515-01.jpg", width: "100%", :style => "margin-top:30px;margin-left:10px;") %>
-
-     
-    <!--
-    <%= video_tag(
-                      'Cathay.mp4',
-                      autoplay: true,
-                      size: "600x500",
-                      loop: true,
-                      muted: true,
-                      class: "video", display: "inline-block") %>-->
-
     </div>
   </div>
+<br>
+<br>
+<br>
+<br> 
+</div>
 
-  <br>
-  <br>
-  <br>
 
 
   
