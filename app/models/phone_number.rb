@@ -9,13 +9,13 @@ class PhoneNumber < ApplicationRecord
 
 
   def twilio_client
-    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+    Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
   end
 
   def send_pin
     twilio_client.messages.create(
       to: "+886#{phone_number}",
-      from: ENV['TWILIO_PHONE_NUMBER'],
+      from: '+16144125358',
       body: "Your PIN is #{pin}"
     )
   end    

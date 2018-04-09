@@ -27,9 +27,10 @@ class Admin::CardsController < ApplicationController
     message = "您是: #{@take.take_count}號
               時段: #{Card.find_by(id: @take.card_id).title}
               預計十分鐘後輪到你,可以往分行出發囉！"
-    @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+    @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
+    
     @client.messages.create(
-      from: ENV['TWILIO_PHONE_NUMBER'],
+      from: '+16144125358',
       to: "+886#{@phone_number}",
       body: message
     )

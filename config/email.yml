@@ -6,4 +6,4 @@ development:
   user_name: "dex15900122@gmail.com"
   password: "e5900123"
   enable_starttls_auto: true
-  host: 'cathaybk.herokuapp.com'
+  
