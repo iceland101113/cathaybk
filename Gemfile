@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rest-client'
 
 group :production do
-  gem "mysql2"
+  gem 'mysql2', '~> 0.5.0'
 end
 
 group :development, :test do
