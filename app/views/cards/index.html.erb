@@ -10,7 +10,7 @@
     <h3>可預約時段:</h3>
     <ul class="nav nav-pills nav-pills-center">
       
-      <% @cards.each do |card|%> 
+      <% @cards.each do |card|%>
       <li role = "presentation"><%= link_to card.title, card_path(card) %></li>
       <% end %>
     </ul>
