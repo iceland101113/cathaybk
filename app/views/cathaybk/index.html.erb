@@ -19,12 +19,6 @@
 
               <%= f.select :basic_id, [['請選擇',1],['20歲~24歲',2],['25歲~29歲',3],['30歲~34歲',4],['35歲~39歲',5],['40歲~44歲',6],['45歲~49歲',7],['50歲~59歲',8],['60歲~64歲',9],['其他',10]],{}, { :class => 'form-control'}%>
             </div>
-            <script>
-              $(function(){
-                var test = $(".form-control");
-                console.log(test[0].options[0].text);
-              })
-            </script>
             <div class="form-group">
               <%= f.label :basic_id, "學歷" %><br>
 
