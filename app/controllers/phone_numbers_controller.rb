@@ -9,7 +9,7 @@ class PhoneNumbersController < ApplicationController
     @phone_number = PhoneNumber.find_or_create_by(phone_number: params[:phone_number][:phone_number])
     
     if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number.to_s).size >= 3
-      redirect_to root_path, notice:'登入操過次數'
+      redirect_to root_path, notice:'登入超過次數'
     else
 
       if @phone_number.save

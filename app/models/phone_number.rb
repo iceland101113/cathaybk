@@ -12,13 +12,22 @@ class PhoneNumber < ApplicationRecord
     Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
   end
 
+  # 這裡面的to phone_number ?? 是什麼？
   def send_pin
     twilio_client.messages.create(
-      to: "+886#{phone_number}",
+      to: "+886#{self.phone_number}",
       from: '+16144125358',
       body: "Your PIN is #{pin}"
     )
-  end    
+  end
+
+  def send_message(phone_number, message)
+    twilio_client.messages.create(
+      to: "+886#{phone_number}",
+      from: '+16144125358',
+      body: message
+    )
+  end
 
   def verify(entered_pin)
     update(verified: true) if self.pin == entered_pin

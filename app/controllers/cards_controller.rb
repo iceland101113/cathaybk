@@ -38,12 +38,14 @@ class CardsController < ApplicationController
     @cards = Card.all
     @card = Card.find(params[:id])
     @phone_number = session[:phone_number]
-    @id = @phone_number["id"]
-    @myphone = PhoneNumber.find_by(id: @id).phone_number
-    @yournumber = TakeLog.today.find_by(ip_address: @myphone ,card_id: @card)
-    if @card.points > 6
+    @yournumber = TakeLog.today.find_by(ip_address: @phone_number["phone_number"] ,card_id: @card)
+    
+    if @card.over?
       redirect_to cards_path, notice: "時段額滿"
     end
+    # if @card.points > 6
+    #   redirect_to cards_path, notice: "時段額滿"
+    # end
     
     if @yournumber != nil
         @yournumber = @yournumber.take_count 
@@ -63,15 +65,16 @@ class CardsController < ApplicationController
     def take
       
       @phone_number = session[:phone_number]
-      @id = @phone_number["id"]
-      @myphone = PhoneNumber.find_by(id: @id).phone_number
-      @yournumber = @card.take_logs.create(ip_address: @myphone, take_count: @card.take_logs.size+1) 
+      @yournumber = @card.take_logs.create(ip_address: @phone_number["phone_number"], take_count: @card.take_logs.size+1) 
       unless @yournumber == nil
         ContactMailer.say_hello_to(current_user).deliver_now
 
         message = "您的號碼是: #{@yournumber.take_count}
-                   時段: #{Card.find_by(id: @card).title}"
-        TwilioTextMessenger.new(message).call
+                   時段: #{@card.title}"
+        @phone = PhoneNumber.find(@phone_number["id"])
+        @phone.send_message(@phone.phone_number, message)
+
+        # TwilioTextMessenger.new(message).call
       end
       redirect_to cards_path, notice: "預約成功,請看簡訊或者信箱"
     end
