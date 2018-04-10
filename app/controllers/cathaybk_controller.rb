@@ -161,7 +161,7 @@ class CathaybkController < ApplicationController
     @ip_lat = params[:lat]
     @ip_lng = params[:lon]
 
-    cal_nearbank
+    @bank_near_name, @bank_near, @bank_distance, @bank_duration = cal_nearbank(@ip_lat, @ip_lng)
 
     @address = Addresslanlng.new
 
@@ -177,7 +177,7 @@ class CathaybkController < ApplicationController
       @ip_lat = Addresslanlng.last.latitude
       @ip_lng = Addresslanlng.last.longitude
 
-      cal_nearbank
+      @bank_near_name, @bank_near, @bank_distance, @bank_duration = cal_nearbank(@ip_lat, @ip_lng)
 
       render :json => { :lat => @ip_lat, :lng=> @ip_lng, :near_bank=> @bank_near, :bank_near_name=> @bank_near_name, :bank_distance=> @bank_distance, :bank_duration=> @bank_duration }
     end
@@ -215,7 +215,7 @@ class CathaybkController < ApplicationController
       params.require(:addresslanlng).permit(:address)
     end
 
-    def cal_nearbank
+    def cal_nearbank(ip_lat, ip_lng)
 
       bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行', '國泰世華 臨沂分行']
       bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283], [25.038744, 121.530838]]
@@ -237,10 +237,7 @@ class CathaybkController < ApplicationController
         data2.push(b_duration)
       end
         b_where = data1.index(data1.min)
-        @bank_near_name = bank[b_where]
-        @bank_near = bank_p[b_where]
-        @bank_distance = data1[b_where]
-        @bank_duration = data2[b_where]/60 
+        return bank[b_where], bank_p[b_where], data1[b_where], data2[b_where]/60
 
     end
 
