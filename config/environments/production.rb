@@ -100,9 +100,7 @@ config.action_mailer.smtp_settings = {
   authentication: "plain"
   user_name: "dex15900122@gmail.com"
   password: "e5900123"
-  enable_starttls_auto: true
-  
-}
+  enable_starttls_auto: true}
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
