@@ -91,7 +91,7 @@ Rails.application.configure do
 config.action_mailer.default_url_options = { :host => '35.189.160.104' }  
 config.action_mailer.delivery_method = :smtp  
 config.action_mailer.perform_deliveries = true  
-config.action_mailer.raise_delivery_errors = false  
+config.action_mailer.raise_delivery_errors = true  
 config.action_mailer.default :charset => "utf-8"  
 config.action_mailer.smtp_settings = {  
   address: "smtp.gmail.com",
@@ -99,8 +99,8 @@ config.action_mailer.smtp_settings = {
   domain: "35.189.160.104",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: ENV["GMAIL_USERNAME"],
-  password: ENV["GMAIL_PASSWORD"]
+  user_name: "dex15900122@gmail.com",
+  password: "e5900123"
 }
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
