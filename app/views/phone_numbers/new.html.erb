@@ -15,6 +15,8 @@
         </div>
   
         <div id="verify-pin">
+          <h3>驗證碼:<%= @phone_number.pin %></h3>
+
           <h3>輸入驗證碼</h3>
             <%= form_tag phone_numbers_verify_path, remote: true do |f| %>
               <%= hidden_field_tag 'hidden_phone_number', '' %>
