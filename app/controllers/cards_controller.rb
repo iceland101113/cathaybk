@@ -78,6 +78,7 @@ class CardsController < ApplicationController
         ContactMailer.say_hello_to(current_user,message).deliver_now
 
          
+
         # TwilioTextMessenger.new(message).call
       end
       redirect_to cards_path, notice: "預約成功,請看簡訊或者信箱"

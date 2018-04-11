@@ -9,7 +9,7 @@ class PhoneNumbersController < ApplicationController
   end
 
   def create
-    @phone_number = PhoneNumber.create(phone_number: params[:phone_number])
+    @phone_number = PhoneNumber.create(phone_number: params[:phone_number][:phone_number])
     
 
     if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number).size >= 3

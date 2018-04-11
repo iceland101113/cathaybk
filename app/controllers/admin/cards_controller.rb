@@ -1,8 +1,8 @@
 class Admin::CardsController < ApplicationController
 
   def index 
-    @takes = TakeLog.includes(:card).by_position
-    # @takes  = TakeLog.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    # @takes = TakeLog.includes(:card).by_position
+     @takes  = TakeLog.includes(:card).where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
   def destroy
