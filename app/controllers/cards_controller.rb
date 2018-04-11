@@ -67,13 +67,17 @@ class CardsController < ApplicationController
       @phone_number = session[:phone_number]
       @yournumber = @card.take_logs.create(ip_address: @phone_number["phone_number"], take_count: @card.take_logs.size+1) 
       unless @yournumber == nil
-        ContactMailer.say_hello_to(current_user).deliver_now
-
         message = "您的號碼是: #{@yournumber.take_count}
-                   時段: #{@card.title}"
-        @phone = PhoneNumber.find(@phone_number["id"])
-        @phone.send_message(@phone.phone_number, message)
 
+                   時段: #{@card.title}"
+        # @phone = PhoneNumber.find(@phone_number["id"])
+        # @phone.send_message(@phone.phone_number, message)
+
+
+                 
+        ContactMailer.say_hello_to(current_user,message).deliver_now
+
+         
         # TwilioTextMessenger.new(message).call
       end
       redirect_to cards_path, notice: "預約成功,請看簡訊或者信箱"
