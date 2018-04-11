@@ -7,7 +7,7 @@ class PhoneNumbersController < ApplicationController
   def create
     @phone_number = PhoneNumber.new(phone_params)
 
-    if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number).size >= 100
+    if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number).size >= 3
       redirect_to root_path, notice:'登入操過次數'
     else
     pin = rand(0000..9999).to_s.rjust(4, "0")
