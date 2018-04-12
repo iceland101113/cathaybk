@@ -6,14 +6,7 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.all
-
-    @phone_number = session[:phone_number]
-    current_user.update(phone: @phone_number["phone_number"])
-
-    
-    
-
-
+    current_user.update(phone: current_phone.phone_number)
   end
 
   def create

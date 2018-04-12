@@ -6,13 +6,11 @@ class Admin::CardsController < ApplicationController
   end
 
   def destroy
-
     @take = TakeLog.find(params[:id])
     @take.destroy
    
     redirect_to admin_cards_path, notice: "刪除成功"
   end
-
 
   def sort
     params[:order].each do |key, value|
@@ -20,12 +18,9 @@ class Admin::CardsController < ApplicationController
     end
   end
 
-
   def remind
     @take = TakeLog.find(params[:id])
-
-    @phone_number = @take.ip_address
-    user = User.find_by(phone: @phone_number)
+    user = User.find_by(phone: @take.ip_address)
     message = "您是: #{@take.take_count}號
               時段: #{Card.find_by(id: @take.card_id).title}
               預計十分鐘後輪到你,可以往分行出發囉！"
@@ -34,7 +29,7 @@ class Admin::CardsController < ApplicationController
     
     # @client.messages.create(
     #   from: '+16144125358',
-    #   to: "+886#{@phone_number}",
+    #   to: "+886#{@take.ip_address}",
     #   body: message
     # )
     ContactMailer.say_remind_to(user, message).deliver_now
