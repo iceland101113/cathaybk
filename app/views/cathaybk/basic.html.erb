@@ -11,24 +11,25 @@
       <p class="flow-item"><%= image_tag("basic_w.svg", size: "30") %> 基本資料填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("savings.svg", size: "30") %> 借貸資訊填寫</p><i class="right"></i> <p class="flow-item-1"><%= image_tag("stats.svg", size: "30") %> 試算結果</p>
     </div>
 
-    <div class="tab">
-      <%= form_for @basic, url: "/basic_submit" do |f| %>    
+    <div class="tab container">
+      <%= form_for @basic, url: "/basic_submit" do |f| %> 
+          
         <p class="basic"><%= image_tag("basic.svg", size: "40") %> 基本資料</p></li>
         <br>
 
         <div class="form-all">
           <div class="row">
-            <div class="col-4 basic_form ">
+            <div class="col-lg-4 basic_form ">
               <%= f.label :age, "年齡" %><br>
               <%= f.select :age, [['20歲~24歲','3'],['25歲~29歲','4'],['30歲~34歲','4.5'],['35歲~39歲','5'],['40歲~44歲','5'],['45歲~49歲','4.5'],['50歲~54歲','4.5'],['55歲~59歲','4'],['60歲~64歲','3'],['其他','3.5']],{ include_blank: 'Please choose' },{ :class => 'form-control ',:required => true} %>
             </div>
 
-            <div class="col-4 basic_form">
+            <div class="col-lg-4 basic_form">
               <%= f.label :education, "學歷" %><br>
               <%= f.select :education, [['博士','4'],['碩士','5'],['大學','5'],['專科','3'],['高中、高職','3'],['其他','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
             </div>
            
-            <div class="col-4 basic_form">
+            <div class="col-lg-4 basic_form">
               <%= f.label :marriage, "婚姻狀況" %><br>
               <%= f.radio_button :marriage, "4"%> <%= f.label :marriage, "未婚" %>
               <%= f.radio_button :marriage, "5", :required => true %> <%= f.label :marriage, "已婚" %>
@@ -38,12 +39,12 @@
           <br>
 
           <div class="row">
-            <div class="col-6 basic_form">
+            <div class="col-lg-6 basic_form">
               <%= f.label :house, "現居住宅所有權狀況" %><br>
               <%= f.select :house, [['本人資產無貸款','4.5'],['本人資產有貸款','5'],['親戚產業','4'],['租賃','4'],['公司宿舍','4'],['其他','3']],{include_blank: 'Please choose'}, { :class => 'form-control', required: true } %>
             </div>
 
-            <div class="col-6 basic_form">
+            <div class="col-lg-6 basic_form">
               <%= f.label :job, "行業" %><br>
               <%= f.select :job, [['醫院、診所、教育業','6'],['製造業','5'],['科技業','5'],['票券、證券、保險業','6'],['企業社、工業社','5'],['零售批發業、交通運輸、物流倉儲業','5'],['銀行、律師事務所、會計事務所','6'],['公家機關、電信、水電、燃氣、石油供應業','6'],['餐飲業','4'],['旅館飯店業','4'],['自由業','4'],['進出口貿易商、代理商','4'],['典當、現金服務及其他民間融資業','3']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true }  %>
             </div>
@@ -51,17 +52,17 @@
           <br>
 
           <div class="row">
-            <div class="col-4 basic_form">
+            <div class="col-lg-4 basic_form">
               <%= f.label :job_title, "職稱" %><br>
               <%= f.select :job_title, [['醫護人員、執業律師、會計師、精算師','6'],['法官、檢察官、公職人員、教育工作者','6'],['飛行駕駛、空服員','5'],['資本額>=500萬之企業負責人、高階管理人員','6'],['資本額<500萬之企業負責人','5'],['工程師','5.5'],['推銷員、營業員','5'],['工讀人員、自由業者、娛樂、旅遊業者','4'],['廚師、麵包師傅','4'],['司機、快遞員、保全、清潔人員','4'],['一般主管','5.5'],['一般職員','5'],['其他職稱','4']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
             </div>
             
-            <div class="col-4 basic_form">
+            <div class="col-lg-4 basic_form">
               <%= f.label :longevity, "現職年資" %><br>
               <%= f.select :longevity, [['未滿1年','3'],['1年~未滿2年','4'],['2年~未滿3年','4'],['3年~未滿4年','4.5'],['4年~未滿8年','4.5'],['8年~未滿15年','5'],['15年~未滿20年','5'],['20年以上','20年以上']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
             </div>
             
-            <div class="col-4 basic_form">
+            <div class="col-lg-4 basic_form">
               <%= f.label :income, "現職年收入" %><br>
               <%= f.select :income, [['未滿35萬元','2'],['35萬~未滿40萬元','3'],['40萬~未滿50萬元','4'],['50萬~未滿60萬元','5'],['60萬~未滿75萬元','5.1'],['75萬~未滿100萬元','5.2'],['100萬~未滿150萬元','6'],['150萬元以上','6.1']],{include_blank: 'Please choose'}, { :class => 'form-control', :required => true } %>
             </div>
@@ -70,6 +71,7 @@
     
           <button class="button arrow center-block ">送出</button>          
         </div>
+       
       <% end %>
     </div>
   </div>
