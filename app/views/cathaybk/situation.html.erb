@@ -16,7 +16,7 @@
       <br>
       <br>
       <div class="row">
-        <div class="form-result col-sm-4">
+        <div class="form-result col-sm-12 col-xs-12 col-md-4 result-b">
           <div class="result-box">
             <div>
               <br>
@@ -24,14 +24,14 @@
             </div>
           </div>
         </div>
-        <div class="form-result col-sm-4">
+        <div class="form-result col-sm-12 col-xs-12 col-md-4">
           <div class="result-box">
             <br>
             <h3>貸款期限最長<span style="color:#ff751a;"> 10 </span>年</h3>
           </div>
         </div>
         <br>
-        <div class="form-result col-sm-4">
+        <div class="form-result col-sm-12 col-xs-12 col-md-4">
           <div class="result-box">
             <br>
             <h3>貸款利率<span style="color:#ff751a;"> 1.66% </span>起</h3>
@@ -69,7 +69,7 @@
                   
                   <div class="col-sm-6">
                     <div class="price-slider">
-                      <div class="col-sm-10">
+                      <div class="col-md-10 col-xs-12 col-sm-12">
                       <div id="slider"></div>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="price-slider">                        
-                        <div class="col-sm-10">
+                        <div class="col-md-10 col-xs-12 col-sm-12">
                           <div id="slider2"></div>
                         </div>
                       </div>                  
@@ -428,11 +428,11 @@
     }
 </script>
 
-  <h2 style="color:#18A853;margin-left:10px;margin-right:10px;">立即開戶</h2><br>
+  <h2 style="color:#18A853;margin-left:10px;">立即開戶</h2><br>
   <div class="situation">
     <div class="row" style="margin-left: 20px;">
-      <div class="col-sm-8 col-xs-12" id="geolocation" style="width:100%;height:400px;">地圖預留</div>
-      <div class="col-sm-4 col-xs-12">
+      <div class="col-md-7 col-xs-12 col-sm-12" id="geolocation" style="width:100%;height:400px;margin-right:10px;margin-bottom: 10px;">地圖預留</div>
+      <div class="col-md-4 col-xs-12 col-sm-12">
         <%= link_to "立即抽號碼牌預約" , cards_path, class: "btn btn-primary" %>
         <h4 style="color:#ff651b">鄰近分行資訊查詢</h4>
         <button onclick="get_user_pos()" class="b" style="margin-bottom:10px;">查看最近分行</button> 
