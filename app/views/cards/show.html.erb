@@ -1,18 +1,30 @@
 <div class="container">
-  <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
-  <h3>可預約時段:</h3>
-  <ul class="nav nav-pills nav-pills-center">
-    <% @cards.each do |card| %>
-      <li role="presentation" class="<%= "active" if card == 
-        @card %>">
+  <div class="rev-time-1">
+    <br>
+    <h2>現在時間:<%= Time.now.strftime("%m/%d %H:%M:%S") %></h2>
+    <br>
+  </div>
+  <div class="rev-time">
+    <br>
+    <h3>可預約時段:</h3>
+      <div class="pill-array">
+        <ul class="nav nav-pills nav-pills-center nav-pills-c">
+          <% @cards.each do |card| %>
+          <li role="presentation" class="<%= "active" if card == @card %>">
           <%= link_to card.title, card_path(card) %>
-      </li>
-    <% end %>
-  </ul>
-  <h3>等待人數: <%= @card.take_logs.today.size%></h3>
-  <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"} %>
-
-  <h1>您的號碼:<%= @yournumber %> </h1>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    <br>
+  </div>
+  <div class="rev-time-1">
+    <h3 style="display:inline-block;">等待人數: <%= @card.take_logs.today.size%></h3>
+    <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"}, :class=>"btn btn-warning" %>
+    <hr>
+    <h1>您的號碼:<%= @yournumber %> </h1>
+    <br>
+  </div>
   <br>
   <br>
   <br>

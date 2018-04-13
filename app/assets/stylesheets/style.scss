@@ -779,3 +779,59 @@ background-image: image-url("arrow-right.svg");
   
 }
 
+  .rev-time {
+    background-color: white;
+    text-align: center;
+
+    h3 {
+      margin-top: 10px;
+    }
+
+  }
+
+  .rev-time-1 {
+    background-color: #e6ffe6;
+    text-align: center;
+
+    h1 {
+      color: grey;
+    }
+
+    h2 {
+      color: grey;
+    }
+
+    h3 {
+      color: grey;
+    }
+
+    hr {
+      height:1px;
+      background: grey;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+
+  .pill-array {
+    margin-left:20px;
+  }
+
+
+.nav-pills>li>a {
+  border: 1px solid; 
+  border-radius: 4px;
+  color: white;
+  background-color: lightgreen;
+  font-size:18px;
+}
+
+.nav-pills>li.active>a{
+  background-color: green;
+}
+
+.btn-warning {
+  width: 100px;
+  font-size: 20px;
+}

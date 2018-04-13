@@ -1,19 +1,29 @@
 <div class="container">
-  <h1><%= link_to "提醒使用者" ,admin_cards_path%></h1>
-    
-    <h3><%= current_user.name %>,您好</h3>
-    
-    
-    <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
+  <h3><%= link_to "提醒使用者" ,admin_cards_path, style: 'color:green;'%></h3>
+    <div class="rev-time-1">
+        <br>
+        <h1><%= current_user.name %>,您好</h1>
     
     
-    <h3>可預約時段:</h3>
-    <ul class="nav nav-pills nav-pills-center">
+        <h2>現在時間:<%= Time.now.strftime("%m/%d %H:%M:%S") %></h2>
+        <br>
+    </div>
+    
+    <div class="rev-time">
+        <br>
+        <h3>可預約時段:</h3>
+            <div class="pill-array">
+                <ul class="nav nav-pills nav-pills-center">
       
-      <% @cards.each do |card|%>
-      <li role = "presentation"><%= link_to card.title, card_path(card) %></li>
-      <% end %>
-    </ul>
+                <% @cards.each do |card|%>
+                    
+                    <li role = "presentation"><%= link_to card.title, card_path(card) %></li>
+                    
+                <% end %>
+                </ul>
+            </div>
+        <br>
+    </div>
    
 
    
