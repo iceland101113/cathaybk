@@ -48,7 +48,7 @@ class CardsController < ApplicationController
   def take
     @yournumber = @card.take_logs.create(ip_address: current_phone.phone_number, take_count: @card.take_logs.size+1) 
     unless @yournumber == nil
-      message = "您的號碼是: #{@yournumber.take_count}
+      message = "您的號碼是: #{@yournumber.take_count},
 
                  時段: #{@card.title}"
       # @phone.send_message(current_phone.phone_number, message)
