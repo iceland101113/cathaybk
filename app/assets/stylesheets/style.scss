@@ -742,6 +742,14 @@ background-image: image-url("arrow-right.svg");
     width: 100%;
   }
 
+  .flow {
+    i.down {
+     transform: rotate(45deg);
+     -webkit-transform: rotate(45deg);
+
+    }
+  }
+
 
 
   .table4_4 td {
