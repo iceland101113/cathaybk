@@ -14,8 +14,4 @@ module TakeLogsHelper
     end
     
   end
-
-
-
-
 end

@@ -1,11 +1,6 @@
 class CathaybkController < ApplicationController
   before_action :set_gmap, only: [:show, :edit, :update, :destroy]
-
-
-  
-   #before_action :authorize
-  
-
+  #before_action :authorize
 
   def index
     @select = Select.first
@@ -13,31 +8,14 @@ class CathaybkController < ApplicationController
 
   #基本資料
   def basic
-   @basic = Basic.new
-
-
-
-
-    
+   @basic = Basic.new    
   end
 
   def basic_submit
-    @basic = Basic.new(basic_params)
-
-    # @basic.each_value do |value|
-    #   puts value.to_f
-    # end
-
-    
-    @point_basic = @basic.age.to_f + @basic.education.to_f + @basic.marriage.to_f + @basic.house.to_f + @basic.job.to_f + @basic.job_title.to_f + @basic.longevity.to_f + @basic.income.to_f
-    @month_money = @basic.income.to_f
-    # @point = 0
-    # @basic[:age]
-    # @basic.each_value { |value|  @point + value.to_f }
-    session[:point] = @point_basic
-    session[:month_money] = @month_money
-    
+    @basic = Basic.new(basic_params)  
     if @basic.save
+      session[:point] = @basic.basic_value
+      session[:month_money] = @basic.income.to_f
       redirect_to '/credit'
     else 
       render 'basic'
@@ -47,77 +25,57 @@ class CathaybkController < ApplicationController
 
   #信用嘅＆貸款資訊
   def credit
-   
-      @credit = Credit.new
-
+    @credit = Credit.new
   end
 
   def credit_submit
     @credit = Credit.create(credit_params)
-    @point_credit = @credit.credit_num.to_f + @credit.credit_time.to_f + @credit.credit_money.to_f + @credit.credit_all_money.to_f + @credit.credit_last.to_f 
-                    + @credit.credit_new.to_f + @credit.credit_current_money.to_f + @credit.credit_current_all_money.to_f + @credit.repay_month.to_f
-    
-    session[:point] = session[:point] + @point_credit
-
     if @credit.save
-      
+      session[:point] = session[:point] + @credit.credit_value
       redirect_to situation_path, notice: "試算成功"
     else
       render 'credit', notice: "填入資料有誤"
-      
     end
   end
 
   def situation
       @select = Select.first
+      #這邊我看不懂 在算什麼
       case session[:point]
-       when 90..101
-        session[:point] == 18
-       when 80..90
-        session[:point]  == 15
-       when 70..80
-        session[:point] ==10
-       when 60..70
-        session[:point] == 8
-       else 
-        session[:point]  == 5
+        when 90..101
+          session[:point] == 18
+        when 80..90
+          session[:point]  == 15
+        when 70..80
+          session[:point] ==10
+        when 60..70
+          session[:point] == 8
+        else 
+          session[:point]  == 5
       end
 
       case session[:month_money]
-      when 2
-        session[:month_money] = 28000
-      when 3
-        session[:month_money] = 31000
-      when 4
-        session[:month_money] = 38000
-      when 5
-        session[:month_money] = 46000
-      when 5.1
-        session[:month_money] = 56000
-      when 5.2
-        session[:month_money] = 73000
-      when 6
-        session[:month_money] = 110000
-      else 6.1
-        session[:month_money] = 125000
+        when 2
+          session[:month_money] = 28000
+        when 3
+          session[:month_money] = 31000
+        when 4
+          session[:month_money] = 38000
+        when 5
+          session[:month_money] = 46000
+        when 5.1
+          session[:month_money] = 56000
+        when 5.2
+          session[:month_money] = 73000
+        when 6
+          session[:month_money] = 110000
+        else 6.1
+          session[:month_money] = 125000
       end
-
-       @total_money =  session[:point] * session[:month_money] 
+      @total_money =  session[:point] * session[:month_money] 
       
-      
-
-      # session[:phone_number] = nil
-
-
+      #關於地址
       @address = Addresslanlng.new
-
-  end
-
-  def result  
-    weight = params[:body_weight].to_f
-
-      # BMI 計算公式: BMI = 體重（單位：公斤） / 身高平方（單位：公尺）.
-    @bmi = (weight).round(2)
   end
 
   def credit
@@ -126,8 +84,7 @@ class CathaybkController < ApplicationController
 
 
   def new
-    @gmap = Bank.new
-    
+    @gmap = Bank.new  
   end
 
  
@@ -136,32 +93,26 @@ class CathaybkController < ApplicationController
 
   
   def create
-    @gmap = Bank.new(gmap_params)
-
-    
-      if @gmap.save
-        redirect_to situation_path
-      else
-        render :new 
-       
-      end
+    @gmap = Bank.new(gmap_params)    
+    if @gmap.save
+      redirect_to situation_path
+    else
+      render :new 
+    end
 
     @address = Addresslanlng.new(add_param)
-
-      if @address.save
-        redirect_to situation_path
-      else
-        render :new        
-      end 
-
-    
+    if @address.save
+      redirect_to situation_path
+    else
+      render :new        
+    end 
   end
 
   def pos
     @ip_lat = params[:lat]
     @ip_lng = params[:lon]
 
-    @bank_near_name, @bank_near, @bank_distance, @bank_duration = cal_nearbank(@ip_lat, @ip_lng)
+    cal_nearbank
 
     @address = Addresslanlng.new
 
@@ -177,7 +128,7 @@ class CathaybkController < ApplicationController
       @ip_lat = Addresslanlng.last.latitude
       @ip_lng = Addresslanlng.last.longitude
 
-      @bank_near_name, @bank_near, @bank_distance, @bank_duration = cal_nearbank(@ip_lat, @ip_lng)
+      cal_nearbank
 
       render :json => { :lat => @ip_lat, :lng=> @ip_lng, :near_bank=> @bank_near, :bank_near_name=> @bank_near_name, :bank_distance=> @bank_distance, :bank_duration=> @bank_duration }
     end
@@ -186,21 +137,17 @@ class CathaybkController < ApplicationController
   end
 
   def update
-    
       if @gmap.update(gmap_params)
         redirect_to situation_path
       else
         render :edit 
-        
       end
-    
   end
 
 
   def destroy
     @gmap.destroy
     redirect_to situation_path
-  
   end
 
   private
@@ -210,13 +157,11 @@ class CathaybkController < ApplicationController
         @address = Addresslanlng.new
     end
     
-
     def add_param
       params.require(:addresslanlng).permit(:address)
     end
 
-    def cal_nearbank(ip_lat, ip_lng)
-
+    def cal_nearbank
       bank=['國泰世華 西門分行','國泰世華 台北分行', '國泰世華 大安分行', '國泰世華 安和分行', '國泰世華 臨沂分行']
       bank_p=[[25.040818, 121.504449], [25.044361, 121.511745], [25.040298, 121.545906], [25.030499, 121.550283], [25.038744, 121.530838]]
       
@@ -237,7 +182,10 @@ class CathaybkController < ApplicationController
         data2.push(b_duration)
       end
         b_where = data1.index(data1.min)
-        return bank[b_where], bank_p[b_where], data1[b_where], data2[b_where]/60
+        @bank_near_name = bank[b_where]
+        @bank_near = bank_p[b_where]
+        @bank_distance = data1[b_where]
+        @bank_duration = data2[b_where]/60 
 
     end
 
@@ -257,6 +205,7 @@ class CathaybkController < ApplicationController
     def gmap_params
       params.require(:bank).permit(:latitude, :longitude, :address)
     end
+
     def authorize
       if session[:phone_number] == nil
         redirect_to root_path, notice: "請電話驗證"

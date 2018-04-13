@@ -711,7 +711,61 @@ background-image: image-url("arrow-right.svg");
   outline: 1px dotted #959595;
   outline-offset: -4px;
 }
+.know-all{
+    margin-left:140px;
+    margin-right:140px;
+  }
 
+
+
+@media screen and (max-width: 1023px) {
+  .container {
+    width: auto;
+  }
+  .title {
+    width: 100%;
+  }
+  .flow{
+    display: block;
+    width: 100%;
+  }
+  .step {
+    display: none;
+    width: 32%;
+  }
+  .flow-item, .flow-item-1{
+    display: inner-block;
+    width: 100%;
+  }
+  
+
+
+  .table4_4 td {
+    
+    text-align: center;
+    padding: 1px;
+    border-collapse: collapse;
+  }
+  table4_4 th, .table4_4 td {
+    border: 1px solid #dcf1fc;
+    border-width: 1px 0 1px 0;
+    font-size: 0.5em;
+  }
+  .h2-rwd{
+    width: 100%;
+    left: 0;
+   
+  }
+
+  .list-header{
+    display: inner-block;
+    
+  }
+
+
+  
+  
+}
 
 
 

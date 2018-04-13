@@ -1,9 +1,6 @@
 <div class="container">
   <h1>現在時間:    <%= Time.now.strftime("%m/%d %H:%M:%S") %></h1>
-    
   <h3>可預約時段:</h3>
-
-
   <ul class="nav nav-pills nav-pills-center">
     <% @cards.each do |card| %>
       <li role="presentation" class="<%= "active" if card == 
@@ -12,21 +9,10 @@
       </li>
     <% end %>
   </ul>
-
-
   <h3>等待人數: <%= @card.take_logs.today.size%></h3>
-
-
-
-
   <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"} %>
 
-
-
-
-
   <h1>您的號碼:<%= @yournumber %> </h1>
-
   <br>
   <br>
   <br>

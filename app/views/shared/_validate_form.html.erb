@@ -1,0 +1,10 @@
+<h3>驗證碼:<%= current_phone.pin %></h3>
+
+<h3>輸入驗證碼</h3>
+
+<%= form_tag phone_numbers_verify_path, remote: true do |f| %>
+  <div class="form-group">
+    <%= text_field_tag :pin %>
+  </div>
+  <%= submit_tag "驗證", class: "b" %>
+<% end %>

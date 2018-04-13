@@ -1,32 +1,38 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #電話驗證
+  resources :phone_numbers, only: [:new, :create]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+  
+
+  #信貸試算部分
   get "basic", to: "cathaybk#basic"
   post "basic_submit", to: "cathaybk#basic_submit"
   get "credit", to: "cathaybk#credit"
   post "credit_submit", to: "cathaybk#credit_submit"
-
-  get "/delete_session", to: "cathaybk#delete_session"
   get "situation", to: "cathaybk#situation"
+
+  #google地圖部分
   get "user_pos", to: "cathaybk#user_pos"
   get "pos", to: "cathaybk#pos"
   get "cathaybk", to: "cathaybk#index"
+  resource :addresslanlng
   resources :cathaybk
-  resources :phone_numbers, only: [:new, :create]
+  
+  #預約號碼排
   resources :cards do
     member do
       post :take
     end
   end
 
-  resource :addresslanlng
+  
+  
+ root "phone_numbers#new"
 
-  post "cathaybk/result", to: "cathaybk#result"
-  post 'phone_numbers/verify' => "phone_numbers#verify"
-
-  root "phone_numbers#new"
-
-
+  #號碼牌管理
   namespace :admin do
     resources :cards do
       put :sort, on: :collection
@@ -34,7 +40,7 @@ Rails.application.routes.draw do
         post :remind
       end
     end
-
+    root "cards#index"
   end
 
 
