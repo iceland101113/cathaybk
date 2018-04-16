@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407131844) do
+ActiveRecord::Schema.define(version: 20180416154550) do
 
   create_table "address_lanlngs", force: :cascade do |t|
     t.string "address"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180407131844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "take_logs_count"
+    t.date "date"
   end
 
   create_table "credits", force: :cascade do |t|
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20180407131844) do
     t.boolean "verified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
   end
 
   create_table "reservations", force: :cascade do |t|

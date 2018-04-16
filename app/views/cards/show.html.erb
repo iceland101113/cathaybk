@@ -1,10 +1,14 @@
 <div class="container">
   <div class="rev-time-1">
     <br>
-    <h2>現在時間:<%= Time.now.strftime("%m/%d %H:%M:%S") %></h2>
+    <h1>您的號碼:<%= @yournumber %></h1>
+    <h2>預約日期:<%= @card.date %></h2>
+    <h2>預約時段:<%= @card.title %></h2>
+    <!-- <h2>等待人數:<%= @people %></h2> -->
+     <%= link_to '上一頁', cards_path %>
     <br>
   </div>
-  <div class="rev-time">
+  <!-- <div class="rev-time">
     <br>
     <h3>可預約時段:</h3>
       <div class="pill-array">
@@ -21,8 +25,8 @@
   <div class="rev-time-1">
     <h3 style="display:inline-block;">等待人數: <%= @card.take_logs.today.size%></h3>
     <%= link_to "抽號碼牌", take_card_path(@card), method: "post",data: {confirm: "抽取號碼牌囉！"}, :class=>"btn btn-warning" %>
-    <hr>
-    <h1>您的號碼:<%= @yournumber %> </h1>
+    <hr> -->
+    
     <br>
   </div>
   <br>

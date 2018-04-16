@@ -2,7 +2,7 @@ class Admin::CardsController < ApplicationController
 
   def index 
     # @takes = TakeLog.includes(:card).by_position
-     @takes  = TakeLog.includes(:card).where("created_at >= ?", Time.zone.now.beginning_of_day)
+     @takes  = TakeLog.includes(:card).by_position
   end
 
   def destroy
@@ -19,23 +19,20 @@ class Admin::CardsController < ApplicationController
   end
 
   def remind
-    @take = TakeLog.find(params[:id])
-    user = User.find_by(phone: @take.ip_address)
-    message = "您是: #{@take.take_count}號
-              時段: #{Card.find_by(id: @take.card_id).title}
-              預計十分鐘後輪到你,可以往分行出發囉！"
-          
-    # @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
     
-    # @client.messages.create(
-    #   from: '+16144125358',
-    #   to: "+886#{@take.ip_address}",
-    #   body: message
-    # )
-    ContactMailer.say_remind_to(user, message).deliver_now
+
+    @take = TakeLog.find(params[:id])
+   
+    @phone_number = @take.ip_address.to_i 
+    message = "您是: #{@take.take_count}號,
+              時段: #{Card.find_by(id: @take.card_id).title},日期: #{Card.find_by(id: @take.card_id).date},
+              預計十分鐘後輪到你,可以往分行出發囉！"
+    ContactMailer.say_remind_to(current_phone, message).deliver_now
+    
     @take.update(status: 1)
     redirect_to admin_cards_path, notice: "提醒成功"
   end
+  
 
 
 end

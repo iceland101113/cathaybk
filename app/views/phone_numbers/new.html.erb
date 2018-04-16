@@ -1,14 +1,22 @@
+
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-sm-5 col-lg-5">
       <div class="varify-phone">
         <br>
-        <h4> 信貸利率評估 </h4>
+        <h4> 信貸利率評估 </h4></br>
         <div id="send-pin">
-          <h3>請先輸入手機號碼並領取認證碼</h3>
+          
           <%= form_for @phone_number, remote: true do |f| %>
+            
             <div class="form-group">
+              <%= f.label :phone_number, "手機號碼" %><br>
               <%= f.text_field :phone_number %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :emai, "信箱" %><br>
+              <%= f.text_field :email %>
             </div>
             <%= f.submit "取得驗證號碼", class: "b", id: 'send-pin-link' %>
           <% end %>
@@ -37,6 +45,3 @@
 
 
   
-
-
-

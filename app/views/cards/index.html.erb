@@ -2,7 +2,7 @@
   <h3><%= link_to "提醒使用者" ,admin_cards_path, style: 'color:green;'%></h3>
     <div class="rev-time-1">
         <br>
-        <h1><%= current_user.name %>,您好</h1>
+        <h1><%= current_phone.phone_number %>,您好</h1>
     
     
         <h2>現在時間:<%= Time.now.strftime("%m/%d %H:%M:%S") %></h2>
@@ -11,17 +11,33 @@
     
     <div class="rev-time">
         <br>
-        <h3>可預約時段:</h3>
-            <div class="pill-array">
-                <ul class="nav nav-pills nav-pills-center">
-      
-                <% @cards.each do |card|%>
+        <%= form_for @card , class: "pill-array" do |f| %>
+            <h3>選擇日期:</h3> 
+                <%= f.label :date  %> 
+                <%= f.date_field :date%>   
+            <h3>可預約時段:</h3>
+                    <%= f.radio_button :title, Card.find_by(id: 1).title %>
+                    <%= f.label :title, Card.find_by(id: 1).title %>
+                
+                    <%= f.radio_button :title, Card.find_by(id: 2).title %>
+                    <%= f.label :title, Card.find_by(id: 2).title %>
+
+                    <%= f.radio_button :title, Card.find_by(id: 3).title %>
+                    <%= f.label :title, Card.find_by(id: 3).title %>
                     
-                    <li role = "presentation"><%= link_to card.title, card_path(card) %></li>
+                    <%= f.radio_button :title, Card.find_by(id: 4).title %>
+                    <%= f.label :title, Card.find_by(id: 4).title %>
                     
-                <% end %>
-                </ul>
-            </div>
+                    <%= f.radio_button :title, Card.find_by(id: 5).title %>
+                    <%= f.label :title, Card.find_by(id: 5).title %>
+                
+                    <%= f.radio_button :title, Card.find_by(id: 6).title %>
+                    <%= f.label :title, Card.find_by(id: 6).title %>
+
+                    <%= f.radio_button :title, Card.find_by(id: 7).title %>
+                    <%= f.label :title, Card.find_by(id: 7).title %></br>
+                    <button class="button arrow center-block ">抽號碼牌</button> 
+        <% end %>        
         <br>
     </div>
    

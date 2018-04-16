@@ -4,7 +4,7 @@ class PhoneNumbersController < ApplicationController
     @phone_number = PhoneNumber.new
   end
 
-  def create
+   def create
     @phone_number = PhoneNumber.new(phone_params)
 
     if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number).size >= 3
@@ -32,7 +32,9 @@ class PhoneNumbersController < ApplicationController
   private
 
   def phone_params
-    params.require(:phone_number).permit(:phone_number, :pin, :verified)
+    params.require(:phone_number).permit(:phone_number, :pin, :verified, :email)
   end
+
+
 
 end
