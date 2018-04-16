@@ -40,18 +40,18 @@ class CathaybkController < ApplicationController
 
   def situation
       @select = Select.first
-      #這邊我看不懂 在算什麼
+
       case session[:point]
         when 90..101
-          session[:point] == 18
+          session[:point] = 25
         when 80..90
-          session[:point]  == 15
+          session[:point]  = 23
         when 70..80
-          session[:point] ==10
+          session[:point] =15
         when 60..70
-          session[:point] == 8
+          session[:point] = 11
         else 
-          session[:point]  == 5
+          session[:point]  = 8
       end
 
       case session[:month_money]
@@ -73,6 +73,7 @@ class CathaybkController < ApplicationController
           session[:month_money] = 125000
       end
       @total_money =  session[:point] * session[:month_money] 
+      @total_month =  (session[:month_money]/1000).to_i
       
       #關於地址
       @address = Addresslanlng.new
