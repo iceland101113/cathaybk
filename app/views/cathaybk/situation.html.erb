@@ -27,7 +27,7 @@
         <div class="form-result col-sm-12 col-xs-12 col-md-4">
           <div class="result-box">
             <br>
-            <h3>貸款期限最長<span style="color:#ff751a;"> 10 </span>年</h3>
+            <h3>貸款期限最長<span style="color:#ff751a;"> <%= @total_month %> </span>年</h3>
           </div>
         </div>
         <br>
@@ -61,7 +61,7 @@
                           <label for="amount" style="color: grey;">萬: </label>
                         </div>
                         <div class="col-6">
-                          <input type="text" id="amount" class="form-control">
+                          <input type="text" id="amount" class="form-control" value="<%= @total_money/20000 %>">
                           <span id="text_amount"></span>                        
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                           <label for="duration" style="color: grey;">月: </label>
                         </div>
                         <div class="col-6">
-                          <input id="duration" type="text" class="form-control">
+                          <input id="duration" type="text" class="form-control" value="<%= (@total_month/2).to_i %>">
                           <span id="text_duration"></span>
                         </div>
                       </div>
@@ -101,7 +101,7 @@
               </div>
               <hr class="style">
               <div class="form-group total">
-                <label for="total" class="col-sm-6 control-label" style="color: grey;"><strong>您的每月應繳本息: </strong></label>
+                <label for="total" class="col-sm-6 control-label" style="color: grey;"><strong>您的每月應繳金額: </strong></label>
                 <span class="help-text"></span>
                 <div class="col-sm-6">
                   <input type="hidden" id="total" class="form-control">
@@ -110,6 +110,15 @@
                 </div>
               </div>
 
+              <div class="form-group total">
+                <label for="total" class="col-sm-6 control-label" style="color: grey;"><strong>總繳金額: </strong></label>
+                <span class="help-text"></span>
+                <div class="col-sm-6">
+                  <input type="hidden" id="total" class="form-control">
+                  <p class="price lead" id="total-loans"></p>
+                  <span class="price"></span>
+                </div>
+              </div>
             </div>
 
           </form>
@@ -321,10 +330,10 @@
   $(document).ready(function() {
       $("#slider").slider({
           animate: true,
-          value:1,
-          min: 0,
+          value:<%= @total_money/20000 %>,
+          min: 10,
           max: <%= @total_money/10000 %>,
-          step: 10,
+          step: 3,
           slide: function(event, ui) {
               update(1,ui.value); //changed
           }
@@ -332,9 +341,9 @@
 
       $("#slider2").slider({
           animate: true,
-          value:0,
-          min: 0,
-          max: 120,
+          value:<%= (@total_month/2).to_i %>,
+          min: 6,
+          max: <%= @total_month %>,
           step: 1,
           slide: function(event, ui) {
               update(2,ui.value); //changed
@@ -342,37 +351,35 @@
       });
 
       //Added, set initial value.
-      $("#amount").val(0);
-      $("#duration").val(0);
+      $("#amount").val(<%= (@total_money/20000).to_i %>);
+      $("#duration").val(<%= (@total_month/2).to_i %>);
       
       update();
       $("#amount").change(update_slider1);
       $("#duration").change(update_slider2);
-      // update_slider();
   });
-    //changed. now with parameter
     function update(slider,val) {
       //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
       var $amount = slider == 1?val:$("#amount").val();
       var $duration = slider == 2?val:$("#duration").val();
+      
+      var num = $duration/120+1;
 
-      //  commented
-      // $amount = $( "#slider" ).slider( "value" );
-      // $duration = $( "#slider2" ).slider( "value" );
+      var $month_loans = Math.floor($amount/$duration*num*100)*100
+      $total = "$" + ($duration * $month_loans/10000);
+      $( "#amount" ).val($amount);
+      $( "#amount-label" ).text($amount);
+      $( "#duration" ).val($duration);
+      $( "#duration-label" ).text($duration);
+      $( "#total" ).val($total);
+      $( "#total-label" ).text($month_loans + "元");
+      $("#total-loans").html($total+"萬元"+"<span></span>");
        
 
-       $total = "$" + ($amount * $duration);
-       $( "#amount" ).val($amount);
-       $( "#amount-label" ).text($amount);
-       $( "#duration" ).val($duration);
-       $( "#duration-label" ).text($duration);
-       $( "#total" ).val($total);
-       $( "#total-label" ).text($total);
-
-       $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
-       $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+      $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+      $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
     }
-    // input's value control slider
+
     function update_slider1(slider,value){
       let $amount = $("#amount").val();
       if ($amount > <%= @total_money/10000 %>) {
