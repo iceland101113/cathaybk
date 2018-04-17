@@ -12,12 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180416154550) do
 
-  create_table "address_lanlngs", force: :cascade do |t|
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "addresslanlngs", force: :cascade do |t|
     t.string "address"
     t.datetime "created_at", null: false

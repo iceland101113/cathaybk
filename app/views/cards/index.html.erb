@@ -11,35 +11,61 @@
     
     <div class="rev-time">
         <br>
-        <%= form_for @card , class: "pill-array" do |f| %>
-            <h3>選擇日期:</h3> 
-                <%= f.label :date  %> 
-                <%= f.date_field :date%>   
-            <h3>可預約時段:</h3>
-                    <%= f.radio_button :title, Card.find_by(id: 1).title %>
-                    <%= f.label :title, Card.find_by(id: 1).title %>
-                
-                    <%= f.radio_button :title, Card.find_by(id: 2).title %>
-                    <%= f.label :title, Card.find_by(id: 2).title %>
-
-                    <%= f.radio_button :title, Card.find_by(id: 3).title %>
-                    <%= f.label :title, Card.find_by(id: 3).title %>
-                    
-                    <%= f.radio_button :title, Card.find_by(id: 4).title %>
-                    <%= f.label :title, Card.find_by(id: 4).title %>
-                    
-                    <%= f.radio_button :title, Card.find_by(id: 5).title %>
-                    <%= f.label :title, Card.find_by(id: 5).title %>
-                
-                    <%= f.radio_button :title, Card.find_by(id: 6).title %>
-                    <%= f.label :title, Card.find_by(id: 6).title %>
-
-                    <%= f.radio_button :title, Card.find_by(id: 7).title %>
-                    <%= f.label :title, Card.find_by(id: 7).title %></br>
-                    <button class="button arrow center-block ">抽號碼牌</button> 
-        <% end %>        
+        <div class="r-date" style="margin-bottom: 10px;">
+            <%= form_for @card , class: "pill-array" do |f| %>
+            <h3 style=>選擇日期:</h3> 
+            <%= f.date_field :date%> 
+        </div>
+        <br>
+        
+        <h3>可預約時段:</h3>
+        <div  class="col-md-8 col-md-offset-3">
+            <div class="col-md-4 time-ok" >
+                <%= f.radio_button :title, Card.find_by(id: 1).title %>
+                <%= f.label :title, Card.find_by(id: 1).title %>
+            </div>
+            <div class="col-md-4 time-busy" >        
+                <%= f.radio_button :title, Card.find_by(id: 2).title %>
+                <%= f.label :title, Card.find_by(id: 2).title %>
+            </div>
+            <div class="col-md-4 time-busy" >
+                <%= f.radio_button :title, Card.find_by(id: 3).title %>
+                <%= f.label :title, Card.find_by(id: 3).title %>
+            </div>
+            <div class="col-md-4 time-verybusy" >           
+                <%= f.radio_button :title, Card.find_by(id: 4).title %>
+                <%= f.label :title, Card.find_by(id: 4).title %>
+            </div>
+            <div class="col-md-4 time-verybusy" >
+                <%= f.radio_button :title, Card.find_by(id: 5).title %>
+                <%= f.label :title, Card.find_by(id: 5).title %>
+            </div>
+            <div class="col-md-4 time-ok" >        
+                <%= f.radio_button :title, Card.find_by(id: 6).title %>
+                <%= f.label :title, Card.find_by(id: 6).title %>
+            </div>
+            <div class="col-md-4 time-ok" >
+                <%= f.radio_button :title, Card.find_by(id: 7).title %>
+                <%= f.label :title, Card.find_by(id: 7).title %>
+            </div>
+            <br>
+        </div>
+        <br>    
+        <div class="col-md-12">
+            <button class="btn btn-danger" style="width:200px;">抽號碼牌</button> 
+            <% end %>   
+        </div>     
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
     </div>
+
    
 
    

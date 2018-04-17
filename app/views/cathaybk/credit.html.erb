@@ -79,7 +79,7 @@
             </div>
             <hr>
 
-            <button class=" button arrow center-block ">送出</button>
+            <button onclick="set_value()" class=" button arrow center-block ">送出</button>
           </div>  
         <% end %>
     </div>
@@ -94,11 +94,11 @@
       let $credit_credit_all_money = $("#credit_credit_all_money");
       if ($("#credit_credit_num").val() == "2" ){
         $credit_credit_time.val("3");
-        $credit_credit_time.attr("readonly", true);
+        $credit_credit_time.attr("disabled", true);
         $credit_credit_money.val("3");
-        $credit_credit_money.attr("readonly", true);
+        $credit_credit_money.attr("disabled", true);
         $credit_credit_all_money.val("2");
-        $credit_credit_all_money.attr("readonly", true);
+        $credit_credit_all_money.attr("disabled", true);
       } else{
 
         $("#credit_credit_time option")[1].disabled = true
@@ -116,4 +116,11 @@
       }
     })
   })
+ 
+  function set_value(){
+    $("#credit_credit_time").attr("disabled", false);
+    $("#credit_credit_money").attr("disabled", false);
+    $("#credit_credit_all_money").attr("disabled", false);
+  }
+
 </script>

@@ -789,6 +789,7 @@ background-image: image-url("arrow-right.svg");
 
     h3 {
       margin-top: 10px;
+
     }
 
   }
@@ -839,3 +840,24 @@ background-image: image-url("arrow-right.svg");
   width: 100px;
   font-size: 20px;
 }
+
+.time-ok {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: lightgrey;
+  margin-right: 5px;
+} 
+
+.time-busy {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: lightgreen;
+  margin-right: 5px;
+} 
+
+.time-verybusy {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: yellow;
+  margin-right: 5px;
+} 
