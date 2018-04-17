@@ -1,6 +1,8 @@
 class PhoneNumber < ApplicationRecord
   
   validates :phone_number, format: { with: /(0)(9)\d{8}/}
+  validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
+
 
   def generate_pin
     self.pin = rand(0000..9999).to_s.rjust(4, "0")
