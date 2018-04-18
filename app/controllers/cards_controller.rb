@@ -42,7 +42,7 @@ class CardsController < ApplicationController
   end
 
   def show
-    @cards = Card.all
+    
     @card = Card.find(params[:id])
     @yournumber = TakeLog.find_by(ip_address: current_phone.phone_number ,card_id: @card)
     @people = Card.where("title >= ? AND  date >= ?", @card.title  , @card.date).size

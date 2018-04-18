@@ -20,7 +20,7 @@
         
         <h3>可預約時段:</h3>
         <div  class="col-md-8 col-md-offset-3">
-            <div class="col-md-4 time-ok" >
+            <div class="col-md-4 time-busy" >
                 <%= f.radio_button :title, Card.find_by(id: 1).title %>
                 <%= f.label :title, Card.find_by(id: 1).title %>
             </div>
@@ -32,19 +32,19 @@
                 <%= f.radio_button :title, Card.find_by(id: 3).title %>
                 <%= f.label :title, Card.find_by(id: 3).title %>
             </div>
-            <div class="col-md-4 time-verybusy" >           
+            <div class="col-md-4 time-busy" >           
                 <%= f.radio_button :title, Card.find_by(id: 4).title %>
                 <%= f.label :title, Card.find_by(id: 4).title %>
             </div>
-            <div class="col-md-4 time-verybusy" >
+            <div class="col-md-4 time-busy" >
                 <%= f.radio_button :title, Card.find_by(id: 5).title %>
                 <%= f.label :title, Card.find_by(id: 5).title %>
             </div>
-            <div class="col-md-4 time-ok" >        
+            <div class="col-md-4 time-busy" >        
                 <%= f.radio_button :title, Card.find_by(id: 6).title %>
                 <%= f.label :title, Card.find_by(id: 6).title %>
             </div>
-            <div class="col-md-4 time-ok" >
+            <div class="col-md-4 time-busy" >
                 <%= f.radio_button :title, Card.find_by(id: 7).title %>
                 <%= f.label :title, Card.find_by(id: 7).title %>
             </div>
