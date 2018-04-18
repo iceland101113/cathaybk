@@ -14,7 +14,7 @@ class CardsController < ApplicationController
     @phone_number = current_phone.phone_number.to_i
     @people = Card.where("title LIKE ? AND  date LIKE ?", @card.title  , @card.date).size
     puts @people
-    if @people > 6
+    if @people > 5
       redirect_to cards_path, notice: "時段額滿"
     else 
       if @card.save
