@@ -841,23 +841,30 @@ background-image: image-url("arrow-right.svg");
   font-size: 20px;
 }
 
-.time-ok {
+.time-def {
   margin-left: 5px;
   margin-bottom: 10px;
-  background-color: lightgrey;
+  
   margin-right: 5px;
 } 
 
-.time-busy {
+.time-ok {
   margin-left: 5px;
   margin-bottom: 10px;
   background-color: lightgreen;
   margin-right: 5px;
 } 
 
-.time-verybusy {
+.time-busy {
   margin-left: 5px;
   margin-bottom: 10px;
   background-color: yellow;
+  margin-right: 5px;
+} 
+
+.time-verybusy {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: red;
   margin-right: 5px;
 } 

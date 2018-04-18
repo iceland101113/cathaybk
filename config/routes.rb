@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post "credit_submit", to: "cathaybk#credit_submit"
   get "situation", to: "cathaybk#situation"
 
+  get "get_time", to: "cards#get_time"
+
   #google地圖部分
   get "user_pos", to: "cathaybk#user_pos"
   get "pos", to: "cathaybk#pos"
