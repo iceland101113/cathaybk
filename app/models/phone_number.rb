@@ -1,6 +1,6 @@
 class PhoneNumber < ApplicationRecord
   
-  validates :phone_number, format: { with: /(0)(9)\d{8}/}
+  validates :phone_number, format: { with: /(0)(9)\d{8}/, message: "Please enter your phone number"}
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
 

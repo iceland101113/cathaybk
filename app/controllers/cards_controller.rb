@@ -12,7 +12,8 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     @phone_number = current_phone.phone_number.to_i
-    @people = Card.where("title >= ? AND  date >= ?", @card.title  , @card.date).size
+    @people = Card.where("title LIKE ? AND  date LIKE ?", @card.title  , @card.date).size
+    puts @people
     if @people > 6
       redirect_to cards_path, notice: "時段額滿"
     else 
@@ -36,9 +37,30 @@ class CardsController < ApplicationController
     
     
       else
-        render :index, notice: "預約失敗"
+        redirect_to cards_path, notice: "預約失敗"
       end
      end 
+  end
+
+  def get_time
+    date = params[:date]
+    @people = Card.where("date LIKE ?",date)
+    puts @people.size
+    @time1 = @people.where("title LIKE ?",'08:00-09:00').size
+    @time2 = @people.where("title LIKE ?",'09:00-10:00').size
+    @time3 = @people.where("title LIKE ?",'10:00-11:00').size
+    @time4 = @people.where("title LIKE ?",'11:00-12:00').size
+    @time5 = @people.where("title LIKE ?",'12:00-13:00').size
+    @time6 = @people.where("title LIKE ?",'13:00-14:00').size
+    @time7 = @people.where("title LIKE ?",'14:00-15:00').size
+    puts @time1
+puts @time2
+puts @time3
+puts @time4
+puts @time5
+puts @time6
+puts @time7
+    render :json => { :time1 => @time1, :time2 => @time2, :time3 => @time3, :time4 => @time4, :time5 => @time5, :time6 => @time6, :time7 => @time7 }
   end
 
   def update

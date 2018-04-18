@@ -18,33 +18,116 @@
         </div>
         <br>
         
+        <script>
+            $(function(){
+                $("#card_date").on( "change",()=>{
+                    $.ajax({
+                        url: '/get_time',
+                        method: 'GET',
+                        dataType: "json",
+                        data: {date: $("#card_date").val()},
+                        success:(data)=>{
+                            console.log($("#card_date").val());
+                            console.log(data["time1"]);
+                            console.log(data["time2"]);
+                            console.log(data["time3"]);
+                            console.log(data["time4"]);
+                            console.log(data["time5"]);
+                            console.log(data["time6"]);
+                            console.log(data["time7"]);
+                            $(".time-busy").removeClass("time-busy");
+                            $(".time-verybusy").removeClass("time-verybusy");
+                            $(".time-ok").removeClass("time-ok");
+                            $(".time-def").removeClass("time-ok");
+                            if (data["time1"]>=3 && data["time1"]<6){
+                                $("#time1").addClass('col-md-4 time-busy');
+                             } else if (data["time1"]>=6){ 
+                                $("#time1").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time1").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time2"]>=3 && data["time2"]<6){
+                                $("#time2").addClass('col-md-4 time-busy');
+                             } else if (data["time2"]>=6){ 
+                                $("#time2").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time2").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time3"]>=3 && data["time3"]<6){
+                                $("#time3").addClass('col-md-4 time-busy');
+                             } else if (data["time3"]>=6){ 
+                                $("#time3").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time3").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time4"]>=3 && data["time4"]<6){
+                                $("#time4").addClass('col-md-4 time-busy');
+                             } else if (data["time4"]>=6){ 
+                                $("#time4").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time4").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time5"]>=3 && data["time5"]<6){
+                                $("#time5").addClass('col-md-4 time-busy');
+                             } else if (data["time5"]>=6){ 
+                                $("#time5").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time5").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time6"]>=3 && data["time6"]<6){
+                                $("#time6").addClass('col-md-4 time-busy');
+                             } else if (data["time6"]>=6){ 
+                                $("#time6").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time6").addClass('col-md-4 time-ok');
+                             }
+
+                            if (data["time7"]>=3 && data["time7"]<6){
+                                $("#time7").addClass('col-md-4 time-busy');
+                             } else if (data["time7"]>=6){ 
+                                $("#time7").addClass('col-md-4 time-verybusy');
+                             } else {
+                                $("#time7").addClass('col-md-4 time-ok');
+                             }
+
+                        }
+                    })
+                })
+            })
+        </script>
+
         <h3>可預約時段:</h3>
         <div  class="col-md-8 col-md-offset-3">
-            <div class="col-md-4 time-busy" >
+            <div class="col-md-4 time-def" id="time1">
                 <%= f.radio_button :title, Card.find_by(id: 1).title %>
                 <%= f.label :title, Card.find_by(id: 1).title %>
             </div>
-            <div class="col-md-4 time-busy" >        
+            <div class="col-md-4 time-def" id="time2">        
                 <%= f.radio_button :title, Card.find_by(id: 2).title %>
                 <%= f.label :title, Card.find_by(id: 2).title %>
             </div>
-            <div class="col-md-4 time-busy" >
+            <div class="col-md-4 time-def" id="time3">
                 <%= f.radio_button :title, Card.find_by(id: 3).title %>
                 <%= f.label :title, Card.find_by(id: 3).title %>
             </div>
-            <div class="col-md-4 time-busy" >           
+            <div class="col-md-4 time-def" id="time4">           
                 <%= f.radio_button :title, Card.find_by(id: 4).title %>
                 <%= f.label :title, Card.find_by(id: 4).title %>
             </div>
-            <div class="col-md-4 time-busy" >
+            <div class="col-md-4 time-def" id="time5">
                 <%= f.radio_button :title, Card.find_by(id: 5).title %>
                 <%= f.label :title, Card.find_by(id: 5).title %>
             </div>
-            <div class="col-md-4 time-busy" >        
+            <div class="col-md-4 time-def" id="time6">        
                 <%= f.radio_button :title, Card.find_by(id: 6).title %>
                 <%= f.label :title, Card.find_by(id: 6).title %>
             </div>
-            <div class="col-md-4 time-busy" >
+            <div class="col-md-4 time-def" id="time7">
                 <%= f.radio_button :title, Card.find_by(id: 7).title %>
                 <%= f.label :title, Card.find_by(id: 7).title %>
             </div>
@@ -92,3 +175,4 @@
     <br>
     <br>
     <br>
+ 
