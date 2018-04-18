@@ -10,13 +10,13 @@ class PhoneNumbersController < ApplicationController
     if PhoneNumber.where("phone_number = ?" , @phone_number.phone_number).size >= 3
       redirect_to root_path, notice:'登入操過次數'
     else
-      pin = rand(0000..9999).to_s.rjust(4, "0")
-      @phone_number.pin = pin
+        pin = rand(0000..9999).to_s.rjust(4, "0")
+         @phone_number.pin = pin
       if @phone_number.save
         login(@phone_number)
-        # @phone_number.generate_pin
-        # @phone_number.send_pin
-        # session[:phone_number] = @phone_number
+         # @phone_number.generate_pin
+         # @phone_number.send_pin
+         # session[:phone_number] = @phone_number
       else
         render :new, notice:'填入號碼有誤' 
       end
