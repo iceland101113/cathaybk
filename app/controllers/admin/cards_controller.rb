@@ -28,13 +28,13 @@ class Admin::CardsController < ApplicationController
               時段: #{Card.find_by(id: @take.card_id).title},日期: #{Card.find_by(id: @take.card_id).date},
               預計十分鐘後輪到你,可以往分行出發囉！"
     ContactMailer.say_remind_to(current_phone, message).deliver_now
-    @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
+    # @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
     
-    @client.messages.create(
-      from: '+16144125358',
-      to: "+886#{@phone_number}",
-      body: message
-    )
+    # @client.messages.create(
+    #   from: '+16144125358',
+    #   to: "+886#{@phone_number}",
+    #   body: message
+    # )
     
     @take.update(status: 1)
     redirect_to admin_cards_path, notice: "提醒成功"

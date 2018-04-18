@@ -24,13 +24,13 @@ class CardsController < ApplicationController
                    日期: #{@card.date}"
         # @phone.send_message(current_phone.phone_number, message)
           ContactMailer.say_hello_to(current_phone,message).deliver_now
-          @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
+          # @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
     
-          @client.messages.create(
-            from: '+16144125358',
-            to: "+886#{@phone_number}",
-            body: message
-          )
+          # @client.messages.create(
+          #   from: '+16144125358',
+          #   to: "+886#{@phone_number}",
+          #   body: message
+          # )
           end
         redirect_to card_path(@card.id), notice: "預約成功,請看簡訊或者信箱"
     
