@@ -18,7 +18,7 @@ class PhoneNumbersController < ApplicationController
         # @phone_number.send_pin
         # session[:phone_number] = @phone_number
       else
-        render :new, notice:'填入號碼有誤' 
+        redirect_to root_path, notice:'填入號碼有誤'
       end
 
     end   
