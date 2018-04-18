@@ -11,6 +11,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @phone_number = current_phone.phone_number.to_i
     @people = Card.where("title >= ? AND  date >= ?", @card.title  , @card.date).size
     if @people > 6
       redirect_to cards_path, notice: "時段額滿"
@@ -23,6 +24,13 @@ class CardsController < ApplicationController
                    日期: #{@card.date}"
         # @phone.send_message(current_phone.phone_number, message)
           ContactMailer.say_hello_to(current_phone,message).deliver_now
+          @client = Twilio::REST::Client.new('ACd1ddc0ae6cb57f040340cd6b205a284e', '1bc8ca6228ee5625cf1abc35792eab51')
+    
+          @client.messages.create(
+            from: '+16144125358',
+            to: "+886#{@phone_number}",
+            body: message
+          )
           end
         redirect_to card_path(@card.id), notice: "預約成功,請看簡訊或者信箱"
     
@@ -42,7 +50,7 @@ class CardsController < ApplicationController
   end
 
   def show
-    
+    @cards = Card.all
     @card = Card.find(params[:id])
     @yournumber = TakeLog.find_by(ip_address: current_phone.phone_number ,card_id: @card)
     @people = Card.where("title >= ? AND  date >= ?", @card.title  , @card.date).size
