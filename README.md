@@ -31,14 +31,12 @@
 - 提醒客戶快輪到他了
 
 
-## 測試
-
 ##  部署ＧＣＰ
 因為要給現場使用者體驗,先把twilio api 拿掉
 
 
 
-## 使用到的gem及api        
+## 特別使用的gem及api        
 
 * [twilio-ruby](https://github.com/twilio/twilio-ruby)  
 --使用者手機認證功能 
@@ -57,9 +55,12 @@
 
 * [jquery-rails](https://github.com/rails/jquery-rails)  
 * [bootstrap-sass](https://github.com/twbs/bootstrap-sass)  
---用來撰寫一些前端效果時需要用到,  例如問卷表單美化, 頁面RWD
+--用來撰寫一些前端效果時需要用到,  例如問卷表單美化, 頁面RWD  
 --地址定位以及使用者最近分行定位使用jQuery ajax的方式將坐標傳回後端運算
 
 * [bootstrap-slider-rails](https://github.com/stationkeeping/bootstrap-slider-rails)
 --用來做出月付金試算的拖拉軸小工具, 介面參考w3shool的[How TO - Range Sliders](https://www.w3schools.com/howto/howto_js_rangeslider.asp)
+
+* [rspec-rails](https://github.com/rspec/rspec-rails)  
+--用來做網站測試
  
