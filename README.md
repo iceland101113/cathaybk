@@ -33,7 +33,7 @@
 
 ##  部署ＧＣＰ
 因為要給現場使用者體驗,先把twilio api 拿掉
-
+https://www.dexicelandmorrie.us/
 
 
 ## 特別使用的gem及api        
