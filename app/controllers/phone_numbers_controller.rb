@@ -14,6 +14,7 @@ class PhoneNumbersController < ApplicationController
          @phone_number.pin = pin
       if @phone_number.save
         login(@phone_number)
+        puts @phone_number.id
          # @phone_number.generate_pin
          # @phone_number.send_pin
          # session[:phone_number] = @phone_number

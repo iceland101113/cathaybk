@@ -9,7 +9,7 @@ class CardsController < ApplicationController
     # current_user.update(phone: current_phone.phone_number)
   end
 
-  def create
+    def create
     @card = Card.new(card_params)
     @phone_number = current_phone.phone_number.to_i
     @people = Card.where("title LIKE ? AND  date LIKE ?", @card.title  , @card.date).size
@@ -54,14 +54,15 @@ class CardsController < ApplicationController
     @time6 = @people.where("title LIKE ?",'13:00-14:00').size
     @time7 = @people.where("title LIKE ?",'14:00-15:00').size
     puts @time1
-puts @time2
-puts @time3
-puts @time4
-puts @time5
-puts @time6
-puts @time7
+    puts @time2
+    puts @time3
+    puts @time4
+    puts @time5
+    puts @time6
+    puts @time7
     render :json => { :time1 => @time1, :time2 => @time2, :time3 => @time3, :time4 => @time4, :time5 => @time5, :time6 => @time6, :time7 => @time7 }
   end
+
 
   def update
     if @card.update(card_params)
