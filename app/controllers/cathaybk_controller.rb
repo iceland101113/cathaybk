@@ -92,6 +92,9 @@ class CathaybkController < ApplicationController
   def edit
   end
 
+  def sitemap.xml
+  end
+
   
   def create
     @gmap = Bank.new(gmap_params)    
