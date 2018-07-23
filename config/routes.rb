@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
 
   #信貸試算部分
-  get "sitemap.xml", to: "cathaybk#sitemap.xml"
+  get "sitemap.xml", to: "phone_numbers#sitemap.xml"
   get "basic", to: "cathaybk#basic"
   post "basic_submit", to: "cathaybk#basic_submit"
   get "credit", to: "cathaybk#credit"
