@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
 
   #信貸試算部分
-  
+  match 'phone_numbers/sitemap' , :defaults => { :format => 'xml' }
   get "basic", to: "cathaybk#basic"
   post "basic_submit", to: "cathaybk#basic_submit"
   get "credit", to: "cathaybk#credit"
