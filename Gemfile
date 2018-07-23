@@ -74,3 +74,4 @@ gem 'rspec-rails', :group => [:development, :test]
 gem 'factory_bot'
 gem 'gritter', '~> 1.2'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'sitemap_generator'
