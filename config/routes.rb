@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :phone_numbers, only: [:new, :create]
   post 'phone_numbers/verify' => "phone_numbers#verify"
   
-
+  get 'robots.txt' => 'phone_numbers#robots'
   #信貸試算部分
 
   get "basic", to: "cathaybk#basic"
