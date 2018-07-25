@@ -1,7 +1,0 @@
-
-Sitemap: https://www.dexicelandmorrie.us/sitemap.xml.gz
-
-
-User-agent: *
-Disallow: /wp-admin/
-
