@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   #電話驗證
   resources :phone_numbers, only: [:new, :create]
   post 'phone_numbers/verify' => "phone_numbers#verify"
-  
-  get 'robots.txt' => 'phone_numbers#robots'
+ 
+  get '/robots.txt' => 'phone_numbers#robots'
   #信貸試算部分
 
   get "basic", to: "cathaybk#basic"
