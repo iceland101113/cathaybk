@@ -10,7 +10,7 @@ Some people must have experience to figure how much credit they can get from ban
   + get notify email and message when the time is near their appointment
 
 ## Version
-* Ruby
+* Ruby 2.3.7
 * Rails 5.1.5
 
 ## Getting Started
