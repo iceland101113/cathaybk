@@ -13,3 +13,11 @@ Some people must have experience to figure how much credit they can get from ban
 * Ruby
 * Rails
 * 
+
+## Getting Started
+* set up
+`bundle install`
+`rails db:migrate`
+
+* set default data
+`rails db:seed`
