@@ -11,8 +11,7 @@ Some people must have experience to figure how much credit they can get from ban
 
 ## Version
 * Ruby
-* Rails
-* 
+* Rails 5.1.5
 
 ## Getting Started
 * set up
