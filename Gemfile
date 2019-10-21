@@ -63,7 +63,7 @@ gem 'devise', '~> 4.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'geocoder', '~> 1.4', '>= 1.4.6'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-slider-rails'
